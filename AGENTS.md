@@ -12,8 +12,9 @@ Phase 1 only:
 2. `docs/01-product-promise.md`
 3. `docs/02-user-jobs.md`
 4. `docs/03-core-loops.md`
+5. `docs/PHASE_1_REVIEW_GATE.md`
 
-Do not create UX maps, schemas, SEO plans, architecture, backlog tickets, or scaffold code until Moli reviews/approves the preceding layer.
+Do not create UX maps, schemas, SEO plans, architecture, backlog tickets, or scaffold code until Moli reviews/approves the preceding layer. The review gate must be marked `approved` or `approved with stated assumptions` before the surface map starts.
 
 ## Professional-team sequence
 
@@ -25,7 +26,7 @@ CEO brief
 → User jobs
 → Core loops
 → Surface map
-→ Data model
+→ Domain record map (not database schema yet)
 → State model
 → Copy/trust system
 → SEO map

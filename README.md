@@ -26,8 +26,9 @@ Review in order:
 2. [`docs/01-product-promise.md`](docs/01-product-promise.md)
 3. [`docs/02-user-jobs.md`](docs/02-user-jobs.md)
 4. [`docs/03-core-loops.md`](docs/03-core-loops.md)
+5. [`docs/PHASE_1_REVIEW_GATE.md`](docs/PHASE_1_REVIEW_GATE.md)
 
-These are intentionally short. They define the product meaning before UX, data model, SEO, architecture or backlog.
+These are intentionally short. They define the product meaning before UX, record mapping, SEO, architecture or backlog.
 
 ## Drift guard
 
@@ -39,7 +40,7 @@ CEO brief
 → User jobs
 → Core loops
 → Surface map
-→ Data model
+→ Domain record map (not database schema yet)
 → State model
 → Copy/trust system
 → SEO map

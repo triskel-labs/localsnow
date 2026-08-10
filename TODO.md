@@ -8,9 +8,10 @@
 
 ## Pending
 
-- [ ] Moli reviews Phase 1 docs.
-- [ ] Moli answers/edits the minimum Phase 1 open decisions.
-- [ ] After Phase 1 review, create the next layer: surface map.
+- [ ] Moli reviews Phase 1 docs and `docs/PHASE_1_REVIEW_GATE.md`.
+- [ ] Moli answers/edits D1–D8 in the Phase 1 review gate.
+- [ ] Mark Phase 1 gate as approved or approved-with-assumptions.
+- [ ] After Phase 1 gate approval, create the next layer: surface map.
 
 ## On process
 
