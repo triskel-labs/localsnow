@@ -8,16 +8,13 @@
 
 ## Pending
 
-- [ ] Review and approve product-control docs in `docs/`.
-- [ ] Decide first launch market/resort.
-- [ ] Decide v1 language strategy: English-first or English + Spanish from day one.
-- [ ] Decide schools in v1: light public profiles now, or instructors first.
-- [ ] Decide payment posture: no Stripe in scaffold, or Stripe boundary disabled behind config.
-- [ ] Scaffold greenfield SvelteKit app after docs review.
+- [ ] Moli reviews Phase 1 docs.
+- [ ] Moli answers/edits the minimum Phase 1 open decisions.
+- [ ] After Phase 1 review, create the next layer: surface map.
 
 ## On process
 
-- [ ] Product-control baseline PR.
+- [ ] PR #1: Phase 1 product meaning baseline.
 
 ## Done
 

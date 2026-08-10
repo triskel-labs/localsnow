@@ -2,21 +2,43 @@
 
 ## Source of truth
 
-This repo is a greenfield LocalSnow build. Do not inspect or copy `localsnow-legacy` unless Moli explicitly asks for reference extraction.
+This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy` unless Moli explicitly asks for reference extraction.
 
-Before implementing, read:
+## Current phase
 
-- `docs/00-product-brief.md`
-- `docs/01-user-jobs-and-loops.md`
-- `docs/02-ux-flows.md`
-- `docs/03-domain-model.md`
-- `docs/04-seo-structure.md`
-- `docs/05-copy-and-trust-rules.md`
-- `docs/06-build-plan.md`
+Phase 1 only:
 
-## Required task trace
+1. `docs/00-ceo-brief.md`
+2. `docs/01-product-promise.md`
+3. `docs/02-user-jobs.md`
+4. `docs/03-core-loops.md`
 
-Every feature/change must state:
+Do not create UX maps, schemas, SEO plans, architecture, backlog tickets, or scaffold code until Moli reviews/approves the preceding layer.
+
+## Professional-team sequence
+
+Every product decision must move through this chain:
+
+```txt
+CEO brief
+→ Product promise
+→ User jobs
+→ Core loops
+→ Surface map
+→ Data model
+→ State model
+→ Copy/trust system
+→ SEO map
+→ Engineering architecture
+→ Backlog hierarchy
+→ PRs
+```
+
+Each layer is crafted from the previous reviewed layer. If a later layer exposes a contradiction, go back and repair the earlier layer before continuing.
+
+## Implementation trace, when coding begins
+
+Every implementation PR must state:
 
 ```txt
 Goal:
@@ -25,20 +47,12 @@ Surface:
 Record(s):
 Action/state:
 Acceptance test:
+Not included:
 ```
 
-If the chain is unclear, update the control docs or ask Moli before coding.
+If the trace is unclear, do not code.
 
-## Product boundaries
-
-Build v1 for:
-
-- client discovery;
-- professional profile activation;
-- direct requests;
-- protected requests;
-- simple operator case tracking;
-- disciplined SEO routes.
+## V1 product boundaries
 
 Do not build in v1 unless explicitly reopened:
 
@@ -54,12 +68,3 @@ Do not build in v1 unless explicitly reopened:
 ## Copy/trust boundary
 
 Never imply confirmed booking, instant availability or guaranteed exact instructor unless the system truly provides it. Prefer: `request`, `available to request`, `protected request`, `LocalSnow helps confirm`, `reschedule/replacement/refund/no-charge`.
-
-## Engineering posture
-
-- Mobile-first.
-- Small vertical slices.
-- Tests for domain rules and core funnels.
-- No broad refactors without a failing control point.
-- No old LocalSnow schema or route names by default.
-- Manual operations are acceptable product design, not a temporary embarrassment.
