@@ -41,7 +41,7 @@ External contact links may exist later, but the v1 surface map should treat self
 
 ## Guaranteed request promise
 
-The client pays LocalSnow to make the lesson happen.
+The client pays LocalSnow to make the lesson happen. From the client side, this can feel like booking: they submit the lesson details and pay online immediately. What is not instant is the final lesson confirmation, because LocalSnow still has to secure the requested professional, a suitable trusted alternative or a refund path.
 
 LocalSnow promises:
 
@@ -54,7 +54,7 @@ LocalSnow promises:
 
 LocalSnow does **not** promise in v1:
 
-- instant confirmation;
+- instant final confirmation;
 - guaranteed exact instructor;
 - real-time availability;
 - cheapest possible price;
@@ -82,7 +82,7 @@ It does **not** mean:
 
 - absolute live calendar truth;
 - confirmed slot;
-- instant booking;
+- instant final confirmation;
 - LocalSnow guarantee on the self-managed path;
 - exact instructor guarantee on the guaranteed path.
 
@@ -125,7 +125,8 @@ Use words like:
 
 Avoid words like:
 
-- instant booking;
+- instant confirmation;
+- instantly confirmed lesson;
 - guaranteed exact instructor;
 - confirmed availability;
 - automatic replacement;

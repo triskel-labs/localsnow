@@ -14,16 +14,26 @@ product promise → user job → core loop → boundary/non-goal → approved as
 
 ## Approved assumptions carried forward
 
-- Spain-wide directory/supply surface; first outreach concentrated where Moli has network leverage: Baqueira Beret, La Molina, Cerler and similar Spanish resorts.
+- Spain is the primary launch and SEO market; first outreach stays concentrated where Moli has network leverage: Baqueira Beret, La Molina, Cerler and similar Spanish resorts.
+- LocalSnow may keep a broader worldwide resort catalog in the data/search foundation, but worldwide access should be secondary and quieter than the Spain path until supply and SEO content justify it.
 - First buyer persona: families/couples buying private or group lessons where client-instructor fit, language compatibility and guarantee matter.
 - Bilingual English + Spanish from day one; marketing language can vary by channel/audience.
 - Free path: self-managed inquiry; LocalSnow forwards/tracks it but does not guarantee response, replacement or refund.
-- Paid path: guaranteed request; low-friction online payment first, then LocalSnow secures the requested lesson, a suitable trusted alternative or refund.
+- Paid path: protected/guaranteed booking request; the client can pay online immediately, then LocalSnow secures the requested lesson, a suitable trusted alternative or refund. Do not call the final lesson confirmation instant.
 - Basic instructor availability/requestability is useful but never absolute live truth.
 - Schools/providers start as simple profiles/offers/requestability only; no staff/admin features.
 - V1 uses email notifications/action links, contact details and minimal tracking. No in-app messaging.
 - Owner/admin surfaces are necessary CRUD/control, not a full CRM.
 - Availability should be source-aware and future SkiRelay-compatible, but no standalone microservice now.
+
+## Legacy reference facts checked
+
+The legacy repo is reference-only, but it has useful raw material:
+
+- Resort seed data exists as both CSV and TypeScript data in `localsnow-legacy/src/lib/server/db/seeds/`, with a worldwide catalog that can prevent double work later.
+- Legacy SEO work included dynamic sitemaps, hreflang, canonical URLs, structured data for home/instructor/resort pages and noindex rules for private transactional pages. The new surface map should not build the full SEO silo now, but it should avoid decisions that would force a URL/data rewrite later.
+- Legacy offers/pricing were simple but useful reference points: base lesson price/currency, estimated request price, promo code fields and manual price markers. New v1 should stay simpler than the legacy engine, but the offer surface should be expandable toward packages, promo codes and richer snowsports pricing.
+- Legacy calendar work treated Google Calendar as an availability/booking aid. For this new product, "full calendar sync" means two-way external calendar sync; a later minimum outbound event/add-to-calendar path can stay open without making v1 depend on full sync.
 
 ## 1. Public discovery surfaces
 
@@ -31,11 +41,14 @@ product promise → user job → core loop → boundary/non-goal → approved as
 
 What it must do:
 
-- explain LocalSnow in one screenful;
-- show the two paths: free self-managed inquiry and paid guaranteed request;
-- make the paid guarantee clear without promising exact instructor or instant confirmation;
+- help a client go from "I want a lesson and I do not know where to look" to a clear next action in one screenful;
+- sell the benefit, not the mechanism: credible options, less uncertainty, a safer way to get a lesson arranged and less work for the client;
+- make paid protection feel like the natural path for people who want confidence, while keeping the free inquiry available without giving it equal emotional weight;
+- explain the free/paid distinction through outcomes: "send a request yourself" versus "let LocalSnow help secure the lesson or refund you";
+- avoid payment copy that creates anxiety. The paid route can feel like booking now, with final confirmation after LocalSnow/provider acceptance;
 - route users to resort/service discovery quickly;
-- support English and Spanish.
+- support English and Spanish;
+- be SEO-aware from the start: clear H1 promise, resort/sport search intent, internal links and schema-ready structure.
 
 Trace:
 
@@ -43,7 +56,7 @@ Trace:
 Product promise: find credible professionals + choose self-managed or guaranteed
 → User job: understand LocalSnow and pick a path
 → Core loop: Loop B client request
-→ Boundary: no instant booking, no exact instructor guarantee
+→ Boundary: paid booking request can be instant; final confirmation and exact instructor are not guaranteed
 → Assumptions: D2, D4, D5, D6, D9
 ```
 
@@ -53,22 +66,23 @@ Not included:
 - full SEO silo map;
 - pricing engine details.
 
-### S2 — Spain resort directory / resort browsing
+### S2 — Resort directory / resort browsing
 
 What it must do:
 
-- let clients browse/search Spanish resorts;
-- support network-led focus resorts without hiding other Spain-wide supply;
-- show whether LocalSnow has instructors, schools/providers, requestable offers or sparse coverage;
-- avoid pretending every resort is equally strong.
+- make Spain the obvious browsing path, especially network-led resorts;
+- keep worldwide resort records available for search/SEO expansion, but do not make global browsing compete with the Spain-first path yet;
+- support resort pages that can later become SEO landing pages without changing the underlying resort identity model;
+- avoid blunt thin-supply messaging. Empty states should say the current dates/filters have no matching available professionals, invite a broader search or protected help and avoid exposing internal supply weakness;
+- never fabricate supply or imply equal liquidity across resorts.
 
 Trace:
 
 ```txt
-Product promise: discovery
+Product promise: discovery with Spain-first depth and worldwide expandability
 → User job: find lesson options in a resort
 → Core loop: Loop B client request
-→ Boundary: no fake nationwide liquidity
+→ Boundary: no fake supply/liquidity; no public thin-supply self-own
 → Assumptions: D1, D2, D3, D4
 ```
 
@@ -83,8 +97,9 @@ Not included:
 What it must do:
 
 - show instructor and simple school/provider results together without confusing their capabilities;
+- allow a simple Instructors / Schools / Both view toggle if mixed results feel noisy;
 - expose sport, resort, level, language, offer type and availability/requestability cues;
-- show profile completeness or verified signal where available;
+- show profile completeness, verified signal and review signal where available;
 - provide clear CTAs: view profile, self-managed inquiry, guaranteed request if eligible.
 
 Trace:
@@ -112,7 +127,7 @@ What it must do:
 - show who the instructor is, where they teach, sport/level, languages and fit information;
 - show simple offers/services;
 - show availability/requestability if configured, with careful non-absolute wording;
-- show completeness/verified signal without overcomplicating trust;
+- show completeness/verified signal and visible reviews without overcomplicating trust;
 - provide free self-managed inquiry and paid guaranteed request CTAs when allowed.
 
 Trace:
@@ -135,7 +150,7 @@ Not included:
 
 What it must do:
 
-- show a basic school/provider listing with contact/request routes;
+- show a basic school/provider listing similar to the instructor profile, but without requiring individual instructor availability;
 - show simple offers and resort coverage;
 - use coarser availability/requestability wording than instructor profiles;
 - support owner-created listings;
@@ -163,8 +178,9 @@ What it must do:
 
 - explain what the lesson/service includes: sport, level, format, rough duration, group/private fit, resort/context;
 - expose the base information needed for a request and basic price calculation;
-- clarify whether it supports guaranteed request, self-managed inquiry or both;
-- avoid designing the final pricing engine here.
+- keep the open path available by default: every service should be requestable unless the professional/provider explicitly cannot support it;
+- clarify whether the service can be paid as protected booking now, sent as self-managed inquiry, or both;
+- use legacy offers/packages/promo-code/pricing work as reference so the v1 record can expand later without rebuilding the concept.
 
 Trace:
 
@@ -172,61 +188,63 @@ Trace:
 Product promise: selected service/request price for paid path
 → User job: understand what they are asking for before inquiry/payment
 → Core loop: Loop B client request
-→ Boundary: no complex pricing/promos/packages beyond basic calculation
+→ Boundary: no complex pricing/promos/packages in v1, but do not block future expansion
 → Assumptions: D5
 ```
 
 Not included:
 
-- canonical pricing schema;
-- promo/discount/package system;
+- final pricing engine;
+- live promo/discount/package system;
 - payout rules.
 
 ## 3. Client request surfaces
 
-### S7 — Self-managed inquiry form
+### S7 — Unified lesson request flow
 
 What it must do:
 
 - collect client contact, date/context, group/level/message and selected profile/offer;
-- make clear it is free and not guaranteed;
-- send/track the inquiry and email confirmations where available;
-- set expectation that response depends on the instructor/provider.
+- use one shared form for both paths because the core data is the same;
+- present paid protected booking as the preferred confident path for clients who want LocalSnow help;
+- keep self-managed inquiry as the lighter fallback, visibly available but less persuasive;
+- send/track the request and email confirmations where available;
+- keep the copy benefit-led and calm: faster clarity, less searching, safer outcome.
 
 Trace:
 
 ```txt
-Product promise: free self-managed inquiry
-→ User job: submit a request quickly on mobile
+Product promise: one request flow, two outcomes
+→ User job: submit the lesson need quickly on mobile
 → Core loop: Loop B client request
-→ Boundary: no LocalSnow follow-up/replacement/refund on this path
-→ Assumptions: D6, D9, D10
+→ Boundary: no duplicated forms; free path does not include LocalSnow fulfillment
+→ Assumptions: D5, D6, D9, D10
 ```
 
 Not included:
 
 - in-app chat;
-- payment;
-- LocalSnow manual fulfillment tasks unless the client upgrades/chooses guaranteed later.
+- separate self-managed form unless testing proves the unified flow hurts conversion;
+- LocalSnow manual fulfillment tasks unless the client chooses the paid protected path.
 
-### S8 — Guaranteed request flow / payment surface
+### S8 — Protected booking/payment decision surface
 
 What it must do:
 
-- collect request details with minimum friction;
+- reuse the unified request details from S7;
 - calculate and show the price before payment;
-- explain the guarantee: requested lesson, suitable trusted alternative or refund;
-- explain that exact instructor and instant confirmation are not guaranteed;
-- collect online payment;
-- confirm the client should receive a response within 24–48h.
+- explain the guarantee through user benefit: LocalSnow helps secure the lesson, a suitable trusted alternative or a refund;
+- make payment feel like the next natural step, not a separate financial detour;
+- collect online payment immediately when the client chooses protection;
+- say final confirmation follows after LocalSnow/provider acceptance, usually with a response within 24–48h.
 
 Trace:
 
 ```txt
 Product promise: paid guaranteed request
-→ User job: pay safely and understand the guarantee
+→ User job: pay safely and feel the lesson is being handled
 → Core loop: Loop B client request + Loop C guaranteed fulfillment
-→ Boundary: no Stripe Connect, no instant confirmation, no exact instructor guarantee
+→ Boundary: no Stripe Connect, no instant final confirmation, no exact instructor guarantee
 → Assumptions: D5, D6, D9, D10
 ```
 
@@ -242,7 +260,7 @@ What it must do:
 
 - show the client enough status/next-step information after inquiry/payment;
 - expose email/action-link outcomes where useful;
-- keep wording public/platform-led, not “Moli is calling people manually”; 
+- keep wording public/platform-led, not “Moli is calling people manually”;
 - distinguish self-managed expectation from guaranteed request SLA.
 
 Trace:
@@ -320,7 +338,8 @@ What it must do:
 - let independent instructors expose useful availability/requestability signals;
 - keep schools/providers coarser unless staff-level availability becomes easy later;
 - mark source/owner of the signal so future SkiRelay updates can feed it;
-- avoid hard dependency on SkiRelay.
+- avoid hard dependency on SkiRelay;
+- leave room for minimum outbound calendar support later, such as adding confirmed LocalSnow/SkiRelay events to a linked calendar.
 
 Trace:
 
@@ -328,13 +347,13 @@ Trace:
 Product promise: useful availability signal, not absolute live truth
 → User job: see/configure availability when useful
 → Core loop: Loop A supply activation + Loop B client request
-→ Boundary: no external/full calendar sync, no standalone microservice now
+→ Boundary: no two-way external calendar sync, no standalone microservice now
 → Assumptions: D8
 ```
 
 Not included:
 
-- full calendar sync;
+- full two-way calendar sync;
 - SkiRelay job board;
 - external tool integrations.
 
@@ -417,11 +436,11 @@ Not included:
 
 Build/review surfaces in this order:
 
-1. **Public home/value landing** — locks the self-managed vs guaranteed promise.
-2. **Resort directory + search/results** — proves Spain-wide but network-focused discovery without fake liquidity.
-3. **Instructor profile + offer detail** — locks client-instructor fit, availability wording and CTAs.
-4. **Self-managed inquiry form** — lowest-friction lead capture and demand signal.
-5. **Guaranteed request/payment flow** — first revenue path.
+1. **Public home/value landing** — locks the conversion promise before writing homepage copy.
+2. **Resort directory + search/results** — proves Spain-first discovery with worldwide data kept ready and no public thin-supply self-own.
+3. **Instructor/profile + reviews + offer detail** — locks client-instructor fit, trust signals, availability wording and CTAs.
+4. **Unified lesson request flow** — captures the need once and lets the client choose protected booking or self-managed fallback.
+5. **Protected booking/payment decision** — first revenue path.
 6. **Minimal client request tracking + email/action notifications** — makes the platform feel real after submission.
 7. **Owner CRUD/control console** — lets Moli fulfill guaranteed cases without a CRM.
 8. **Professional guided setup + availability setup** — grows supply quality.
@@ -437,8 +456,8 @@ The next layer is `05-domain-record-map.md` and must name product records withou
 - resort;
 - offer/service;
 - availability/requestability signal;
-- self-managed inquiry;
-- guaranteed request;
+- unified lesson request;
+- path choice: self-managed inquiry or protected booking;
 - payment/refund marker;
 - notification/action link;
 - review;
