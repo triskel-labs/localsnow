@@ -1,3 +1,52 @@
-# localsnow
+# LocalSnow
 
-Fresh start for LocalSnow. Previous codebase preserved at [localsnow-legacy](https://github.com/triskel-labs/localsnow-legacy).
+Greenfield LocalSnow product. The previous codebase is preserved at [triskel-labs/localsnow-legacy](https://github.com/triskel-labs/localsnow-legacy), but this repo is the new product source of truth.
+
+## Current phase
+
+**Phase 1: product meaning. No app code yet.**
+
+We are not trying to decide the whole product upfront. We are creating the first reviewed decision layer, then deriving the next layer from it.
+
+```txt
+Founder/product lead writes strategy memo
+→ team critiques it
+→ product/design maps users and flows
+→ engineering defines domain/state/architecture
+→ PM turns it into backlog
+→ small slices ship
+→ real feedback updates the docs
+```
+
+## Phase 1 docs
+
+Review in order:
+
+1. [`docs/00-ceo-brief.md`](docs/00-ceo-brief.md)
+2. [`docs/01-product-promise.md`](docs/01-product-promise.md)
+3. [`docs/02-user-jobs.md`](docs/02-user-jobs.md)
+4. [`docs/03-core-loops.md`](docs/03-core-loops.md)
+5. [`docs/PHASE_1_REVIEW_GATE.md`](docs/PHASE_1_REVIEW_GATE.md)
+
+These are intentionally short. They define the product meaning before UX, record mapping, SEO, architecture or backlog.
+
+## Drift guard
+
+Every future layer must be derived from the reviewed layer before it.
+
+```txt
+CEO brief
+→ Product promise
+→ User jobs
+→ Core loops
+→ Surface map
+→ Domain record map (not database schema yet)
+→ State model
+→ Copy/trust system
+→ SEO map
+→ Engineering architecture
+→ Backlog hierarchy
+→ PRs
+```
+
+No inherited legacy assumptions. No aimless coding.
