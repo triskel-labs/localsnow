@@ -67,7 +67,7 @@ Moli needs to:
 
 The exact state model comes later. These are business words only, not database/status names yet.
 
-## Open decisions that block the surface map
+## Decisions carried into the surface map
 
 - Spain-wide directory/supply surface, with first marketing/outreach concentrated in network-led resorts.
 - Exact first ICP copy for families/couples buying private/group lessons.
