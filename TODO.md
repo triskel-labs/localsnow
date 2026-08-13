@@ -9,9 +9,9 @@
 ## Pending
 
 - [x] Moli reviewed `00`, `01` and `02` and requested changes.
-- [ ] Moli reviews updated `03` and `docs/PHASE_1_REVIEW_GATE.md`.
-- [ ] Moli answers/edits D1–D10 in the Phase 1 review gate.
-- [ ] Mark Phase 1 gate as approved or approved-with-assumptions.
+- [x] Moli reviewed updated `03` and `docs/PHASE_1_REVIEW_GATE.md`.
+- [x] Moli answered/edited D1–D10 in the Phase 1 review gate.
+- [x] Mark Phase 1 gate as approved or approved-with-assumptions.
 - [ ] After Phase 1 gate approval, create the next layer: surface map.
 
 ## On process

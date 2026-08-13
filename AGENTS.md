@@ -58,12 +58,12 @@ If the trace is unclear, do not code.
 Do not build in v1 unless explicitly reopened:
 
 - instant confirmation;
-- full calendar sync;
+- external/full calendar sync; basic LocalSnow availability is allowed;
 - Stripe Connect;
 - automated payouts;
 - complex pricing/promos/packages beyond basic service/request price calculation;
 - school staff management;
-- SkiRelay job board/integration;
+- SkiRelay job board/full integration; small shared primitives or source-aware availability hooks are allowed when they avoid duplication;
 - full CRM/admin platform.
 
 ## Copy/trust boundary
@@ -71,3 +71,5 @@ Do not build in v1 unless explicitly reopened:
 Client-facing copy may make LocalSnow feel like a smooth automated platform, but it must not lie about exact instructor, instant confirmation or perfect live availability. Prefer: `self-managed inquiry`, `guaranteed request`, `protected/safe request`, `available to request`, `guaranteed lesson or suitable trusted alternative`, `refund if LocalSnow cannot make it happen`.
 
 Do not expose Moli’s manual backend coordination as the public promise. Keep it as internal operating reality: Moli can call/message instructors, handle replacements, payouts and corrections manually until automation is justified.
+
+V1 communication boundary: use email notifications/action links and minimal in-platform tracking. Do not build in-app messaging unless explicitly reopened; Moli needs contact details to call/message directly.

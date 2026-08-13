@@ -17,7 +17,8 @@ A client needs to:
 - choose between free self-managed inquiry and paid guaranteed request;
 - submit a request quickly on mobile;
 - make a safe, low-friction online payment for the guaranteed route;
-- understand who will contact them, through which channel, and roughly when;
+- receive email confirmations/updates for important actions;
+- understand that guaranteed requests should get a response within 24–48h, while self-managed response depends on the instructor/provider;
 - understand what happens if the requested professional cannot serve them;
 - leave a review after the lesson or requested lesson date has passed.
 
@@ -27,7 +28,7 @@ An independent instructor needs to:
 
 - look credible online;
 - show where and what they teach;
-- communicate language, credentials, experience, style and eligibility/trust markers;
+- communicate language, credentials, experience, style and client-instructor fit information;
 - publish simple lesson offers;
 - configure basic availability/requestability when useful;
 - receive qualified requests;
@@ -43,6 +44,7 @@ A school or small provider may need to:
 - publish simple offers;
 - receive requests;
 - optionally expose basic availability/requestability only where it fits;
+- claim or take ownership of a listing later if Moli created it manually;
 - avoid staff management and internal operations software in v1.
 
 This branch is included for the SEO directory vision, but strictly simple: no school staff management, no internal school admin and no complex provider operations in v1.
@@ -55,25 +57,24 @@ Moli needs to:
 - know which requests are free self-managed demand signals versus paid guaranteed cases needing action;
 - know who the client wants and what they need;
 - receive email/platform notifications for important actions, especially paid guaranteed requests;
-- contact client/professional as needed;
+- access contact details and contact client/professional directly outside the app as needed;
 - record whether clarification is needed, professional has been contacted, response is pending, replacement may be needed, price approval may be needed, payment/refund is needed, review prompt is due, or the request is closed;
 - track next action;
 - keep internal notes;
 - use necessary full CRUD/correction controls;
-- send/trigger client and instructor notifications with the correct details;
+- send/trigger client and instructor notifications with the correct details and action links where useful;
 - learn which manual steps repeat before automating them.
 
 The exact state model comes later. These are business words only, not database/status names yet.
 
 ## Open decisions that block the surface map
 
-- Launch focus: Spain first, likely Baqueira Beret for the first marketing wedge, while keeping directory browsing/profile creation open to other resorts.
-- First ICP inside Spain/Baqueira.
-- Language strategy.
-- Exact availability surface and how it borrows from/emulates the future SkiRelay availability model without making availability absolute truth.
-- Exact notification channels/action links for self-managed inquiry and guaranteed request.
-- Minimum credibility/profile-completeness thresholds and warnings.
-- Safe response-window promise.
+- Spain-wide directory/supply surface, with first marketing/outreach concentrated in network-led resorts.
+- Exact first ICP copy for families/couples buying private/group lessons.
+- Exact bilingual language behavior and marketing-language priority.
+- Exact availability surface and how it stays compatible with the future SkiRelay availability model without becoming a separate microservice now.
+- Exact notification/action links for self-managed inquiry and guaranteed request.
+- Minimum profile-completeness thresholds, warnings and verified badge behavior.
 
 ## What this layer does not decide
 

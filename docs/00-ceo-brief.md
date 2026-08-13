@@ -18,13 +18,13 @@ Moli understands the mountain/instructor reality from inside the industry. The o
 
 ## Initial strategic posture
 
-These are **current Phase 1 directions folded from Moli’s review**, still awaiting final approval:
+These are **approved Phase 1 directions with stated assumptions**, folded from Moli’s reviews:
 
 1. **Revenue event:** guaranteed request goes directly to low-friction online payment with the price calculated from the selected service/request. After payment, Moli can manually handle instructor confirmation, replacement, payout and any edge-case coordination behind the scenes. No Stripe Connect or automated instructor payout is required in the first scaffold.
 2. **Role:** LocalSnow v1 is a free SEO/discovery directory with marketplace-like paid booking capability. The public experience should feel like a smooth platform, while internal operations stay flexible and owner-operated until real volume justifies automation.
-3. **ICP:** start with clients seeking private or semi-private lessons where trust, language fit and a guaranteed outcome matter enough to pay. Spain is the primary launch country; Baqueira Beret is the likely first focused resort/marketing wedge. The directory can still browse other resorts and accept supply elsewhere.
-4. **Supply:** independent instructors plus basic school/provider listings from the start. Schools/providers stay simple: public profile, offers, inquiry/request intake, no staff/admin complexity.
-5. **Trust:** credible means useful enough to help a client decide, not necessarily perfect or fully complete. Low supply means incomplete profiles should not block publication by default, but the product must expose clear profile completeness/trust signals and warn when important information is missing.
+3. **ICP:** start Spain-wide, with first marketing concentrated where Moli has supply/network leverage: Baqueira Beret, La Molina, Cerler and similar Spanish resorts. The first buyer persona is families/couples buying private or group lessons where client-instructor fit and a guaranteed outcome matter.
+4. **Supply:** independent instructors plus basic school/provider listings from the start. Schools/providers stay simple: public profile, offers, inquiry/request intake, no staff/admin complexity. Moli can manually add school listings while scanning resorts, then later invite/allow claim or ownership transfer.
+5. **Trust:** credible means useful enough to help a client decide, not necessarily perfect or fully complete. Low supply means incomplete profiles should not block publication by default, but the product should expose clear profile-completeness signals and a simple verified badge when enough key information is complete.
 
 ## Primary users
 
@@ -52,7 +52,7 @@ Qualitative criteria:
 
 - A client can understand the difference between free self-managed inquiry and paid guaranteed request from mobile.
 - A client can pay safely and with minimal friction for the guaranteed route.
-- A professional can complete a guided self-serve setup and publish a useful profile, simple offer and availability/requestability signal.
+- A professional can complete a guided self-serve setup and publish a useful profile, simple offer and availability/requestability signal where it fits.
 - Moli has necessary full CRUD/control access to operate the business successfully without a full-blown dashboard/CRM.
 - The product guarantees lesson outcome/replacement/refund on the paid route without promising exact instructor, instant confirmation or perfect real-time availability.
 - Clients can leave reviews after the lesson/request date so profile trust compounds.
@@ -78,15 +78,15 @@ Proof targets to define before launch, not before this Phase 1 review:
 - SkiRelay private coordination.
 - Full CRM/admin platform beyond necessary owner CRUD/control.
 
-## CEO decisions that block the next layer
+## CEO decisions locked for the next layer
 
-Moli must answer or explicitly accept Mao’s working recommendation before `04-surface-map.md`:
+The surface map must derive from these decisions:
 
-1. First launch market/resort: Spain-first, likely Baqueira Beret as the first marketing wedge, while keeping browse/create-profile support open for other resorts.
-2. First ICP inside that market: private/semi-private lesson buyers where trust, language fit and guarantee matter.
+1. First launch market/resort: Spain nationwide for directory/supply, with initial outreach/marketing concentrated in network-led resorts such as Baqueira Beret, La Molina and Cerler.
+2. First ICP inside that market: families/couples buying private or group lessons where good client-instructor fit and guarantee matter.
 3. Supply scope: independent instructors plus basic school/provider listings with strict no-admin limits.
-4. Language strategy: still to confirm before copy/surface mapping.
+4. Language strategy: bilingual English + Spanish from day one; marketing emphasis can differ by channel/audience.
 5. Guaranteed revenue/payment boundary: low-friction online payment in the first product surface; owner-managed fulfillment/payout behind the scenes.
-6. Supply eligibility/trust minimum: enough to be useful and safe, with profile completeness/trust signals instead of blocking every incomplete profile.
-7. Availability boundary: basic instructor-maintained availability should exist, but not be presented as absolute live truth.
-8. Owner ops expectation: what response window can LocalSnow safely promise?
+6. Supply eligibility/trust minimum: enough to be useful and safe, with profile completeness and optional verified badge instead of blocking every incomplete profile.
+7. Availability boundary: basic instructor-maintained availability should exist for instructors; school/provider availability can stay coarser/simple until staff-level availability is justified.
+8. Owner ops expectation: guaranteed route response within 24–48h; self-managed response depends on the instructor, with only a platform estimate.

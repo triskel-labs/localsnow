@@ -14,7 +14,7 @@ Each loop includes actor, trigger, required input, output and unresolved decisio
 Professional joins through guided self-serve setup, or is invited/manual-entered
 → creates or confirms profile
 → defines resorts/sports
-→ adds trust info
+→ adds profile, fit and optional verification info
 → creates simple offers
 → sets requestability / basic availability when useful
 → previews
@@ -35,7 +35,7 @@ Required input:
 - identity/contact;
 - resorts;
 - sports/levels;
-- trust/eligibility markers;
+- client-instructor fit information;
 - simple offer information;
 - requestability and optional availability signal;
 - profile-completeness warnings.
@@ -53,8 +53,9 @@ Serves:
 Unresolved before surface map:
 
 - exact required vs recommended setup fields;
-- exact trust/completeness labels;
-- how availability behaves for instructors vs schools/providers.
+- exact completeness labels and verified-badge rules;
+- how instructor availability behaves vs coarser school/provider requestability;
+- how owner-added school/provider listings can later be claimed/transferred.
 
 ## Loop B — Client request
 
@@ -70,7 +71,7 @@ Client arrives from search/SEO/direct link
 
 Actor:
 
-- first ICP in Spain-first launch focus, likely Baqueira Beret as the first marketing wedge.
+- families/couples buying private or group lessons in Spain, with first outreach concentrated in network-led resorts such as Baqueira Beret, La Molina and Cerler.
 
 Trigger:
 
@@ -96,9 +97,9 @@ Serves:
 
 Unresolved before surface map:
 
-- exact first ICP;
+- exact first ICP copy;
 - exact first payment/refund policy copy;
-- communication channels, action links and response-window promise.
+- email notifications/action links, minimal request tracking, and response-window copy.
 
 ## Loop C — Guaranteed fulfillment
 
@@ -108,7 +109,7 @@ Paid guaranteed request arrives
 → Moli reviews context internally
 → Moli contacts requested professional/client if needed
 → Moli confirms, reschedules, finds replacement, requests higher-price approval, cancels or refunds according to policy
-→ LocalSnow sends client/instructor details and notifications
+→ LocalSnow sends client/instructor details and email/platform notifications
 → request reaches a business outcome
 ```
 
@@ -127,7 +128,7 @@ Required input:
 - desired lesson context;
 - target profile/offer;
 - preferred dates;
-- communication channel;
+- contact details;
 - payment state;
 - calculated price;
 - replacement/refund policy.
@@ -160,7 +161,8 @@ Unresolved before surface map:
 
 - response-window/SLA;
 - exact payment/refund policy;
-- how much operator detail is needed in the first surface.
+- how much operator detail is needed in the first surface;
+- which email/action-link events are v1.
 
 ## Loop D — Future SkiRelay bridge
 
@@ -185,6 +187,8 @@ Output:
 
 This loop is intentionally not built in v1. LocalSnow should avoid blocking it, but should not become SkiRelay.
 
+Availability should be designed as a shared, source-aware primitive that SkiRelay can feed later. Do not build a separate availability microservice before LocalSnow/SkiRelay usage proves the need.
+
 ## Loop E — Future trust/reputation learning
 
 ```txt
@@ -198,7 +202,7 @@ This loop should be simple in v1: a review prompt after the lesson/request date 
 
 ## Surface map gate
 
-Before `04-surface-map.md`, Moli must review the Phase 1 decision record.
+`04-surface-map.md` may now derive from the approved Phase 1 decision record.
 
 Every proposed surface must trace to:
 

@@ -86,7 +86,7 @@ It does **not** mean:
 - LocalSnow guarantee on the self-managed path;
 - exact instructor guarantee on the guaranteed path.
 
-The later surface map should include a basic availability layer because it is part of the value beyond a plain text directory. It must still warn or imply clearly that instructor-maintained availability can be stale, optional or unavailable, especially for schools/providers.
+The later surface map should include a basic availability layer because it is part of the value beyond a plain text directory. It must still warn or imply clearly that instructor-maintained availability can be stale, optional or unavailable. Independent instructors can have basic date/slot-style availability; schools/providers may start with coarser requestability because granular calendars across multiple instructors are too complex for v1.
 
 ## Professional promise
 
@@ -106,7 +106,9 @@ This setup flow is one of the most important v1 flows because supply quality com
 
 LocalSnow gives Moli enough context and owner control to operate paid guaranteed requests: client need, target professional/offer, preferred dates, calculated price/payment state, communication channel, instructor confirmation/replacement status, next action and the ability to send the right client/instructor details after confirmation.
 
-Moli needs necessary full CRUD and correction power, not a full-blown performance dashboard.
+Moli needs necessary full CRUD and correction power, not a full-blown performance dashboard. V1 does not need in-app messaging: it needs reliable contact details, email notifications/action links and minimal in-platform request tracking.
+
+Guaranteed route response promise: the client should receive a response in less than 24–48 hours. Self-managed inquiries can show an estimated response expectation, but the actual response depends on the instructor/provider.
 
 ## Language rule
 
