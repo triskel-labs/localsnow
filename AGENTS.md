@@ -57,15 +57,17 @@ If the trace is unclear, do not code.
 
 Do not build in v1 unless explicitly reopened:
 
-- instant booking;
+- instant confirmation;
 - full calendar sync;
 - Stripe Connect;
 - automated payouts;
-- complex pricing/promos/packages;
+- complex pricing/promos/packages beyond basic service/request price calculation;
 - school staff management;
 - SkiRelay job board/integration;
 - full CRM/admin platform.
 
 ## Copy/trust boundary
 
-Never imply confirmed booking, instant availability or guaranteed exact instructor unless the system truly provides it. Prefer: `request`, `available to request`, `protected request`, `LocalSnow helps confirm`, `reschedule/replacement/refund/no-charge`.
+Client-facing copy may make LocalSnow feel like a smooth automated platform, but it must not lie about exact instructor, instant confirmation or perfect live availability. Prefer: `self-managed inquiry`, `guaranteed request`, `protected/safe request`, `available to request`, `guaranteed lesson or suitable trusted alternative`, `refund if LocalSnow cannot make it happen`.
+
+Do not expose Moli’s manual backend coordination as the public promise. Keep it as internal operating reality: Moli can call/message instructors, handle replacements, payouts and corrections manually until automation is justified.

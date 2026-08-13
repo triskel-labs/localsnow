@@ -11,24 +11,24 @@ Each loop includes actor, trigger, required input, output and unresolved decisio
 ## Loop A — Supply activation
 
 ```txt
-Professional joins or is invited/manual-entered
+Professional joins through guided self-serve setup, or is invited/manual-entered
 → creates or confirms profile
 → defines resorts/sports
 → adds trust info
 → creates simple offers
-→ sets requestability
+→ sets requestability / basic availability when useful
 → previews
-→ publishes or requests review
+→ fixes required warnings or knowingly publishes an incomplete-but-useful listing
 ```
 
 Actor:
 
-- independent instructor first;
-- light provider only if Moli approves the conditional branch.
+- independent instructor;
+- basic school/light provider listing with no staff/admin complexity.
 
 Trigger:
 
-- Moli invites/adds supply, or professional signs up if self-serve/hybrid is approved.
+- professional signs up through self-serve setup, or Moli invites/adds supply manually.
 
 Required input:
 
@@ -37,23 +37,24 @@ Required input:
 - sports/levels;
 - trust/eligibility markers;
 - simple offer information;
-- requestability signal.
+- requestability and optional availability signal;
+- profile-completeness warnings.
 
 Output:
 
-- credible public supply ready to receive direct/protected requests.
+- useful public supply ready to receive free self-managed inquiries and paid guaranteed requests, with visible completeness/trust signals.
 
 Serves:
 
 - independent instructor jobs;
-- conditional light provider jobs;
+- basic school/light provider jobs;
 - client need for credible supply.
 
 Unresolved before surface map:
 
-- self-serve vs Moli-assisted/manual-entry;
-- exact trust/eligibility minimum;
-- school/provider branch.
+- exact required vs recommended setup fields;
+- exact trust/completeness labels;
+- how availability behaves for instructors vs schools/providers.
 
 ## Loop B — Client request
 
@@ -61,14 +62,15 @@ Unresolved before surface map:
 Client arrives from search/SEO/direct link
 → understands LocalSnow
 → finds relevant profile/offer
-→ chooses direct inquiry or protected request
-→ submits request
-→ understands next step
+→ sees requestability/availability signals if configured
+→ chooses free self-managed inquiry or paid guaranteed request
+→ submits inquiry or pays online
+→ receives confirmation/next step
 ```
 
 Actor:
 
-- first ICP in first launch market.
+- first ICP in Spain-first launch focus, likely Baqueira Beret as the first marketing wedge.
 
 Trigger:
 
@@ -80,41 +82,44 @@ Required input:
 - client contact;
 - preferred date/context;
 - group/level/message;
-- selected direct or protected path.
+- selected self-managed or guaranteed path;
+- selected service and calculated price for guaranteed path.
 
 Output:
 
-- direct inquiry forwarded/tracked, or protected request needing manual LocalSnow action.
+- free self-managed inquiry forwarded/tracked with notifications, or paid guaranteed request requiring LocalSnow fulfillment.
 
 Serves:
 
 - client jobs;
-- revenue thesis through protected requests.
+- revenue thesis through guaranteed requests.
 
 Unresolved before surface map:
 
-- first market/ICP;
-- payment boundary for protected path;
-- communication channel and response-window promise.
+- exact first ICP;
+- exact first payment/refund policy copy;
+- communication channels, action links and response-window promise.
 
-## Loop C — Manual protected fulfillment
+## Loop C — Guaranteed fulfillment
 
 ```txt
-Protected request arrives
-→ Moli reviews context
-→ Moli clarifies if needed
-→ Moli contacts requested professional/client
-→ Moli proposes confirmation, reschedule, replacement, price approval, cancellation or refund/no-charge according to policy
+Paid guaranteed request arrives
+→ LocalSnow records payment/request context
+→ Moli reviews context internally
+→ Moli contacts requested professional/client if needed
+→ Moli confirms, reschedules, finds replacement, requests higher-price approval, cancels or refunds according to policy
+→ LocalSnow sends client/instructor details and notifications
 → request reaches a business outcome
 ```
 
 Actor:
 
-- Moli / LocalSnow operator.
+- LocalSnow as the public platform;
+- Moli as internal owner-operator.
 
 Trigger:
 
-- protected request submitted.
+- guaranteed request paid/submitted.
 
 Required input:
 
@@ -123,11 +128,13 @@ Required input:
 - target profile/offer;
 - preferred dates;
 - communication channel;
-- payment state if any.
+- payment state;
+- calculated price;
+- replacement/refund policy.
 
 Output:
 
-- manually coordinated business outcome.
+- confirmed lesson, suitable trusted alternative, reschedule, or refund.
 
 Outcome vocabulary, not final state model:
 
@@ -135,28 +142,30 @@ Outcome vocabulary, not final state model:
 - professional contacted;
 - waiting for response;
 - price approval needed;
+- payment captured;
 - confirmed;
 - replacement proposed;
 - rescheduled;
 - completed;
 - cancelled;
-- refunded/no-charge if applicable.
+- refunded if applicable;
+- review prompt due/sent.
 
 Serves:
 
 - operator/Moli jobs;
-- protected path promise.
+- guaranteed request promise.
 
 Unresolved before surface map:
 
 - response-window/SLA;
-- payment/refund/no-charge policy;
+- exact payment/refund policy;
 - how much operator detail is needed in the first surface.
 
 ## Loop D — Future SkiRelay bridge
 
 ```txt
-Protected request cannot be served directly
+Guaranteed request cannot be served directly
 → mark as replacement-needed/candidate
 → future private supply network can help
 ```
@@ -168,7 +177,7 @@ Actor:
 
 Trigger:
 
-- requested professional cannot serve, and client still wants help.
+- requested professional cannot serve, and client still wants the guaranteed outcome.
 
 Output:
 
@@ -180,11 +189,12 @@ This loop is intentionally not built in v1. LocalSnow should avoid blocking it, 
 
 ```txt
 Lesson/request outcome happens
+→ LocalSnow sends review prompt after the lesson/request date
+→ client review improves instructor/profile trust
 → LocalSnow learns whether profile/promise/fulfillment worked
-→ testimonials/reviews/referrals/profile improvements may improve future trust
 ```
 
-This loop is important for credibility but not required in the first build. It should be remembered as a future trust loop, not forced into v1.
+This loop should be simple in v1: a review prompt after the lesson/request date and a review form tied to the professional. It should not become a full reputation system before demand exists.
 
 ## Surface map gate
 
