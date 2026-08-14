@@ -15,14 +15,16 @@
 - [x] After Phase 1 gate approval, create the next layer: surface map.
 - [x] Moli reviewed PR #2 surface map and approved proceeding.
 - [x] Moli reviewed PR #3 domain record map and approved proceeding.
-- [ ] Review the next layer: state model.
+- [x] Moli reviewed PR #4 state model and approved proceeding.
+- [ ] Review the next layer: copy/trust system.
 
 ## On process
 
 - [x] PR #1: Phase 1 product meaning baseline.
 - [x] PR #2: Surface map.
 - [x] PR #3: Domain record map.
-- [ ] PR #4: State model.
+- [x] PR #4: State model.
+- [ ] PR #5: Copy/trust system.
 
 ## Done
 
@@ -31,3 +33,4 @@
 - [x] Merge Phase 1 product meaning baseline.
 - [x] Merge surface map.
 - [x] Merge domain record map.
+- [x] Merge state model.

@@ -6,7 +6,7 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Product-control docs only. Current active layer: `docs/06-state-model.md`.
+Product-control docs only. Current active layer: `docs/07-copy-trust-system.md`.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
@@ -16,8 +16,9 @@ Product-control docs only. Current active layer: `docs/06-state-model.md`.
 6. `docs/04-surface-map.md`
 7. `docs/05-domain-record-map.md`
 8. `docs/06-state-model.md`
+9. `docs/07-copy-trust-system.md`
 
-Do not create schemas, copy/trust systems, SEO plans, architecture, backlog tickets, or scaffold code until Moli reviews/approves the preceding layer. Each layer must derive from the reviewed layer before it. The state model must name product/business stages only; it must not become database enums, routes, jobs, or implementation architecture.
+Do not create schemas, SEO plans, architecture, backlog tickets, or scaffold code until Moli reviews/approves the preceding layer. Each layer must derive from the reviewed layer before it. The copy/trust system must define product vocabulary, promise boundaries and reassurance patterns only; it must not become final UI copy, legal templates, SEO taxonomy, routes, jobs, or implementation architecture.
 
 ## Professional-team sequence
 
@@ -76,3 +77,5 @@ Client-facing copy may make LocalSnow feel like a smooth automated platform, but
 Do not expose Moli’s manual backend coordination as the public promise. Keep it as internal operating reality: Moli can call/message instructors, handle replacements, payouts and corrections manually until automation is justified.
 
 V1 communication boundary: use email notifications/action links and minimal in-platform tracking. Do not build in-app messaging unless explicitly reopened; Moli needs contact details to call/message directly.
+
+Current copy/trust direction: email is mandatory/backstop for important actions, and a lightweight client account/dashboard is also preferred. Protected payment direction is Stripe Checkout for the full protected booking amount paid to LocalSnow, with Moli manually paying the instructor/provider or refunding outside the platform. Do not call this escrow publicly. Before payment launch, legal/GDPR/online-business documents must be accurate enough by wording and manual process, without pretending automated compliance/tax/invoice/payout infrastructure exists.
