@@ -11,7 +11,7 @@ This layer defines what LocalSnow can honestly say to clients and professionals.
 LocalSnow helps clients find credible snowsports professionals and choose one of two paths:
 
 1. Send a free self-managed inquiry.
-2. Pay for a guaranteed request.
+2. Pay for a guaranteed booking.
 
 ## Self-managed inquiry promise
 
@@ -104,7 +104,7 @@ This setup flow is one of the most important v1 flows because supply quality com
 
 ## Operator promise
 
-LocalSnow gives Moli enough context and owner control to operate paid guaranteed requests: client need, target professional/offer, preferred dates, calculated price/payment state, communication channel, instructor confirmation/replacement status, next action and the ability to send the right client/instructor details after confirmation.
+LocalSnow gives Moli enough context and owner control to operate paid guaranteed bookings: client need, target professional/offer, preferred dates, calculated price/payment state, communication channel, instructor confirmation/replacement status, next action and the ability to send the right client/instructor details after confirmation.
 
 Moli needs necessary full CRUD and correction power, not a full-blown performance dashboard. V1 does not need in-app messaging: it needs reliable contact details, email notifications/action links and minimal in-platform request tracking.
 
@@ -114,11 +114,12 @@ Guaranteed route response promise: the client should receive a response in less 
 
 Use words like:
 
-- request;
+- request, when referring to the internal/domain unit rather than the public benefit;
 - self-managed inquiry;
-- guaranteed request;
-- protected/safe request;
-- available to request;
+- guaranteed booking;
+- protected/safe booking;
+- requestable listing;
+- available lesson time;
 - guaranteed lesson or suitable trusted alternative;
 - refund if LocalSnow cannot make the lesson happen;
 - LocalSnow will confirm/send the details.

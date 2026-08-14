@@ -20,7 +20,7 @@ Reason: Moli’s second review approved most of the direction and added final co
 ## Reviewer findings folded in
 
 - `direct` has been renamed/framed as **free self-managed inquiry**.
-- The paid route is now **guaranteed request**: online payment first, LocalSnow secures the lesson, a suitable trusted alternative, or refund.
+- The paid route is now **guaranteed booking**: online payment first, LocalSnow secures the lesson, a suitable trusted alternative, or refund.
 - The public product should feel like a smooth platform; manual owner work remains internal and should not be exposed as the client promise.
 - Spain is the launch country. First outreach/marketing should concentrate where Moli has network leverage, but the directory and supply surface should be Spain-wide.
 - First buyer persona: families/couples buying private or group lessons where client-instructor fit matters.
@@ -29,7 +29,7 @@ Reason: Moli’s second review approved most of the direction and added final co
 - School/provider listings are included, can be owner-added manually, and may later need claim/ownership transfer.
 - Professional setup should be self-serve, guided, warning-driven and optimized for “done once with effort, works forever.”
 - Moli needs necessary full CRUD/control access, contact details, email/action notifications and minimal tracking — not in-app messaging or a full CRM/dashboard.
-- Reviews after lesson/request date are now a simple v1 trust loop.
+- Reviews after real lessons are now a simple v1 trust loop.
 - Core loops were updated from Moli’s review and can now feed the surface map.
 
 ## Approved assumptions for next layer
@@ -58,7 +58,7 @@ Legacy reference note: `localsnow-legacy` has a simple `basePrice`/`currency` in
 
 ### D6 — LocalSnow operational role
 
-> LocalSnow v1 is a free SEO/discovery directory with marketplace-like paid guaranteed request capability. Public experience should feel platform-led; internal fulfillment can be manually operated by Moli until automation is justified.
+> LocalSnow v1 is a free SEO/discovery directory with marketplace-like paid guaranteed booking capability. Public experience should feel platform-led; internal fulfillment can be manually operated by Moli until automation is justified.
 
 ### D7 — Credibility/eligibility minimum
 

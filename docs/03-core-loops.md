@@ -42,7 +42,7 @@ Required input:
 
 Output:
 
-- useful public supply ready to receive free self-managed inquiries and paid guaranteed requests, with visible completeness/trust signals.
+- useful public supply ready to receive free self-managed inquiries and paid guaranteed bookings, with visible completeness/trust signals.
 
 Serves:
 
@@ -64,7 +64,7 @@ Client arrives from search/SEO/direct link
 → understands LocalSnow
 → finds relevant profile/offer
 → sees requestability/availability signals if configured
-→ chooses free self-managed inquiry or paid guaranteed request
+→ chooses free self-managed inquiry or paid guaranteed booking
 → submits inquiry or pays online
 → receives confirmation/next step
 ```
@@ -88,12 +88,12 @@ Required input:
 
 Output:
 
-- free self-managed inquiry forwarded/tracked with notifications, or paid guaranteed request requiring LocalSnow fulfillment.
+- free self-managed inquiry forwarded/tracked with notifications, or paid guaranteed booking requiring LocalSnow fulfillment.
 
 Serves:
 
 - client jobs;
-- revenue thesis through guaranteed requests.
+- revenue thesis through guaranteed bookings.
 
 Unresolved before surface map:
 
@@ -104,7 +104,7 @@ Unresolved before surface map:
 ## Loop C — Guaranteed fulfillment
 
 ```txt
-Paid guaranteed request arrives
+Paid guaranteed booking arrives
 → LocalSnow records payment/request context
 → Moli reviews context internally
 → Moli contacts requested professional/client if needed
@@ -120,7 +120,7 @@ Actor:
 
 Trigger:
 
-- guaranteed request paid/submitted.
+- guaranteed booking paid/submitted.
 
 Required input:
 
@@ -155,7 +155,7 @@ Outcome vocabulary, not final state model:
 Serves:
 
 - operator/Moli jobs;
-- guaranteed request promise.
+- guaranteed booking promise.
 
 Unresolved before surface map:
 
@@ -193,12 +193,12 @@ Availability should be designed as a shared, source-aware primitive that SkiRela
 
 ```txt
 Lesson/request outcome happens
-→ LocalSnow sends review prompt after the lesson/request date
+→ LocalSnow sends review prompt after a real lesson
 → client review improves instructor/profile trust
 → LocalSnow learns whether profile/promise/fulfillment worked
 ```
 
-This loop should be simple in v1: a review prompt after the lesson/request date and a review form tied to the professional. It should not become a full reputation system before demand exists.
+This loop should be simple in v1: a review prompt after a real lesson and a review form tied to the professional. It should not become a full reputation system before demand exists.
 
 ## Surface map gate
 

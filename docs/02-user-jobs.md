@@ -14,11 +14,11 @@ A client needs to:
 - understand who looks credible enough to consider, without treating incomplete profiles as invisible when supply is still low;
 - understand what sport/level/service they offer;
 - see useful availability/requestability signals when configured, without mistaking them for absolute live truth;
-- choose between free self-managed inquiry and paid guaranteed request;
+- choose between free self-managed inquiry and paid guaranteed booking;
 - submit a request quickly on mobile;
 - make a safe, low-friction online payment for the guaranteed route without feeling bounced into a cold checkout flow;
 - receive email confirmations/updates for important actions;
-- understand that guaranteed requests should get a response within 24–48h, while self-managed response depends on the instructor/provider;
+- understand that guaranteed bookings should get a response within 24–48h, while self-managed response depends on the instructor/provider;
 - understand what happens if the requested professional cannot serve them;
 - leave a review after the lesson or requested lesson date has passed.
 
@@ -53,10 +53,10 @@ This branch is included for the SEO directory vision, but strictly simple: no sc
 
 Moli needs to:
 
-- see incoming self-managed/guaranteed requests;
+- see incoming self-managed inquiries and guaranteed lesson clients/bookings;
 - know which requests are free self-managed demand signals versus paid guaranteed cases needing action;
 - know who the client wants and what they need;
-- receive email/platform notifications for important actions, especially paid guaranteed requests;
+- receive email/platform notifications for important actions, especially paid guaranteed bookings;
 - access contact details and contact client/professional directly outside the app as needed;
 - record whether clarification is needed, professional has been contacted, response is pending, replacement may be needed, price approval may be needed, payment/refund is needed, review prompt is due, or the request is closed;
 - track next action;
@@ -73,7 +73,7 @@ The exact state model comes later. These are business words only, not database/s
 - Exact first ICP copy for families/couples buying private/group lessons.
 - Exact bilingual language behavior and marketing-language priority.
 - Exact availability surface and how it stays compatible with the future SkiRelay availability model without becoming a separate microservice now.
-- Exact notification/action links for self-managed inquiry and guaranteed request.
+- Exact notification/action links for self-managed inquiry and guaranteed booking.
 - Minimum profile-completeness thresholds, warnings and verified badge behavior.
 - Whether the client request surface stays unified, with paid protected booking as the preferred path and self-managed inquiry as the fallback choice.
 

@@ -25,7 +25,7 @@ Do not turn every record into a state machine. Only model state where it control
 
 3. **Availability is useful, specific and not absolute.**
    - Independent instructors should normally move toward granular slot-like availability, generated from a season/date range, working weekdays and time ranges per weekday.
-   - State must still distinguish requestable/slot-like/fresh/stale without implying instant confirmation.
+   - Published listings should generally be able to receive a lesson inquiry/request; state should distinguish how specific the timing signal is — broad requestability, slot-like detail, fresh/stale — without implying instant confirmation.
 
 4. **Payment direction is chosen for v1, while legal/accounting copy still needs care.**
    - Default v1 direction is Stripe Checkout for the full protected booking amount paid to LocalSnow, then Moli manually pays the instructor/provider or refunds outside the platform when needed.
@@ -132,7 +132,7 @@ Meaning:
 - `draft`: not ready for public listing.
 - `needs_required_info`: missing information that makes the profile unsafe or unusable.
 - `publishable_with_warnings`: useful enough to publish, but missing recommended profile/offer/availability/trust details.
-- `published`: visible and requestable according to offer/requestability settings.
+- `published`: visible and able to receive at least a lesson inquiry/request unless deliberately paused or hidden.
 - `owner_reviewed`: Moli has reviewed enough information to increase confidence.
 - `claimed`: the professional/provider owns or controls the listing.
 - `paused_hidden`: hidden from public view temporarily or permanently.
@@ -236,7 +236,7 @@ fresh
 
 Meaning:
 
-- `requestable_only`: open to requests, no useful date/slot detail; acceptable as a weak fallback, not the target for serious independent instructor profiles.
+- `requestable_only`: listing can receive lesson inquiries/requests but has no useful date/slot detail; this is the baseline for a public listing, not a special badge.
 - `coarse_window`: broad availability window, season, day ranges or recurring hints; more acceptable for schools/providers than for independent instructors.
 - `slot_like`: specific generated date/time availability, or a recurring weekday/time pattern strong enough to generate requestable slots and guide the client flow.
 - `unavailable_paused`: not currently accepting requests.
@@ -607,7 +607,7 @@ Applies to:
 
 Why it needs state:
 
-Reviews improve trust, but v1 should stay simple, request-tied and credible: one real lesson/request client can leave one LocalSnow review from a review link, with a 1–5 star rating and optional text. Reviews go visible immediately by default, while Moli keeps a simple hide/remove control for abuse or obvious problems.
+Reviews improve trust, but v1 should stay simple and credible: one real lesson client can leave one LocalSnow review after the lesson, with a 1–5 star rating and optional text. The originating request can provide the verification link, but the public trust claim is about a real lesson, not merely a request. Reviews go visible immediately by default, while Moli keeps a simple hide/remove control for abuse or obvious problems.
 
 Prompt states:
 
@@ -630,13 +630,13 @@ submitted
 
 Rules:
 
-- Prompt after lesson/request date.
-- Tie review to the relevant request/lesson, profile and optionally offer.
-- Allow one review per verified request/lesson link; add auth or token checks if needed.
+- Prompt after the lesson date or confirmed lesson outcome, not merely after a stale unanswered request.
+- Tie review to the relevant completed/verified lesson, profile and optionally offer; keep the originating request as the verification vehicle.
+- Allow one review per verified lesson link; add auth or token checks if needed.
 - Capture 1–5 stars plus optional text.
 - Make reviews visible immediately by default.
 - Keep moderation simple: owner hide/remove for abuse, obvious fraud or legal/trust problems; no full dispute system.
-- Google Reviews can be complementary later, but v1 should not depend on Google for the core request-tied trust loop.
+- Google Reviews can be complementary later, but v1 should not depend on Google for the core real-lesson trust loop.
 
 Not decided:
 
@@ -705,7 +705,7 @@ These are intentionally not resolved by the state model:
 1. **Stripe/legal implementation details:** Stripe Checkout is the v1 direction for full protected booking payment to LocalSnow, but exact PaymentIntent/Checkout wiring, refund handling, seller/merchant wording and Spanish tax/accounting treatment belong later.
 2. **Availability primitive:** reuse SkiRelay only if it supports the LocalSnow snowsports shape — independent instructor season/date ranges, weekdays, weekday time ranges, generated slots, lesson duration/start-end capture, freshness and coarser school/provider requestability. Otherwise improve the shared primitive before implementation.
 3. **Exact required profile/offer fields:** what blocks publication versus what only warns.
-4. **Client portal scope:** email links are required, and a lightweight client account/dashboard is the preferred direction; the first scaffold still needs to decide how much account surface ships immediately.
+4. **Client account/contact capture:** email links are required, and a lightweight client account/dashboard is the preferred direction. LocalSnow should capture client identity/contact data before high-intent actions where practical, but exact login/OAuth/magic-link gating and what remains publicly visible belong to engineering/UX.
 5. **Legal/GDPR/tax wording posture:** terms, privacy/GDPR, cookies, refund/cancellation/guarantee, legal contact details, online-business disclosures, receipt/invoice wording and seller/merchant representation should be accurate enough before payment launch; the underlying process may be manual until bookings prove volume.
 6. **Google review complement:** whether/how to ask clients for a separate external Google review after the LocalSnow verified review.
 
