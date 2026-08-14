@@ -162,7 +162,7 @@ Applies to:
 
 Why it needs state:
 
-A profile can exist while an offer is incomplete, requestable only by inquiry, eligible for protected booking, paused, or price-needs-review.
+A profile can exist while an offer is incomplete, public but not priced, broadly eligible for protected booking, paused, or price-needs-review. Protected booking should not be treated as a rare special state if the listing already has a required price and enough handling context.
 
 States:
 
@@ -178,16 +178,18 @@ offer_draft
 Meaning:
 
 - `offer_draft`: offer is not ready to show publicly.
-- `inquiry_requestable`: clients can send a free self-managed inquiry.
-- `protected_requestable`: clients can choose the paid guaranteed path using this offer.
-- `price_needs_review`: offer can be shown or inquired about, but protected payment needs owner/manual price confirmation first.
+- `inquiry_requestable`: clients can send a free self-managed inquiry; this can exist alongside protected booking and should not become the default ceiling for priced listings.
+- `protected_requestable`: clients can choose the paid guaranteed path using this offer; this is the normal target for public listings/offers with required price/currency and enough contact/fulfillment context for Moli to operate the guarantee.
+- `price_needs_review`: offer can be shown or inquired about, but protected payment needs owner/manual price confirmation first because required price context is missing, stale, ambiguous, or not safe to sell.
 - `paused`: temporarily not receiving requests.
 - `archived`: no longer active; kept for history/reference if needed.
 
 Rules:
 
 - `protected_requestable` requires enough price context for a calm payment decision.
-- Self-managed inquiry can be allowed where protected booking is not yet safe.
+- If LocalSnow makes price/currency required for a public listing or offer, the protected route should usually be allowed; inquiry-only is the exception, not the preferred default.
+- Self-managed-only is valid when price is missing/manual, contact/fulfillment handling is unsafe, or the profile/offer is not ready for LocalSnow to stand behind the guarantee.
+- Availability strength can guide dates and expectations, but coarse or requestable-only availability should not by itself block the protected route when price and handling context are good enough.
 - Paused offers should not disappear in a way that breaks owner history.
 
 Not decided:

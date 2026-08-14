@@ -129,9 +129,9 @@ LocalSnow must know:
 - sport, level/client fit and format: private/group/family/couple where useful;
 - duration or rough session shape;
 - public description;
-- base price/currency or price-needed/manual marker;
+- base price/currency required for protected booking, or a price-needed/manual marker that blocks protected booking until resolved;
 - whether self-managed inquiry is allowed;
-- whether protected guaranteed booking is allowed;
+- whether protected guaranteed booking is allowed, with protected as the normal target for priced public listings rather than a rare premium-only subset;
 - relationship to availability/requestability.
 
 Boundaries:
