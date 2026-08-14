@@ -4,7 +4,7 @@ Greenfield LocalSnow product. The previous codebase is preserved at [triskel-lab
 
 ## Current phase
 
-**Phase 1: product meaning. No app code yet.**
+**Phase 2: surface map. No app code yet.**
 
 We are not trying to decide the whole product upfront. We are creating the first reviewed decision layer, then deriving the next layer from it.
 
@@ -18,7 +18,7 @@ Founder/product lead writes strategy memo
 → real feedback updates the docs
 ```
 
-## Phase 1 docs
+## Product-control docs
 
 Review in order:
 
@@ -27,8 +27,9 @@ Review in order:
 3. [`docs/02-user-jobs.md`](docs/02-user-jobs.md)
 4. [`docs/03-core-loops.md`](docs/03-core-loops.md)
 5. [`docs/PHASE_1_REVIEW_GATE.md`](docs/PHASE_1_REVIEW_GATE.md)
+6. [`docs/04-surface-map.md`](docs/04-surface-map.md)
 
-These are intentionally short. They define the product meaning before UX, record mapping, SEO, architecture or backlog.
+These are intentionally short. They define product meaning and surfaces before record mapping, SEO, architecture or backlog.
 
 ## Drift guard
 

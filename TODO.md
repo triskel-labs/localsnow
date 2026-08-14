@@ -12,13 +12,15 @@
 - [x] Moli reviewed updated `03` and `docs/PHASE_1_REVIEW_GATE.md`.
 - [x] Moli answered/edited D1–D10 in the Phase 1 review gate.
 - [x] Mark Phase 1 gate as approved or approved-with-assumptions.
-- [ ] After Phase 1 gate approval, create the next layer: surface map.
+- [x] After Phase 1 gate approval, create the next layer: surface map.
 
 ## On process
 
-- [ ] PR #1: Phase 1 product meaning baseline.
+- [x] PR #1: Phase 1 product meaning baseline.
+- [ ] PR #2: Surface map.
 
 ## Done
 
 - [x] Rename old project to `localsnow-legacy` on GitHub.
 - [x] Create new canonical `triskel-labs/localsnow` repo.
+- [x] Merge Phase 1 product meaning baseline.
