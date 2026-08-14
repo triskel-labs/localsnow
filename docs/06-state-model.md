@@ -705,7 +705,7 @@ These are intentionally not resolved by the state model:
 1. **Stripe/legal implementation details:** Stripe Checkout is the v1 direction for full protected booking payment to LocalSnow, but exact PaymentIntent/Checkout wiring, refund handling, seller/merchant wording and Spanish tax/accounting treatment belong later.
 2. **Availability primitive:** reuse SkiRelay only if it supports the LocalSnow snowsports shape — independent instructor season/date ranges, weekdays, weekday time ranges, generated slots, lesson duration/start-end capture, freshness and coarser school/provider requestability. Otherwise improve the shared primitive before implementation.
 3. **Exact required profile/offer fields:** what blocks publication versus what only warns.
-4. **Client portal scope:** email links are required, and a lightweight client account/dashboard is the preferred direction; the first scaffold still needs to decide how much account surface ships immediately.
+4. **Client account/contact capture:** email links are required, and a lightweight client account/dashboard is the preferred direction. LocalSnow should capture client identity/contact data before high-intent actions where practical, but exact login/OAuth/magic-link gating and what remains publicly visible belong to engineering/UX.
 5. **Legal/GDPR/tax wording posture:** terms, privacy/GDPR, cookies, refund/cancellation/guarantee, legal contact details, online-business disclosures, receipt/invoice wording and seller/merchant representation should be accurate enough before payment launch; the underlying process may be manual until bookings prove volume.
 6. **Google review complement:** whether/how to ask clients for a separate external Google review after the LocalSnow verified review.
 

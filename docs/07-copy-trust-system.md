@@ -130,7 +130,7 @@ Example path-choice copy:
 Choose how you want to get this lesson.
 
 Free inquiry
-Send a lesson inquiry and continue directly with the instructor/provider. No LocalSnow guarantee.
+Self-managed lesson inquiry. Send the inquiry and then handle the messages, availability check and coordination directly with the instructor/provider. No LocalSnow guarantee.
 
 Guaranteed booking
 Pay securely with LocalSnow. We confirm the lesson with the instructor/provider, find a suitable alternative or refund you if we cannot make it happen.
@@ -140,7 +140,7 @@ Conversion rule:
 
 - Public listings should generally be able to receive at least a lesson inquiry; if a listing cannot receive any request, it should normally stay unpublished or paused.
 - On priced public listings, guaranteed/protected booking should be presented as the normal confident path.
-- Free inquiry can remain available, but it should not be given equal emotional weight when the user wants the lesson handled.
+- Free inquiry can remain available because it keeps the directory useful/free, but it should not get too much emotional weight: it is self-managed and the client handles coordination.
 
 Avoid:
 
@@ -163,8 +163,9 @@ Let the client feel safe paying LocalSnow while keeping the operational/legal wo
 Approved v1 direction:
 
 ```txt
-Client pays the full protected booking amount to LocalSnow via Stripe Checkout.
-LocalSnow then manually confirms the lesson, pays the instructor/provider outside the platform, or refunds if the promise cannot be fulfilled.
+Client pays the full guaranteed booking amount to LocalSnow via Stripe Checkout.
+Publicly, LocalSnow holds the payment safely while the booking is handled, then ensures the lesson, a suitable alternative, or a refund if the promise cannot be fulfilled.
+Instructor/provider settlement is an internal operating/accounting process and should not be described in client-facing copy.
 ```
 
 Public copy direction:
@@ -192,6 +193,7 @@ Legal/copy boundary:
 - Do not imply Stripe Connect or automated provider payouts.
 - Do not imply automated tax/invoice/legal handling.
 - State who the client is paying and what the protected payment covers once legal/accounting wording is reviewed.
+- Positioning should avoid creating a false employee/contractor/staff relationship: instructors/providers remain independent lesson providers, while LocalSnow provides discovery, booking/payment handling and the guarantee/replacement/refund layer. Exact seller/merchant wording needs legal/accounting review.
 
 Open for later legal/accounting review:
 
@@ -283,7 +285,11 @@ Tell us your preferred date, time and lesson duration.
 Schools/providers may confirm availability after checking their instructor team.
 ```
 
-Freshness copy:
+Freshness posture:
+
+Freshness is useful internally and can guide owner/operator warnings, but it should not be shown by default to clients if it creates noise or makes early supply look stale. Only expose freshness when it genuinely increases confidence.
+
+Optional public copy if useful later:
 
 | State | Copy direction |
 | --- | --- |
@@ -323,13 +329,13 @@ Basic page copy pattern:
 
 ```txt
 Ski and snowboard lessons in [Resort]
-Find instructors and lesson providers for [Resort], or use guaranteed booking and LocalSnow will help confirm the lesson.
+Find instructors and lesson providers for [Resort], or use guaranteed booking so LocalSnow makes sure the lesson happens, finds a suitable alternative, or gives your money back.
 ```
 
 Thin-supply empty state:
 
 ```txt
-We’re still building verified lesson supply for [Resort]. You can search nearby resorts or use guaranteed booking and LocalSnow will check suitable options.
+We’re still building verified lesson supply for [Resort]. You can search nearby resorts or use guaranteed booking and LocalSnow will work to secure a suitable lesson or refund you if we cannot make it happen.
 ```
 
 Avoid:
@@ -355,7 +361,7 @@ Use visible cues that help decisions without exposing internal warning lists or 
 Approved public cue categories:
 
 - profile completeness;
-- owner-reviewed by LocalSnow;
+- LocalSnow-reviewed profile;
 - claimed profile;
 - verified review count/rating;
 - availability freshness/specificity;
@@ -365,7 +371,7 @@ Approved public cue categories:
 Example cues:
 
 ```txt
-Owner-reviewed profile
+LocalSnow-reviewed profile
 ```
 
 ```txt
@@ -382,7 +388,7 @@ Availability recently updated
 
 Boundary:
 
-- “Owner-reviewed” means Moli/LocalSnow reviewed enough information to increase confidence.
+- “LocalSnow-reviewed” means LocalSnow reviewed enough information to increase confidence.
 - “Verified” should only be used where the verification actually exists.
 - Do not claim licenses, insurance, criminal checks, federation credentials or legal verification unless actually checked.
 
@@ -396,7 +402,7 @@ Applies to:
 
 Trust job:
 
-Make the user feel informed even while operations are manual.
+Make the user feel informed, capture useful client/contact data, and keep future marketing/list-building possible without turning the request flow into friction.
 
 Approved direction:
 
@@ -404,6 +410,9 @@ Approved direction:
 - Lightweight client account/dashboard is the nicer product surface.
 - Email and account/dashboard tracking are not mutually exclusive.
 - They are both/and, not either/or.
+- Client identity/contact capture is strategically important: LocalSnow should build its own client list for future email/marketing/retention, with proper consent.
+- Preferred direction is very low-friction signup/login before high-intent actions such as viewing full availability/contact details, sending a self-managed inquiry, or starting guaranteed booking.
+- Google OAuth, magic links or similarly low-friction auth should be considered later; exact auth gate belongs to engineering/UX, not this copy layer.
 
 Client copy:
 
@@ -432,7 +441,7 @@ Approve this alternative
 Boundary:
 
 - Do not promise in-app messaging.
-- Do not require account creation before the request unless later conversion testing or architecture requires it.
+- Do not hide public SEO/discovery pages behind login; gate the high-intent actions where contact capture is valuable.
 - Secure token links can coexist with accounts.
 
 ## CT9 — Professional/provider notification and action copy
@@ -461,7 +470,7 @@ Open lesson details
 ```
 
 ```txt
-I can help with this lesson
+I want to confirm/take this lesson
 ```
 
 ```txt
@@ -505,7 +514,7 @@ Prompt copy:
 
 ```txt
 How was your lesson?
-Your review helps future skiers and snowboarders choose with confidence.
+Your review helps future skiers and snowboarders choose with confidence, and helps great instructors build a more trustworthy profile around their passion and good work.
 ```
 
 Review credibility copy:
@@ -620,24 +629,28 @@ Boundary:
 
 ```txt
 lesson details complete
+→ client contact/account captured with low friction
 → guaranteed booking chosen
 → secure Stripe Checkout payment
-→ lesson being confirmed
+→ payment held safely while booking is handled
+→ lesson being confirmed/handled
 → confirmed lesson / suitable alternative / refund
 ```
 
-Copy must make guaranteed/protected booking feel handled and strong without over-promising instant final confirmation.
+Copy must make guaranteed/protected booking feel handled and strong: LocalSnow ensures the lesson, a suitable alternative, or a refund. Do not over-promise instant final confirmation or exact instructor certainty.
 
 ### Self-managed path
 
 ```txt
 lesson details complete
+→ client contact/account captured with low friction
 → free inquiry chosen
 → inquiry forwarded where possible
+→ client handles messages, availability and coordination directly with instructor/provider
 → response depends on instructor/provider
 ```
 
-Copy must keep it useful but clearly outside LocalSnow’s guarantee.
+Copy must keep it useful but clearly self-managed and outside LocalSnow’s guarantee. Do not give it equal emotional weight to guaranteed booking on high-intent paid surfaces.
 
 ### Availability into request copy
 
@@ -647,12 +660,13 @@ availability detail
 → LocalSnow/instructor confirms lesson details
 ```
 
-Copy must collect snowsports-specific lesson information, not generic contact-form intent.
+Copy must collect snowsports-specific lesson information, not generic contact-form intent. Availability freshness should usually stay internal unless exposing it increases confidence.
 
 ### Legal/trust into payment copy
 
 ```txt
 Stripe Checkout
+→ clear platform positioning: independent provider + LocalSnow booking/payment/guarantee layer
 → terms/privacy/guarantee visible
 → refund/cancellation wording clear
 → no fake escrow/compliance claims
