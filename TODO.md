@@ -14,13 +14,15 @@
 - [x] Mark Phase 1 gate as approved or approved-with-assumptions.
 - [x] After Phase 1 gate approval, create the next layer: surface map.
 - [x] Moli reviewed PR #2 surface map and approved proceeding.
-- [ ] Review the next layer: domain record map.
+- [x] Moli reviewed PR #3 domain record map and approved proceeding.
+- [ ] Review the next layer: state model.
 
 ## On process
 
 - [x] PR #1: Phase 1 product meaning baseline.
 - [x] PR #2: Surface map.
-- [ ] PR #3: Domain record map.
+- [x] PR #3: Domain record map.
+- [ ] PR #4: State model.
 
 ## Done
 
@@ -28,3 +30,4 @@
 - [x] Create new canonical `triskel-labs/localsnow` repo.
 - [x] Merge Phase 1 product meaning baseline.
 - [x] Merge surface map.
+- [x] Merge domain record map.
