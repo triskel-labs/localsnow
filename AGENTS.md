@@ -72,7 +72,7 @@ Do not build in v1 unless explicitly reopened:
 
 ## Copy/trust boundary
 
-Client-facing copy may make LocalSnow feel like a smooth automated platform, but it must not lie about exact instructor, instant confirmation or perfect live availability. Prefer: `self-managed inquiry`, `guaranteed request`, `protected/safe request`, `available to request`, `guaranteed lesson or suitable trusted alternative`, `refund if LocalSnow cannot make it happen`.
+Client-facing copy may make LocalSnow feel like a smooth automated platform, but it must not lie about exact instructor, instant confirmation or perfect live availability. Public copy should sell the lesson/booking outcome, not the internal request object. Prefer: `self-managed inquiry`, `guaranteed booking`, `protected booking`, `available lesson time`, `guaranteed lesson or suitable trusted alternative`, `refund if LocalSnow cannot make it happen`.
 
 Do not expose Moli’s manual backend coordination as the public promise. Keep it as internal operating reality: Moli can call/message instructors, handle replacements, payouts and corrections manually until automation is justified.
 

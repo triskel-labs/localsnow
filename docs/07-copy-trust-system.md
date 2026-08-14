@@ -24,14 +24,20 @@ The next layers can turn this into SEO pages, architecture and backlog. This lay
    - Clients do not need to know Moli is contacting instructors manually.
    - They do need to know LocalSnow will confirm, propose a suitable alternative or refund when the protected path is chosen.
 
-3. **Protected path is the emotional default for serious clients.**
+3. **The safe/handled feeling must exist even before the client asks for it.**
    - Self-managed inquiry exists and is useful.
-   - Protected booking/request should feel safer, calmer and more complete when the client wants confidence.
+   - Guaranteed/protected booking should make the client feel: “this is handled for me, I will get my lesson or my money back.”
+   - The safety feeling is not only for anxious users; it is part of why LocalSnow is better than a loose directory or WhatsApp hunt.
 
-4. **Snowsports specificity beats generic directory copy.**
-   - Availability, lesson request details, resort pages and instructor profiles should speak like a product built for ski/snowboard lessons, not a generic business listing.
+4. **The public outcome is the lesson, not the request.**
+   - Internally, request is the domain unit.
+   - Public copy should sell the client getting the right ski/snowboard lesson and the instructor/provider getting more real lesson clients.
+   - “Request” is the vehicle; “lesson”, “booking”, “client” and “student” are the benefits.
 
-5. **Legal/GDPR/payment reassurance must be accurate.**
+5. **Snowsports specificity beats generic directory copy.**
+   - Availability, lesson details, resort pages and instructor profiles should speak like a product built for ski/snowboard lessons, not a generic business listing.
+
+6. **Legal/GDPR/payment reassurance must be accurate.**
    - Legal documents and manual processes can cover v1 before automation exists.
    - Public wording must not pretend LocalSnow has automated compliance, tax, invoices, payouts or legal workflows that are not real.
 
@@ -41,14 +47,15 @@ Use these terms as the default vocabulary across pages, forms, emails and PRs.
 
 | Concept | Preferred terms | Avoid |
 | --- | --- | --- |
-| Free path | self-managed inquiry, free inquiry, send a request | unmanaged booking, unsupported booking, direct booking if LocalSnow still intermediates |
-| Paid path | protected request, protected booking, guaranteed request | escrow, instant booking, fully automated guarantee |
-| Availability | available to request, requestable slot, preferred time, lesson time window | live availability, confirmed slot, guaranteed calendar slot |
-| Fulfillment | LocalSnow checks availability, confirms the lesson, finds a suitable alternative or refunds | Moli calls people manually, instant confirmation, marketplace matching engine |
-| Payment | secure payment with Stripe Checkout, pay LocalSnow securely | escrow, deposit with unclear promise, pay instructor separately for protected path |
-| Reviews | verified LocalSnow reviews, 1–5 star reviews from real lesson requests | unverified testimonials as the main trust loop, Google-only reviews |
+| Free path | self-managed inquiry, free inquiry, send a lesson inquiry | unmanaged booking, unsupported booking, “just contact” if LocalSnow is still involved |
+| Paid path | guaranteed booking, protected booking, protected lesson booking | escrow, instant booking, fully automated guarantee |
+| Listing baseline | requestable listing, can receive lesson inquiries/bookings | published but cannot receive any request |
+| Availability detail | preferred date/time, lesson time window, slot-like time, availability guide | live availability, confirmed slot, guaranteed calendar slot |
+| Fulfillment | LocalSnow confirms lesson details with the instructor/provider, ensures the lesson or a suitable alternative, or refunds | Moli calls people manually, marketplace matching engine, “checking availability” after a slot was already chosen |
+| Payment | secure payment for a guaranteed booking with Stripe Checkout, pay LocalSnow securely | escrow, deposit with unclear promise, pay instructor separately for protected path |
+| Reviews | verified LocalSnow reviews, 1–5 star reviews from real lessons | unverified testimonials as the main trust loop, Google-only reviews |
 | Resort pages | resort lesson guide, instructors and lessons in [resort], useful basic resort page | empty SEO page, thin auto-generated landing page |
-| Client tracking | email updates, request dashboard, your LocalSnow account | in-app messaging, complex client portal, CRM |
+| Client tracking | email updates, lesson/booking dashboard, your LocalSnow account | in-app messaging, complex client portal, CRM |
 | Legal | terms, privacy/GDPR, refund and guarantee policy | automated compliance, legal guarantee, tax automation |
 
 ## CT1 — Homepage / value proposition
@@ -64,28 +71,29 @@ Trust job:
 
 Make the visitor understand in seconds:
 
-1. LocalSnow is for ski/snowboard lessons in Spain.
-2. They can request a lesson from instructors/providers.
-3. They can either send a free inquiry or use the protected paid path.
-4. The protected path means LocalSnow helps make it happen or refunds.
+1. LocalSnow helps clients find and book ski/snowboard lessons.
+2. The catalog can be browsed worldwide, while launch marketing, supply effort and conversion focus are concentrated on Spain first.
+3. Clients should feel they are getting a lesson handled, not merely submitting a form.
+4. Instructors/providers should feel LocalSnow can bring real lesson clients, not admin noise.
+5. The guaranteed/protected path is strong: LocalSnow ensures the lesson, a suitable alternative, or a refund.
 
 Primary message direction:
 
 ```txt
-Find ski and snowboard lessons in Spain with a safer way to request.
-Choose a lesson, tell us your dates, and either contact the instructor directly or use LocalSnow protection so we confirm the lesson, find a suitable alternative or refund you.
+Find the right ski or snowboard lesson without chasing WhatsApps.
+Browse instructors, schools and resorts, choose the lesson you need, and use guaranteed booking when you want LocalSnow to handle confirmation for you.
 ```
 
-Sharper variants:
+Guarantee direction:
 
 ```txt
-Book ski lessons with a safety net.
-Pay securely. LocalSnow confirms the lesson, finds a suitable alternative or refunds you.
+Guaranteed booking means LocalSnow confirms the lesson with the instructor/provider, arranges a suitable alternative, or refunds you. You do not lose money if we cannot make it happen.
 ```
 
+Market-focus direction:
+
 ```txt
-Not just a directory. A safer way to request snow lessons.
-Send a free inquiry or choose protected booking for help until the lesson is confirmed.
+LocalSnow can stay browsable worldwide, but public acquisition and supply-building copy should focus first on Spain and the resorts where LocalSnow is actively building trust and availability.
 ```
 
 Avoid:
@@ -113,25 +121,26 @@ Preferred framing:
 
 | Path | Emotional role | Copy direction |
 | --- | --- | --- |
-| Self-managed inquiry | Light, free, lower commitment | “Send your request to the instructor/provider. Responses depend on them.” |
-| Protected request | Calm, assisted, safer | “Pay securely. LocalSnow helps confirm the lesson or finds a suitable alternative/refunds.” |
+| Self-managed inquiry | Light, free, lower commitment | “Send a lesson inquiry to the instructor/provider. Responses depend on them.” |
+| Guaranteed/protected booking | Handled, strong, safer | “Pay securely. LocalSnow ensures the lesson, a suitable alternative or a refund.” |
 
 Example path-choice copy:
 
 ```txt
-Choose how you want to request this lesson.
+Choose how you want to get this lesson.
 
 Free inquiry
-Send your request and continue directly with the instructor/provider. No LocalSnow guarantee.
+Send a lesson inquiry and continue directly with the instructor/provider. No LocalSnow guarantee.
 
-Protected request
-Pay securely with LocalSnow. We check the lesson, confirm it with the instructor/provider, find a suitable alternative or refund you if we cannot make it happen.
+Guaranteed booking
+Pay securely with LocalSnow. We confirm the lesson with the instructor/provider, find a suitable alternative or refund you if we cannot make it happen.
 ```
 
 Conversion rule:
 
-- On priced public listings, protected request should be presented as the normal confident path.
-- Free inquiry can remain available, but it should not be given equal emotional weight when the user wants safety.
+- Public listings should generally be able to receive at least a lesson inquiry; if a listing cannot receive any request, it should normally stay unpublished or paused.
+- On priced public listings, guaranteed/protected booking should be presented as the normal confident path.
+- Free inquiry can remain available, but it should not be given equal emotional weight when the user wants the lesson handled.
 
 Avoid:
 
@@ -162,7 +171,7 @@ Public copy direction:
 
 ```txt
 Secure payment by Stripe.
-Your payment is for the protected LocalSnow request. We confirm the lesson with the instructor/provider, arrange a suitable alternative, or refund you if we cannot make it happen.
+Your payment is for a guaranteed LocalSnow booking. We confirm the lesson with the instructor/provider, arrange a suitable alternative, or refund you if we cannot make it happen.
 ```
 
 Short payment reassurance:
@@ -188,7 +197,7 @@ Open for later legal/accounting review:
 
 - seller/merchant wording;
 - receipt/invoice wording;
-- whether LocalSnow is selling the lesson, an agency/booking service, or a protected request service;
+- whether LocalSnow is selling the lesson, an agency/booking service, or a protected booking/lesson service;
 - cancellation/refund exceptions.
 
 ## CT4 — Final confirmation is not instant
@@ -207,9 +216,9 @@ Preferred state copy:
 
 | Internal state | Client-facing copy |
 | --- | --- |
-| `request_received` | “Request received” |
-| `checking_availability` | “We’re checking availability” |
-| `confirming_details` | “We’re confirming the lesson details” |
+| `request_received` | “Lesson request received” |
+| `checking_availability` | “We’re confirming availability and details” only when no slot/time was already selected |
+| `confirming_details` | “We’re confirming the lesson details with the instructor/provider” |
 | `alternative_proposed` | “We found a suitable alternative” |
 | `lesson_confirmed` | “Lesson confirmed” |
 | `refund_in_progress` | “Refund in progress” |
@@ -218,13 +227,13 @@ Preferred state copy:
 Example tracking copy:
 
 ```txt
-We received your protected request.
-LocalSnow is checking the lesson details with the instructor/provider. We’ll email every important update, and you can follow the request from your account.
+We received your guaranteed booking.
+LocalSnow is confirming the lesson details with the instructor/provider. We’ll email every important update, and you can follow the lesson from your account.
 ```
 
 ```txt
 Your lesson is not final until confirmed.
-If the exact request cannot be confirmed, LocalSnow will look for a suitable alternative or refund you under the guarantee policy.
+If the exact lesson cannot be confirmed, LocalSnow will look for a suitable alternative or refund you under the guarantee policy.
 ```
 
 Avoid:
@@ -245,21 +254,26 @@ Trust job:
 
 Show enough availability specificity to feel useful while avoiding perfect-live-calendar claims.
 
+Baseline rule:
+
+- A published listing should generally be able to receive a lesson inquiry or booking. “Requestable” is not a special availability badge; it is the baseline for being public.
+- Availability copy should explain how specific the timing is: broad preference, recurring window, or slot-like time.
+
 Independent instructor target:
 
 ```txt
-Available to request on selected days and times.
-Choose a date, preferred start time and lesson duration. Final confirmation comes after the instructor/provider confirms.
+Choose from available lesson times, or send your preferred time.
+Final confirmation comes after the instructor/provider confirms the lesson details.
 ```
 
 Slot-like copy:
 
 ```txt
-Request this time
+Choose this time
 ```
 
 ```txt
-This time is available to request. Final confirmation follows after LocalSnow checks the lesson.
+This time is ready to choose. LocalSnow still confirms the lesson details with the instructor/provider before the booking is final.
 ```
 
 Coarser school/provider copy:
@@ -274,9 +288,9 @@ Freshness copy:
 | State | Copy direction |
 | --- | --- |
 | `fresh` | “Availability recently updated” |
-| `aging` | “Availability is a guide; we’ll confirm” |
-| `stale` | “We’ll check current availability before confirming” |
-| `unknown` | “Request your preferred time” |
+| `aging` | “Availability is a guide; we’ll confirm the lesson details” |
+| `stale` | “Tell us your preferred time and we’ll confirm what is possible” |
+| `unknown` | “Send your preferred lesson time” |
 
 Avoid:
 
@@ -309,13 +323,13 @@ Basic page copy pattern:
 
 ```txt
 Ski and snowboard lessons in [Resort]
-Find instructors and lesson providers for [Resort], or send a protected request and LocalSnow will help check availability.
+Find instructors and lesson providers for [Resort], or use guaranteed booking and LocalSnow will help confirm the lesson.
 ```
 
 Thin-supply empty state:
 
 ```txt
-We’re still building verified lesson supply for [Resort]. You can search nearby resorts or send a protected request and LocalSnow will check suitable options.
+We’re still building verified lesson supply for [Resort]. You can search nearby resorts or use guaranteed booking and LocalSnow will check suitable options.
 ```
 
 Avoid:
@@ -355,7 +369,7 @@ Owner-reviewed profile
 ```
 
 ```txt
-Protected request available
+Guaranteed booking available
 ```
 
 ```txt
@@ -394,17 +408,17 @@ Approved direction:
 Client copy:
 
 ```txt
-We’ll email every important update. You can also follow this request from your LocalSnow account.
+We’ll email every important update. You can also follow this lesson from your LocalSnow account.
 ```
 
 ```txt
-Your request dashboard shows status, payment/refund information, review links and your contact details.
+Your lesson dashboard shows status, payment/refund information, review links and your contact details.
 ```
 
 Email/action link copy:
 
 ```txt
-Open request details
+Open lesson details
 ```
 
 ```txt
@@ -436,14 +450,14 @@ Give professionals/providers a clear, low-friction action path without creating 
 Notification copy direction:
 
 ```txt
-New lesson request from LocalSnow
-A client is asking about a ski/snowboard lesson at [Resort]. Open the request to see dates, time preference, level and contact details.
+New lesson client from LocalSnow
+A client wants a ski/snowboard lesson at [Resort]. Open the lesson details to see dates, time preference, level and contact details.
 ```
 
 Action labels:
 
 ```txt
-Open request
+Open lesson details
 ```
 
 ```txt
@@ -455,7 +469,7 @@ I need different details
 ```
 
 ```txt
-I cannot take this request
+I cannot take this lesson
 ```
 
 Boundary:
@@ -481,11 +495,11 @@ Approved v1 review system:
 - LocalSnow-owned reviews;
 - 1–5 stars;
 - optional text;
-- tied to verified request/lesson link;
-- one review per request;
+- tied to a verified real lesson;
+- one review per completed/verified lesson;
 - visible immediately by default;
 - Moli can hide/remove abuse or obvious problems;
-- Google Reviews may complement later but should not replace LocalSnow’s request-tied trust loop.
+- Google Reviews may complement later but should not replace LocalSnow’s real-lesson trust loop.
 
 Prompt copy:
 
@@ -501,7 +515,7 @@ Verified LocalSnow review
 ```
 
 ```txt
-Reviewed after a real lesson request
+Reviewed after a real lesson
 ```
 
 Boundary:
@@ -583,7 +597,7 @@ Mark refund needed
 Client-facing language should say:
 
 ```txt
-We’re checking availability
+We’re confirming the lesson details
 ```
 
 ```txt
@@ -605,19 +619,19 @@ Boundary:
 ### Protected path
 
 ```txt
-request details complete
-→ protected request chosen
+lesson details complete
+→ guaranteed booking chosen
 → secure Stripe Checkout payment
-→ request received / checking availability
-→ confirmed / suitable alternative / refund
+→ lesson being confirmed
+→ confirmed lesson / suitable alternative / refund
 ```
 
-Copy must make the protected path feel safer than self-managed inquiry without over-promising instant confirmation.
+Copy must make guaranteed/protected booking feel handled and strong without over-promising instant final confirmation.
 
 ### Self-managed path
 
 ```txt
-request details complete
+lesson details complete
 → free inquiry chosen
 → inquiry forwarded where possible
 → response depends on instructor/provider
@@ -628,9 +642,9 @@ Copy must keep it useful but clearly outside LocalSnow’s guarantee.
 ### Availability into request copy
 
 ```txt
-availability signal
+availability detail
 → choose preferred date/time/duration
-→ final confirmation later
+→ LocalSnow/instructor confirms lesson details
 ```
 
 Copy must collect snowsports-specific lesson information, not generic contact-form intent.
@@ -668,7 +682,7 @@ The next layer is `08-seo-map.md`.
 
 It should define how LocalSnow turns the reviewed copy/trust system into search/discovery structure, especially:
 
-- Spain-first resort and lesson page taxonomy;
+- worldwide-browsable catalog with Spain-first resort and lesson page taxonomy for marketing/conversion focus;
 - which programmatic resort pages should be indexable versus useful-but-not-promoted;
 - instructor/profile/offer SEO boundaries;
 - trust copy snippets that can appear on landing/search pages;

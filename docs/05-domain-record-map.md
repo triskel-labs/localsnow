@@ -14,7 +14,7 @@ A domain record here means:
 
 ## Surface assumptions carried forward
 
-- Spain-first discovery, with broader resort data kept as a secondary catalog foundation; valid canonical resorts should remain usable for supply and demand even before SEO enrichment.
+- Worldwide-browsable discovery, with Spain-first marketing, supply and conversion effort; valid canonical resorts should remain usable for supply and demand even when they sit behind Spain in public acquisition focus.
 - Each resort should have a dedicated resort page that can become SEO-rich over time, not just a filter value in search.
 - Independent instructors plus simple school/provider listings from v1.
 - One unified lesson request flow collects the need once, then lets the client choose self-managed inquiry or protected/guaranteed booking.
@@ -56,7 +56,7 @@ Needed by surfaces:
 LocalSnow must know:
 
 - name, country/region and public identity/slug;
-- Spain-first status: launch focus, active Spain directory, secondary catalog foundation;
+- market focus status: worldwide-browsable catalog, Spain-first launch/conversion focus, active Spain directory, secondary/non-promoted catalog area;
 - sports/lesson context where known;
 - whether it is canonical/catalog-accessible, public basic, SEO-rich, paused/hidden or still only an import candidate;
 - page/content readiness: programmatic basic page, useful basic page, SEO-rich page later;
@@ -130,7 +130,7 @@ LocalSnow must know:
 - duration or rough session shape;
 - public description;
 - base price/currency required for protected booking, or a price-needed/manual marker that blocks protected booking until resolved;
-- whether self-managed inquiry is allowed;
+- whether the listing/offer can receive lesson inquiries/bookings; public listings should generally be requestable unless paused/hidden;
 - whether protected guaranteed booking is allowed, with protected as the normal target for priced public listings rather than a rare premium-only subset;
 - relationship to availability/requestability.
 
@@ -167,7 +167,7 @@ LocalSnow must know:
 
 Boundaries:
 
-- `available to request` does not mean confirmed availability.
+- Being able to receive a lesson inquiry/request does not mean confirmed availability.
 - Instructors should not get generic-directory behavior or an immature fake-availability tool. The normal target is granular slot-like availability generated from a season/date range, weekly working days and weekday time ranges.
 - If SkiRelay's availability model is clean enough, reuse or adapt it as a shared primitive; if not, improve the primitive before copying it into LocalSnow.
 - Schools/providers can stay coarser than instructors because v1 does not expose each school instructor's personal calendar.
@@ -320,7 +320,7 @@ Boundaries:
 
 Product meaning:
 
-A minimal business record that a protected request has payment/refund facts LocalSnow must show, operate and correct.
+A minimal business record that a protected booking/request has payment/refund facts LocalSnow must show, operate and correct.
 
 Needed by surfaces:
 
@@ -355,7 +355,7 @@ Boundaries:
 
 Product meaning:
 
-The internal case/checklist created when a paid guaranteed request needs LocalSnow/Moli to secure the requested lesson, replacement, reschedule or refund. This should stay as lightweight as possible: enough to know the next manual action and send the right messages, not a full feature suite.
+The internal case/checklist created when a paid guaranteed booking needs LocalSnow/Moli to secure the requested lesson, replacement, reschedule or refund. This should stay as lightweight as possible: enough to know the next manual action and send the right messages, not a full feature suite.
 
 Needed by surfaces:
 
@@ -416,7 +416,7 @@ Boundaries:
 
 Product meaning:
 
-A simple trust loop tied to a request/profile after the lesson or requested lesson date.
+A simple trust loop tied to a real lesson/profile after the lesson happens, using the originating request as the verification vehicle.
 
 Needed by surfaces:
 
@@ -426,17 +426,17 @@ Needed by surfaces:
 
 LocalSnow must know:
 
-- linked request/profile and optionally offer;
+- linked completed/verified lesson, originating request, profile and optionally offer;
 - prompt due date and sent/completed marker;
 - 1–5 star rating and optional review text if submitted;
-- verified request/lesson link and one-review-per-request rule;
+- verified real-lesson link and one-review-per-lesson rule;
 - visibility/moderation marker, with visible-immediately as the v1 default and owner hide/remove for problems;
 - source path: self-managed or guaranteed.
 
 Boundaries:
 
 - No full reputation/dispute system in v1.
-- LocalSnow owns the request-tied review loop; Google Reviews may complement later but should not replace it.
+- LocalSnow owns the real-lesson review loop; Google Reviews may complement later but should not replace it.
 - Keep moderation owner-simple.
 
 ## R14 — Claim / ownership transfer request

@@ -100,7 +100,7 @@ What it must do:
 - allow a simple Instructors / Schools / Both view toggle if mixed results feel noisy;
 - expose sport, resort, level, language, offer type and availability/requestability cues;
 - show profile completeness, verified signal and review signal where available;
-- provide clear CTAs: view profile, self-managed inquiry, guaranteed request if eligible.
+- provide clear CTAs: view profile, self-managed inquiry, guaranteed booking if eligible.
 
 Trace:
 
@@ -128,7 +128,7 @@ What it must do:
 - show simple offers/services;
 - show availability/requestability if configured, with careful non-absolute wording;
 - show completeness/verified signal and visible reviews without overcomplicating trust;
-- provide free self-managed inquiry and paid guaranteed request CTAs when allowed.
+- provide free self-managed inquiry and paid guaranteed booking CTAs when allowed.
 
 Trace:
 
@@ -241,7 +241,7 @@ What it must do:
 Trace:
 
 ```txt
-Product promise: paid guaranteed request
+Product promise: paid guaranteed booking
 → User job: pay safely and feel the lesson is being handled
 → Core loop: Loop B client request + Loop C guaranteed fulfillment
 → Boundary: no Stripe Connect, no instant final confirmation, no exact instructor guarantee
@@ -261,7 +261,7 @@ What it must do:
 - show the client enough status/next-step information after inquiry/payment;
 - expose email/action-link outcomes where useful;
 - keep wording public/platform-led, not “Moli is calling people manually”;
-- distinguish self-managed expectation from guaranteed request SLA.
+- distinguish self-managed expectation from guaranteed booking SLA.
 
 Trace:
 
@@ -283,7 +283,7 @@ Not included:
 
 What it must do:
 
-- send/present a review prompt after the lesson/request date;
+- send/present a review prompt after a real lesson;
 - tie feedback to the relevant professional/profile;
 - improve visible trust over time;
 - stay simple until demand exists.
@@ -292,7 +292,7 @@ Trace:
 
 ```txt
 Product promise: profile trust compounds
-→ User job: leave review after lesson/request date
+→ User job: leave review after a real lesson
 → Core loop: Loop E future trust/reputation learning
 → Boundary: no full reputation system before demand
 → Assumptions: D7, D10
@@ -362,7 +362,7 @@ Not included:
 What it must do:
 
 - let Moli create/edit/correct profiles, schools/providers, offers, requests, payments/refunds markers and reviews enough to operate;
-- expose paid guaranteed requests needing action;
+- expose paid guaranteed bookings needing action;
 - show contact details and next action;
 - support internal notes and correction power;
 - stay practical, not a full CRM/performance dashboard.
@@ -411,7 +411,7 @@ Not included:
 
 What it must do:
 
-- define the minimum notifications/actions for self-managed inquiry and guaranteed request;
+- define the minimum notifications/actions for self-managed inquiry and guaranteed booking;
 - support inquiry sent, professional notified, guaranteed payment received, response/confirmation/replacement/refund-related messages;
 - use action links where useful;
 - keep Telegram as possible internal/operator convenience, not public messaging product.
