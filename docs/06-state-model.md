@@ -56,13 +56,14 @@ Applies to:
 
 Why it needs state:
 
-A resort can exist as imported/reference data before it deserves a visible SEO-rich page. LocalSnow needs dedicated resort pages, but it must not make weak supply look embarrassing.
+Once LocalSnow accepts a resort into the canonical catalog, it should be usable: clients can find it, supply can attach to it, and demand can be expressed there. The state distinction is not “internal reference versus inaccessible public product”; it is functional accessibility versus how deliberately LocalSnow promotes, indexes and enriches the resort page.
+
+Imported candidates can stay outside the canonical catalog until accepted, but accepted resorts should not sit in a hidden reference-only limbo.
 
 States:
 
 ```txt
-reference_only
-→ searchable
+catalog_accessible
 → public_basic
 → seo_rich
 → paused_hidden
@@ -70,16 +71,15 @@ reference_only
 
 Meaning:
 
-- `reference_only`: known resort/place, useful internally or for future expansion; not emphasized publicly.
-- `searchable`: can be found or attached to supply/request records, but not promoted as a rich page.
-- `public_basic`: has a dedicated public resort page with useful basic information and honest empty states.
+- `catalog_accessible`: canonical resort/place; can be found, attached to supply/offers and used in request flows, even before it deserves SEO promotion.
+- `public_basic`: has a dedicated public resort page with useful basic information, programmatic structure where needed and honest empty states.
 - `seo_rich`: has enough content/internal links/supply context to become a deliberate SEO landing page.
 - `paused_hidden`: temporarily hidden from public browsing/search emphasis.
 
 Allowed transitions:
 
-- `reference_only → searchable` when it is safe to attach profiles/offers or accept demand.
-- `searchable → public_basic` when a resort page can provide user value without faking liquidity.
+- Imported candidate → `catalog_accessible` only when LocalSnow accepts it as a valid resort/place for supply and demand.
+- `catalog_accessible → public_basic` when a resort page can provide user value without faking liquidity.
 - `public_basic → seo_rich` when copy/content/supply/links justify SEO investment.
 - Any public state → `paused_hidden` if quality, supply, ownership or legal/content concerns require hiding.
 
@@ -87,10 +87,13 @@ Public behavior:
 
 - Empty or weak supply should invite broader search or protected help.
 - Never say “we have no instructors here” as a public self-own.
+- Programmatic basic resort pages are allowed if they help clients and owners take action, but they should not be treated as SEO-rich merely because a template exists.
+- Search-engine indexation and sitemap/promotion policy belongs to the copy/trust and SEO layers; those layers must avoid thin duplicate pages harming trust, conversion or search quality.
 
 Not decided:
 
 - exact SEO URL taxonomy;
+- exact indexation/sitemap policy for programmatic basic pages;
 - content template;
 - schema.org implementation.
 
@@ -647,12 +650,12 @@ Strong availability improves UX but must still obey the guarantee boundary.
 ### Resort page readiness into SEO
 
 ```txt
-reference/searchable resort
+catalog-accessible resort
 → public basic resort page
 → SEO-rich resort page later
 ```
 
-Do not let SEO ambition force fake supply or premature content bloat.
+Do not let SEO ambition force fake supply or premature content bloat. Canonical resorts can remain useful supply/demand anchors before the SEO layer decides which basic pages deserve indexing, sitemap inclusion or extra enrichment.
 
 ## Open decisions before implementation/copy
 
@@ -673,6 +676,7 @@ It should define how LocalSnow explains these states in public copy, especially:
 - paid protection without anxiety;
 - final confirmation not being instant;
 - availability that feels useful but does not lie;
+- programmatic basic resort pages that are useful without becoming thin SEO pages;
 - self-managed inquiry as lighter/free but not equally emotionally preferred;
 - client-facing tracking summaries that hide manual ops;
 - refund/replacement/payment timing language once the payment policy is chosen.

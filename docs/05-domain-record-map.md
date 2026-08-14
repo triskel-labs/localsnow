@@ -14,7 +14,7 @@ A domain record here means:
 
 ## Surface assumptions carried forward
 
-- Spain-first discovery, with broader resort data kept as secondary/reference foundation.
+- Spain-first discovery, with broader resort data kept as a secondary catalog foundation; valid canonical resorts should remain usable for supply and demand even before SEO enrichment.
 - Each resort should have a dedicated resort page that can become SEO-rich over time, not just a filter value in search.
 - Independent instructors plus simple school/provider listings from v1.
 - One unified lesson request flow collects the need once, then lets the client choose self-managed inquiry or protected/guaranteed booking.
@@ -56,16 +56,17 @@ Needed by surfaces:
 LocalSnow must know:
 
 - name, country/region and public identity/slug;
-- Spain-first status: launch focus, active Spain directory, secondary/reference;
+- Spain-first status: launch focus, active Spain directory, secondary catalog foundation;
 - sports/lesson context where known;
-- whether it is promoted, searchable, quiet/reference-only or not yet public;
-- page/content readiness: empty shell, basic useful page, SEO-rich page later;
+- whether it is canonical/catalog-accessible, public basic, SEO-rich, paused/hidden or still only an import candidate;
+- page/content readiness: programmatic basic page, useful basic page, SEO-rich page later;
 - source/provenance if imported from legacy/worldwide data.
 
 Boundaries:
 
-- Resorts can exist before supply is strong.
+- Resorts can exist before supply is strong, but once accepted into the canonical catalog they should be usable as supply/demand anchors.
 - Empty states must not publicly self-own thin supply.
+- Programmatic basic pages can help coverage, but SEO indexation/prominence belongs to the later SEO layer and must avoid thin duplicate content harming trust or conversion.
 - Dedicated resort pages are part of the product record meaning, but this does not decide final SEO URL taxonomy, content strategy or geodata architecture.
 
 ## R2 — Supply profile
