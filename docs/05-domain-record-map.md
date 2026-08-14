@@ -343,6 +343,8 @@ Boundaries:
 - No Stripe Connect.
 - No automated instructor payouts.
 - No full ledger/accounting system in first scaffold.
+- Spanish tax/legal treatment should be checked before payment implementation and public copy, but early volume can be handled manually by Moli with simple professional markers/notes rather than a built tax subsystem.
+- Do not promise automated tax, invoice, legal or provider-accounting handling unless the real process supports it.
 - The final payment-timing decision belongs in the payment/promise implementation layer; this record only preserves the fact LocalSnow may need to distinguish upfront payment, authorization/deposit, capture, post-lesson collection and refund.
 
 ## R11 — Guaranteed fulfillment case

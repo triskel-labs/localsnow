@@ -476,6 +476,8 @@ Rules:
 
 - The product promise can still position paid protection as the confident path.
 - Final payment policy must be decided before implementation/copy, because it changes trust and conversion.
+- Spanish tax/legal treatment should be checked before public payment copy or implementation, but v1 does not need a heavy tax/accounting system before meaningful volume exists. The product should feel professionally covered to the client while Moli can manage tax/accounting operations manually behind the scenes.
+- Public copy must not claim automated tax, invoice, legal or provider-accounting guarantees unless those checks/processes actually exist.
 - No Stripe Connect, automated payouts or full ledger in v1.
 
 Not decided:
@@ -483,7 +485,8 @@ Not decided:
 - Stripe flow;
 - deposit percentage;
 - refund automation;
-- tax/accounting treatment.
+- Spanish tax/accounting treatment;
+- receipt/invoice wording and who is represented as seller/merchant in v1.
 
 ## SM9 — Notification/action-link delivery
 
@@ -680,6 +683,7 @@ These are intentionally not resolved by the state model:
 3. **Exact required profile/offer fields:** what blocks publication versus what only warns.
 4. **Review visibility defaults:** whether submitted reviews go visible immediately or wait for owner moderation.
 5. **Client account/tracking model:** email link only or lightweight account area later.
+6. **Spanish tax/accounting posture:** what needs legal/accounting review before payment launch, what public receipt/invoice wording is safe, and what Moli can operate manually until volume justifies automation.
 
 ## Handoff to next layer
 
@@ -693,6 +697,7 @@ It should define how LocalSnow explains these states in public copy, especially:
 - programmatic basic resort pages that are useful without becoming thin SEO pages;
 - self-managed inquiry as lighter/free but not equally emotionally preferred;
 - client-facing tracking summaries that hide manual ops;
-- refund/replacement/payment timing language once the payment policy is chosen.
+- refund/replacement/payment timing language once the payment policy is chosen;
+- professional tax/receipt/invoice reassurance that feels covered without claiming automated legal/accounting guarantees LocalSnow has not actually built.
 
 Do not write implementation copy into components yet. The next layer is the trust/copy system, not UI code.
