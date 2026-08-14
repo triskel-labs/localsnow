@@ -344,16 +344,19 @@ Rules:
 
 - This path does not create guaranteed fulfillment obligations.
 - Failure to forward should be visible to Moli if it affects trust.
+- If professionals/providers are asked to act from the notification, the link should resolve to a controlled request/inquiry detail context where the relevant actions can live; do not rely on loose email reply behavior as the only product control.
 
 Public behavior:
 
 - Client sees inquiry sent/forwarded when possible.
 - Client is reminded response depends on instructor/provider.
+- Professional/provider action can start from email, but should land somewhere LocalSnow controls enough to show the request details and any allowed response actions.
 
 Not decided:
 
 - exact email provider;
-- whether professionals get action buttons immediately.
+- whether professionals get action buttons immediately;
+- whether the action destination is a standalone token page, an owner/user dashboard detail page, or both.
 
 ## SM7 — Protected guaranteed fulfillment
 
@@ -520,12 +523,14 @@ Rules:
 
 - Email/action links are not public messaging.
 - Telegram can be internal/operator convenience later, not product promise.
+- Action links should point to a stable action context that can show the relevant request, claim or review details plus the allowed next actions. The state model requires the destination concept, but does not decide whether it is a token page, owner dashboard detail page, client account page or another UI surface.
 
 Not decided:
 
 - email provider;
 - token format;
-- webhook architecture.
+- webhook architecture;
+- exact action destination/page structure.
 
 ## SM10 — Claim request review
 
