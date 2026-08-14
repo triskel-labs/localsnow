@@ -18,11 +18,11 @@ A domain record here means:
 - Each resort should have a dedicated resort page that can become SEO-rich over time, not just a filter value in search.
 - Independent instructors plus simple school/provider listings from v1.
 - One unified lesson request flow collects the need once, then lets the client choose self-managed inquiry or protected/guaranteed booking.
-- Protected requests can collect online payment immediately, but final lesson confirmation is not instant; exact payment timing/capture policy may still be refined before implementation.
+- Protected requests should use Stripe Checkout for the full protected booking amount paid to LocalSnow in v1; final lesson confirmation is not instant, and Moli can manually pay the instructor/provider or refund outside the platform.
 - Availability/requestability is useful but never perfect live calendar truth.
 - Independent instructors should have a mature enough way to set bookable/requestable slots or windows; if SkiRelay already has a clean availability primitive, LocalSnow should reuse or improve that shared primitive instead of inventing a weaker duplicate.
 - Schools/providers have coarser requestability; no staff/admin calendar in v1.
-- Email/action links and minimal tracking are allowed; in-app messaging is not.
+- Email/action links are required as the reliable/backstop path; a lightweight client account/dashboard can also show requests, status, payment/refund info, review links and simple contact/profile details. In-app messaging is not.
 - Moli needs necessary owner CRUD/control, notes and corrections, not a CRM.
 
 ## Record families
@@ -250,7 +250,8 @@ LocalSnow must know:
 - source surface: home, resort, profile, offer, owner-created;
 - selected path: self-managed inquiry or protected guaranteed booking;
 - response expectation shown to the client;
-- public tracking/action-link reference when useful.
+- public tracking/action-link reference when useful;
+- optional lightweight client account/dashboard reference for request history and status.
 
 Boundaries:
 
@@ -332,8 +333,9 @@ LocalSnow must know:
 
 - linked request;
 - payment provider reference/checkout marker later;
-- amount/currency shown and paid/authorized/collected later, depending on the final payment-timing policy;
-- whether the v1 policy is upfront payment, authorization/deposit first, or post-lesson collection;
+- amount/currency shown and paid/authorized/collected later;
+- v1 payment direction: Stripe Checkout full protected booking amount paid to LocalSnow;
+- manual instructor/provider payment and manual refund marker outside the platform;
 - payment/refund business status later;
 - refund needed/issued marker;
 - owner correction/audit note when needed.
@@ -343,9 +345,10 @@ Boundaries:
 - No Stripe Connect.
 - No automated instructor payouts.
 - No full ledger/accounting system in first scaffold.
+- Do not call the model escrow publicly.
 - Spanish tax/legal treatment should be checked before payment implementation and public copy, but early volume can be handled manually by Moli with simple professional markers/notes rather than a built tax subsystem.
 - Do not promise automated tax, invoice, legal or provider-accounting handling unless the real process supports it.
-- The final payment-timing decision belongs in the payment/promise implementation layer; this record only preserves the fact LocalSnow may need to distinguish upfront payment, authorization/deposit, capture, post-lesson collection and refund.
+- If legal/accounting review pushes back on full upfront payment, architecture can preserve authorization/deposit/capture alternatives later.
 
 ## R11 — Guaranteed fulfillment case
 
@@ -404,6 +407,8 @@ LocalSnow must know:
 Boundaries:
 
 - Email/action links are not in-app messaging.
+- Email should be sent for important request/payment/review actions even if a lightweight client dashboard also exists.
+- Links may open secure token pages or the simple account/dashboard context later.
 - Telegram can be internal/operator convenience later, not the public product promise.
 
 ## R13 — Review / review prompt
@@ -422,13 +427,15 @@ LocalSnow must know:
 
 - linked request/profile and optionally offer;
 - prompt due date and sent/completed marker;
-- review content/rating if submitted;
-- visibility/moderation marker;
+- 1–5 star rating and optional review text if submitted;
+- verified request/lesson link and one-review-per-request rule;
+- visibility/moderation marker, with visible-immediately as the v1 default and owner hide/remove for problems;
 - source path: self-managed or guaranteed.
 
 Boundaries:
 
 - No full reputation/dispute system in v1.
+- LocalSnow owns the request-tied review loop; Google Reviews may complement later but should not replace it.
 - Keep moderation owner-simple.
 
 ## R14 — Claim / ownership transfer request

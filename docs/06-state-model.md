@@ -27,10 +27,15 @@ Do not turn every record into a state machine. Only model state where it control
    - Independent instructors should normally move toward granular slot-like availability, generated from a season/date range, working weekdays and time ranges per weekday.
    - State must still distinguish requestable/slot-like/fresh/stale without implying instant confirmation.
 
-4. **Payment timing is a policy decision, not a schema decision yet.**
-   - The model must support upfront payment, authorization/deposit, capture, post-lesson collection and refund markers until Moli chooses the exact v1 policy.
+4. **Payment direction is chosen for v1, while legal/accounting copy still needs care.**
+   - Default v1 direction is Stripe Checkout for the full protected booking amount paid to LocalSnow, then Moli manually pays the instructor/provider or refunds outside the platform when needed.
+   - Do not call this escrow publicly and do not build Stripe Connect, automated payouts or a ledger in v1.
 
-5. **School/provider states stay simpler than instructor states.**
+5. **Email links and a simple client area can both exist.**
+   - Every request/payment/review action should still work from email.
+   - A lightweight client portal/dashboard is the nicer tracking surface: requests, status, payment/refund information, review links and simple contact/profile details.
+
+6. **School/provider states stay simpler than instructor states.**
    - No staff admin, roster calendar or multi-instructor operations in v1.
 
 ## State areas
@@ -306,8 +311,9 @@ Public behavior:
 Not decided:
 
 - exact route/form steps;
-- account requirement;
-- tracking token implementation.
+- auth/session implementation;
+- tracking token implementation;
+- how much of the lightweight client portal ships in the first scaffold.
 
 ## SM6 — Self-managed inquiry forwarding/tracking
 
@@ -344,19 +350,21 @@ Rules:
 
 - This path does not create guaranteed fulfillment obligations.
 - Failure to forward should be visible to Moli if it affects trust.
+- Email is the guaranteed delivery/backstop path; a lightweight client account area can also show the same request status and history.
 - If professionals/providers are asked to act from the notification, the link should resolve to a controlled request/inquiry detail context where the relevant actions can live; do not rely on loose email reply behavior as the only product control.
 
 Public behavior:
 
-- Client sees inquiry sent/forwarded when possible.
-- Client is reminded response depends on instructor/provider.
+- Client gets email 100% for important request/payment/review actions.
+- Client can also see requests and important status in a simple LocalSnow account/dashboard when available.
+- Client is reminded response depends on instructor/provider for self-managed inquiries.
 - Professional/provider action can start from email, but should land somewhere LocalSnow controls enough to show the request details and any allowed response actions.
 
 Not decided:
 
-- exact email provider;
+- exact email provider; the legacy SMTP/Nodemailer architecture is an acceptable candidate to evaluate later, but provider choice belongs to engineering architecture;
 - whether professionals get action buttons immediately;
-- whether the action destination is a standalone token page, an owner/user dashboard detail page, or both.
+- whether the action destination is a standalone token page, an owner/user dashboard detail page, a client dashboard page, or both.
 
 ## SM7 — Protected guaranteed fulfillment
 
@@ -435,12 +443,19 @@ Applies to:
 
 Why it needs state:
 
-Moli reopened the exact timing question: should the client pay immediately, authorize/deposit first, or pay after confirmation/lesson? The state model must preserve options without forcing provider architecture too early.
+Moli chose the v1 direction: use Stripe Checkout for the full protected booking amount paid to LocalSnow, then Moli manually pays the instructor/provider outside the platform or refunds when LocalSnow cannot fulfill the promise. The state model still preserves payment/refund markers without forcing provider architecture, Stripe object design or legal/accounting wording too early.
 
-Policy modes to decide later:
+V1 payment policy direction:
 
 ```txt
-upfront_payment
+stripe_checkout_full_amount_to_localsnow
+→ manual_instructor_payment_outside_platform
+→ manual_refund_when_needed
+```
+
+Fallback policy modes to preserve if legal/accounting review pushes back:
+
+```txt
 authorization_or_deposit_first
 capture_after_confirmation
 collect_after_lesson
@@ -474,17 +489,17 @@ Meaning:
 
 Rules:
 
-- The product promise can still position paid protection as the confident path.
-- Final payment policy must be decided before implementation/copy, because it changes trust and conversion.
+- The product promise can position paid protection as the confident path: pay LocalSnow, LocalSnow secures the lesson/suitable alternative or refunds.
+- Use Stripe Checkout as the v1 default because it is the simplest credible hosted payment surface for full-card payment without building a custom checkout UI.
+- Do not describe this publicly as escrow. Internally it is manual fulfillment plus manual instructor/provider payment or refund.
 - Spanish tax/legal treatment should be checked before public payment copy or implementation, but v1 does not need a heavy tax/accounting system before meaningful volume exists. The product should feel professionally covered to the client while Moli can manage tax/accounting operations manually behind the scenes.
 - Public copy must not claim automated tax, invoice, legal or provider-accounting guarantees unless those checks/processes actually exist.
 - No Stripe Connect, automated payouts or full ledger in v1.
 
 Not decided:
 
-- Stripe flow;
-- deposit percentage;
-- refund automation;
+- exact Stripe Checkout / PaymentIntent implementation details;
+- refund automation level;
 - Spanish tax/accounting treatment;
 - receipt/invoice wording and who is represented as seller/merchant in v1.
 
@@ -526,11 +541,13 @@ Rules:
 
 - Email/action links are not public messaging.
 - Telegram can be internal/operator convenience later, not product promise.
-- Action links should point to a stable action context that can show the relevant request, claim or review details plus the allowed next actions. The state model requires the destination concept, but does not decide whether it is a token page, owner dashboard detail page, client account page or another UI surface.
+- Action links should point to a stable action context that can show the relevant request, claim or review details plus the allowed next actions.
+- Email is required for all important notifications, but email and account/dashboard tracking are not mutually exclusive: the email can deep-link into the lightweight client portal when the client has or creates an account, and still work as a secure token link when they do not.
+- The state model requires the destination concept, but does not decide whether it is a token page, owner dashboard detail page, client account page or another UI surface.
 
 Not decided:
 
-- email provider;
+- email provider; evaluate legacy SMTP/Nodemailer versus a managed transactional provider during engineering architecture;
 - token format;
 - webhook architecture;
 - exact action destination/page structure.
@@ -587,7 +604,7 @@ Applies to:
 
 Why it needs state:
 
-Reviews improve trust, but v1 should stay simple and owner-moderated.
+Reviews improve trust, but v1 should stay simple, request-tied and credible: one real lesson/request client can leave one LocalSnow review from a review link, with a 1–5 star rating and optional text. Reviews go visible immediately by default, while Moli keeps a simple hide/remove control for abuse or obvious problems.
 
 Prompt states:
 
@@ -611,14 +628,18 @@ submitted
 Rules:
 
 - Prompt after lesson/request date.
-- Tie review to relevant profile and optionally request/offer.
-- Keep moderation simple; no full dispute system.
+- Tie review to the relevant request/lesson, profile and optionally offer.
+- Allow one review per verified request/lesson link; add auth or token checks if needed.
+- Capture 1–5 stars plus optional text.
+- Make reviews visible immediately by default.
+- Keep moderation simple: owner hide/remove for abuse, obvious fraud or legal/trust problems; no full dispute system.
+- Google Reviews can be complementary later, but v1 should not depend on Google for the core request-tied trust loop.
 
 Not decided:
 
-- exact rating fields;
-- public reviewer identity rules;
-- dispute flow.
+- exact public reviewer identity rules;
+- whether/how to invite a separate Google review later;
+- dispute/escalation flow.
 
 ## Cross-state rules
 
@@ -678,12 +699,12 @@ Do not let SEO ambition force fake supply or premature content bloat. Canonical 
 
 These are intentionally not resolved by the state model:
 
-1. **Payment timing policy:** upfront payment, authorization/deposit, capture after confirmation, or collection after lesson.
+1. **Stripe/legal implementation details:** Stripe Checkout is the v1 direction for full protected booking payment to LocalSnow, but exact PaymentIntent/Checkout wiring, refund handling, seller/merchant wording and Spanish tax/accounting treatment belong later.
 2. **Availability primitive:** reuse SkiRelay only if it supports the LocalSnow snowsports shape — independent instructor season/date ranges, weekdays, weekday time ranges, generated slots, lesson duration/start-end capture, freshness and coarser school/provider requestability. Otherwise improve the shared primitive before implementation.
 3. **Exact required profile/offer fields:** what blocks publication versus what only warns.
-4. **Review visibility defaults:** whether submitted reviews go visible immediately or wait for owner moderation.
-5. **Client account/tracking model:** email link only or lightweight account area later.
-6. **Spanish tax/accounting posture:** what needs legal/accounting review before payment launch, what public receipt/invoice wording is safe, and what Moli can operate manually until volume justifies automation.
+4. **Client portal scope:** email links are required, and a lightweight client account/dashboard is the preferred direction; the first scaffold still needs to decide how much account surface ships immediately.
+5. **Spanish tax/accounting posture:** what needs legal/accounting review before payment launch, what public receipt/invoice wording is safe, and what Moli can operate manually until volume justifies automation.
+6. **Google review complement:** whether/how to ask clients for a separate external Google review after the LocalSnow verified review.
 
 ## Handoff to next layer
 
@@ -697,7 +718,10 @@ It should define how LocalSnow explains these states in public copy, especially:
 - programmatic basic resort pages that are useful without becoming thin SEO pages;
 - self-managed inquiry as lighter/free but not equally emotionally preferred;
 - client-facing tracking summaries that hide manual ops;
-- refund/replacement/payment timing language once the payment policy is chosen;
+- Stripe Checkout/full-payment protected booking language without escrow wording;
+- refund/replacement/manual instructor-payment reassurance;
+- email-first request updates plus simple client dashboard/account language;
+- verified 1–5 star LocalSnow review trust language;
 - professional tax/receipt/invoice reassurance that feels covered without claiming automated legal/accounting guarantees LocalSnow has not actually built.
 
 Do not write implementation copy into components yet. The next layer is the trust/copy system, not UI code.
