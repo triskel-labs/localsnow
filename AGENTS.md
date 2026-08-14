@@ -6,15 +6,17 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Phase 1 only:
+Product-control docs only. Current active layer: `docs/05-domain-record-map.md`.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
 3. `docs/02-user-jobs.md`
 4. `docs/03-core-loops.md`
 5. `docs/PHASE_1_REVIEW_GATE.md`
+6. `docs/04-surface-map.md`
+7. `docs/05-domain-record-map.md`
 
-Do not create UX maps, schemas, SEO plans, architecture, backlog tickets, or scaffold code until Moli reviews/approves the preceding layer. The review gate must be marked `approved` or `approved with stated assumptions` before the surface map starts.
+Do not create schemas, state models, copy/trust systems, SEO plans, architecture, backlog tickets, or scaffold code until Moli reviews/approves the preceding layer. Each layer must derive from the reviewed layer before it. The domain record map must name product records only; it must not become database schema.
 
 ## Professional-team sequence
 
