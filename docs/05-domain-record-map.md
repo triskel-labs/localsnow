@@ -347,6 +347,7 @@ Boundaries:
 - No full ledger/accounting system in first scaffold.
 - Do not call the model escrow publicly.
 - Spanish tax/legal treatment should be checked before payment implementation and public copy, but early volume can be handled manually by Moli with simple professional markers/notes rather than a built tax subsystem.
+- Before payments launch, LocalSnow should have accurate public legal/trust documents at least by wording and manual process: terms, privacy/GDPR notice, cookies notice if needed, refund/cancellation/guarantee policy, legal/business contact details and relevant online-business/consumer disclosures.
 - Do not promise automated tax, invoice, legal or provider-accounting handling unless the real process supports it.
 - If legal/accounting review pushes back on full upfront payment, architecture can preserve authorization/deposit/capture alternatives later.
 

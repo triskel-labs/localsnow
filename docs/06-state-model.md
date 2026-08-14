@@ -493,6 +493,8 @@ Rules:
 - Use Stripe Checkout as the v1 default because it is the simplest credible hosted payment surface for full-card payment without building a custom checkout UI.
 - Do not describe this publicly as escrow. Internally it is manual fulfillment plus manual instructor/provider payment or refund.
 - Spanish tax/legal treatment should be checked before public payment copy or implementation, but v1 does not need a heavy tax/accounting system before meaningful volume exists. The product should feel professionally covered to the client while Moli can manage tax/accounting operations manually behind the scenes.
+- Before taking payments, LocalSnow should have the public legal/trust document set covered at least by accurate wording and manual process: terms of service, privacy/GDPR notice, cookies notice if needed, refund/cancellation/guarantee policy, legal/business contact details and required online-business/consumer disclosures.
+- These documents can describe a real manual operating process before the product has built compliance automation, but they must not pretend automated GDPR, tax, invoice, payout or legal infrastructure exists.
 - Public copy must not claim automated tax, invoice, legal or provider-accounting guarantees unless those checks/processes actually exist.
 - No Stripe Connect, automated payouts or full ledger in v1.
 
@@ -501,6 +503,7 @@ Not decided:
 - exact Stripe Checkout / PaymentIntent implementation details;
 - refund automation level;
 - Spanish tax/accounting treatment;
+- exact legal document wording and whether lawyer/accountant review is needed before payment launch;
 - receipt/invoice wording and who is represented as seller/merchant in v1.
 
 ## SM9 — Notification/action-link delivery
@@ -703,7 +706,7 @@ These are intentionally not resolved by the state model:
 2. **Availability primitive:** reuse SkiRelay only if it supports the LocalSnow snowsports shape — independent instructor season/date ranges, weekdays, weekday time ranges, generated slots, lesson duration/start-end capture, freshness and coarser school/provider requestability. Otherwise improve the shared primitive before implementation.
 3. **Exact required profile/offer fields:** what blocks publication versus what only warns.
 4. **Client portal scope:** email links are required, and a lightweight client account/dashboard is the preferred direction; the first scaffold still needs to decide how much account surface ships immediately.
-5. **Spanish tax/accounting posture:** what needs legal/accounting review before payment launch, what public receipt/invoice wording is safe, and what Moli can operate manually until volume justifies automation.
+5. **Legal/GDPR/tax wording posture:** terms, privacy/GDPR, cookies, refund/cancellation/guarantee, legal contact details, online-business disclosures, receipt/invoice wording and seller/merchant representation should be accurate enough before payment launch; the underlying process may be manual until bookings prove volume.
 6. **Google review complement:** whether/how to ask clients for a separate external Google review after the LocalSnow verified review.
 
 ## Handoff to next layer
@@ -722,6 +725,6 @@ It should define how LocalSnow explains these states in public copy, especially:
 - refund/replacement/manual instructor-payment reassurance;
 - email-first request updates plus simple client dashboard/account language;
 - verified 1–5 star LocalSnow review trust language;
-- professional tax/receipt/invoice reassurance that feels covered without claiming automated legal/accounting guarantees LocalSnow has not actually built.
+- legal/GDPR/online-business reassurance that feels covered through accurate documents and manual process, without claiming automated legal/accounting/compliance infrastructure LocalSnow has not actually built.
 
 Do not write implementation copy into components yet. The next layer is the trust/copy system, not UI code.
