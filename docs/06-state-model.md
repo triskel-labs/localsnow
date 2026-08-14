@@ -23,8 +23,9 @@ Do not turn every record into a state machine. Only model state where it control
 2. **Paid path feels platform-led; fulfillment can stay manual.**
    - The state model must support a smooth client experience without exposing manual backend coordination.
 
-3. **Availability is useful, not absolute.**
-   - State must distinguish requestable/slot-like/fresh/stale without implying instant confirmation.
+3. **Availability is useful, specific and not absolute.**
+   - Independent instructors should normally move toward granular slot-like availability, generated from a season/date range, working weekdays and time ranges per weekday.
+   - State must still distinguish requestable/slot-like/fresh/stale without implying instant confirmation.
 
 4. **Payment timing is a policy decision, not a schema decision yet.**
    - The model must support upfront payment, authorization/deposit, capture, post-lesson collection and refund markers until Moli chooses the exact v1 policy.
@@ -206,7 +207,9 @@ Applies to:
 
 Why it needs state:
 
-LocalSnow must feel mature for a snowsports directory. Instructors should be able to set useful bookable/requestable slots or windows, but the product must not pretend the data is perfect live truth.
+LocalSnow must feel mature for a snowsports directory, not like a generic business directory. Independent instructors should be able to set a season/date range, working weekdays and time ranges per weekday so LocalSnow can generate granular requestable slots. Schools/providers can stay coarser in v1 unless LocalSnow later exposes each instructor's personal availability.
+
+The client ask should match how people normally request ski/snowboard lessons: preferred date(s), preferred start time or time window, duration/amount of hours, or a concrete start/end time. Availability should guide that ask without pretending the lesson is instantly confirmed.
 
 Strength states:
 
@@ -228,9 +231,9 @@ fresh
 
 Meaning:
 
-- `requestable_only`: open to requests, no useful date/slot detail.
-- `coarse_window`: broad availability window, season, day ranges or recurring hints.
-- `slot_like`: specific date/time or bookable/requestable slot strong enough to guide the client flow.
+- `requestable_only`: open to requests, no useful date/slot detail; acceptable as a weak fallback, not the target for serious independent instructor profiles.
+- `coarse_window`: broad availability window, season, day ranges or recurring hints; more acceptable for schools/providers than for independent instructors.
+- `slot_like`: specific generated date/time availability, or a recurring weekday/time pattern strong enough to generate requestable slots and guide the client flow.
 - `unavailable_paused`: not currently accepting requests.
 - `fresh`: updated recently enough to display confidently.
 - `aging`: still useful but should be worded cautiously.
@@ -240,11 +243,14 @@ Meaning:
 SkiRelay relationship:
 
 - If SkiRelay has a clean availability primitive, reuse or adapt it for LocalSnow.
+- "Clean" means it can support the LocalSnow snowsports shape: season/date range, working weekdays, time ranges per weekday, generated requestable slots, duration/start-end-time request capture, freshness, and coarser school/provider requestability.
 - If it is not top-notch, improve the shared primitive rather than copying weakness into LocalSnow.
 - Do not build a standalone availability microservice in v1.
 
 Public behavior:
 
+- For independent instructors with slot-like availability, show granular availability clearly enough for clients to choose realistic lesson date/time options.
+- For schools/providers without individual instructor calendars, ask for the client's preferred date/time/duration and present it as a request, not a confirmed slot.
 - Strong slot-like availability can prefill or guide a protected request.
 - Even strong slots do not mean final confirmation is instant.
 
@@ -642,12 +648,13 @@ Must create or expose:
 ### Availability into request flow
 
 ```txt
-Availability slot/window
-→ can prefill or guide request details
+Instructor recurring availability or slot/window
+→ generates or suggests date/time options
+→ request captures date(s), time/window and lesson duration/hours
 → does not create instant final confirmation
 ```
 
-Strong availability improves UX but must still obey the guarantee boundary.
+Strong availability improves UX and should feel natural for lesson booking, especially on independent instructor profiles, but must still obey the guarantee boundary. School/provider flows can remain request-first unless staff-level availability is explicitly introduced later.
 
 ### Resort page readiness into SEO
 
@@ -664,7 +671,7 @@ Do not let SEO ambition force fake supply or premature content bloat. Canonical 
 These are intentionally not resolved by the state model:
 
 1. **Payment timing policy:** upfront payment, authorization/deposit, capture after confirmation, or collection after lesson.
-2. **Availability primitive:** reuse SkiRelay if clean; otherwise improve a shared LocalSnow/SkiRelay primitive before implementation.
+2. **Availability primitive:** reuse SkiRelay only if it supports the LocalSnow snowsports shape — independent instructor season/date ranges, weekdays, weekday time ranges, generated slots, lesson duration/start-end capture, freshness and coarser school/provider requestability. Otherwise improve the shared primitive before implementation.
 3. **Exact required profile/offer fields:** what blocks publication versus what only warns.
 4. **Review visibility defaults:** whether submitted reviews go visible immediately or wait for owner moderation.
 5. **Client account/tracking model:** email link only or lightweight account area later.
@@ -677,7 +684,7 @@ It should define how LocalSnow explains these states in public copy, especially:
 
 - paid protection without anxiety;
 - final confirmation not being instant;
-- availability that feels useful but does not lie;
+- availability that feels specific enough for snowsports lessons, especially granular independent-instructor slots, without lying about instant confirmation;
 - programmatic basic resort pages that are useful without becoming thin SEO pages;
 - self-managed inquiry as lighter/free but not equally emotionally preferred;
 - client-facing tracking summaries that hide manual ops;

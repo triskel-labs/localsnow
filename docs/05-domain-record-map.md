@@ -156,8 +156,11 @@ Needed by surfaces:
 LocalSnow must know:
 
 - target: profile, offer, resort/profile combination, or shared LocalSnow/SkiRelay availability primitive;
-- signal type: requestable, coarse availability, bookable/requestable slot, date window, paused/unavailable;
+- signal type: requestable, coarse availability, bookable/requestable slot, recurring weekly slot pattern, date window, paused/unavailable;
 - source: instructor, provider, Moli/operator, future SkiRelay/import;
+- for independent instructors: season/date range, working weekdays and time ranges per weekday that can generate granular requestable slots;
+- for schools/providers: coarser date/time requestability unless LocalSnow later exposes individual instructor calendars;
+- lesson-time ask: desired date(s), preferred start time or time window, duration/amount of hours, and optional start/end time;
 - freshness/last-updated cue;
 - public wording level;
 - whether the signal is only a request hint or strong enough to prefill a protected booking request.
@@ -165,8 +168,9 @@ LocalSnow must know:
 Boundaries:
 
 - `available to request` does not mean confirmed availability.
-- Instructors should not get an immature fake-availability tool. If SkiRelay's availability model is clean enough, reuse or adapt it as a shared primitive; if not, improve the primitive before copying it into LocalSnow.
-- Schools/providers can stay coarser than instructors.
+- Instructors should not get generic-directory behavior or an immature fake-availability tool. The normal target is granular slot-like availability generated from a season/date range, weekly working days and weekday time ranges.
+- If SkiRelay's availability model is clean enough, reuse or adapt it as a shared primitive; if not, improve the primitive before copying it into LocalSnow.
+- Schools/providers can stay coarser than instructors because v1 does not expose each school instructor's personal calendar.
 - No full two-way external calendar sync or standalone availability microservice in v1.
 
 ## R5 — Trust / readiness signal
