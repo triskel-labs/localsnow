@@ -15,10 +15,12 @@ A domain record here means:
 ## Surface assumptions carried forward
 
 - Spain-first discovery, with broader resort data kept as secondary/reference foundation.
+- Each resort should have a dedicated resort page that can become SEO-rich over time, not just a filter value in search.
 - Independent instructors plus simple school/provider listings from v1.
 - One unified lesson request flow collects the need once, then lets the client choose self-managed inquiry or protected/guaranteed booking.
-- Protected requests collect online payment immediately, but final lesson confirmation is not instant.
+- Protected requests can collect online payment immediately, but final lesson confirmation is not instant; exact payment timing/capture policy may still be refined before implementation.
 - Availability/requestability is useful but never perfect live calendar truth.
+- Independent instructors should have a mature enough way to set bookable/requestable slots or windows; if SkiRelay already has a clean availability primitive, LocalSnow should reuse or improve that shared primitive instead of inventing a weaker duplicate.
 - Schools/providers have coarser requestability; no staff/admin calendar in v1.
 - Email/action links and minimal tracking are allowed; in-app messaging is not.
 - Moli needs necessary owner CRUD/control, notes and corrections, not a CRM.
@@ -40,7 +42,7 @@ Keep these as product records first. Engineering can later decide which become t
 
 Product meaning:
 
-A mountain destination where clients search, supply appears, offers are contextualized and SEO pages can later exist.
+A mountain destination where clients search, supply appears, offers are contextualized and a dedicated SEO-rich resort page can later exist.
 
 Needed by surfaces:
 
@@ -48,7 +50,8 @@ Needed by surfaces:
 - S3 search/results;
 - S4/S5 profiles;
 - S6 offer detail;
-- S7 request flow.
+- S7 request flow;
+- future SEO-rich resort pages.
 
 LocalSnow must know:
 
@@ -56,13 +59,14 @@ LocalSnow must know:
 - Spain-first status: launch focus, active Spain directory, secondary/reference;
 - sports/lesson context where known;
 - whether it is promoted, searchable, quiet/reference-only or not yet public;
+- page/content readiness: empty shell, basic useful page, SEO-rich page later;
 - source/provenance if imported from legacy/worldwide data.
 
 Boundaries:
 
 - Resorts can exist before supply is strong.
 - Empty states must not publicly self-own thin supply.
-- This does not decide SEO URL taxonomy or geodata architecture.
+- Dedicated resort pages are part of the product record meaning, but this does not decide final SEO URL taxonomy, content strategy or geodata architecture.
 
 ## R2 — Supply profile
 
@@ -138,7 +142,7 @@ Boundaries:
 
 Product meaning:
 
-A signal that a profile or offer is open to requests, optionally with date/slot hints, without promising perfect live calendar truth.
+A signal that a profile or offer is open to requests, with enough instructor-controlled slot/window setup to feel mature for a snowsports directory, without promising perfect live calendar truth.
 
 Needed by surfaces:
 
@@ -150,17 +154,19 @@ Needed by surfaces:
 
 LocalSnow must know:
 
-- target: profile, offer, resort/profile combination, or future source-aware primitive;
-- signal type: requestable, coarse availability, date/slot hint, paused/unavailable;
+- target: profile, offer, resort/profile combination, or shared LocalSnow/SkiRelay availability primitive;
+- signal type: requestable, coarse availability, bookable/requestable slot, date window, paused/unavailable;
 - source: instructor, provider, Moli/operator, future SkiRelay/import;
 - freshness/last-updated cue;
-- public wording level.
+- public wording level;
+- whether the signal is only a request hint or strong enough to prefill a protected booking request.
 
 Boundaries:
 
 - `available to request` does not mean confirmed availability.
+- Instructors should not get an immature fake-availability tool. If SkiRelay's availability model is clean enough, reuse or adapt it as a shared primitive; if not, improve the primitive before copying it into LocalSnow.
 - Schools/providers can stay coarser than instructors.
-- No two-way external calendar sync or standalone availability microservice in v1.
+- No full two-way external calendar sync or standalone availability microservice in v1.
 
 ## R5 — Trust / readiness signal
 
@@ -321,7 +327,8 @@ LocalSnow must know:
 
 - linked request;
 - payment provider reference/checkout marker later;
-- amount/currency shown and paid;
+- amount/currency shown and paid/authorized/collected later, depending on the final payment-timing policy;
+- whether the v1 policy is upfront payment, authorization/deposit first, or post-lesson collection;
 - payment/refund business status later;
 - refund needed/issued marker;
 - owner correction/audit note when needed.
@@ -331,12 +338,13 @@ Boundaries:
 - No Stripe Connect.
 - No automated instructor payouts.
 - No full ledger/accounting system in first scaffold.
+- The final payment-timing decision belongs in the payment/promise implementation layer; this record only preserves the fact LocalSnow may need to distinguish upfront payment, authorization/deposit, capture, post-lesson collection and refund.
 
 ## R11 — Guaranteed fulfillment case
 
 Product meaning:
 
-The internal case created when a paid guaranteed request needs LocalSnow/Moli to secure the requested lesson, replacement, reschedule or refund.
+The internal case/checklist created when a paid guaranteed request needs LocalSnow/Moli to secure the requested lesson, replacement, reschedule or refund. This should stay as lightweight as possible: enough to know the next manual action and send the right messages, not a full feature suite.
 
 Needed by surfaces:
 
@@ -350,15 +358,17 @@ LocalSnow must know:
 - linked request, path choice and payment marker;
 - requested profile/offer;
 - fulfillment target: requested lesson, suitable alternative, reschedule or refund;
-- operator next action;
+- operator next manual action: check details, contact instructor/provider, wait for response, find alternative, ask client approval, send confirmation, or trigger refund;
 - contact/response facts;
 - replacement candidate notes;
 - client approval needed marker;
-- public next-step summary.
+- public next-step summary;
+- confirmation-message facts for client and instructor/provider once the lesson is set.
 
 Boundaries:
 
 - Not a CRM pipeline.
+- Not a heavy feature suite: v1 can be a narrow manual operator checklist plus notification facts.
 - Not a SkiRelay job board.
 - Manual work stays internal while the client experience remains platform-led.
 
@@ -535,11 +545,11 @@ Likely state areas:
 
 - supply profile publication/readiness;
 - offer requestability;
-- availability freshness;
+- availability freshness and slot/window strength;
 - unified request lifecycle;
 - self-managed inquiry forwarding/tracking;
 - protected fulfillment;
-- payment/refund markers;
+- payment timing/capture/refund markers;
 - notification/action-link delivery;
 - claim request review;
 - review prompt/review visibility.
