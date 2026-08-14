@@ -14,15 +14,15 @@ A domain record here means:
 
 ## Surface assumptions carried forward
 
-- Spain-first discovery, with broader resort data kept as secondary/reference foundation.
+- Spain-first discovery, with broader resort data kept as a secondary catalog foundation; valid canonical resorts should remain usable for supply and demand even before SEO enrichment.
 - Each resort should have a dedicated resort page that can become SEO-rich over time, not just a filter value in search.
 - Independent instructors plus simple school/provider listings from v1.
 - One unified lesson request flow collects the need once, then lets the client choose self-managed inquiry or protected/guaranteed booking.
-- Protected requests can collect online payment immediately, but final lesson confirmation is not instant; exact payment timing/capture policy may still be refined before implementation.
+- Protected requests should use Stripe Checkout for the full protected booking amount paid to LocalSnow in v1; final lesson confirmation is not instant, and Moli can manually pay the instructor/provider or refund outside the platform.
 - Availability/requestability is useful but never perfect live calendar truth.
 - Independent instructors should have a mature enough way to set bookable/requestable slots or windows; if SkiRelay already has a clean availability primitive, LocalSnow should reuse or improve that shared primitive instead of inventing a weaker duplicate.
 - Schools/providers have coarser requestability; no staff/admin calendar in v1.
-- Email/action links and minimal tracking are allowed; in-app messaging is not.
+- Email/action links are required as the reliable/backstop path; a lightweight client account/dashboard can also show requests, status, payment/refund info, review links and simple contact/profile details. In-app messaging is not.
 - Moli needs necessary owner CRUD/control, notes and corrections, not a CRM.
 
 ## Record families
@@ -56,16 +56,17 @@ Needed by surfaces:
 LocalSnow must know:
 
 - name, country/region and public identity/slug;
-- Spain-first status: launch focus, active Spain directory, secondary/reference;
+- Spain-first status: launch focus, active Spain directory, secondary catalog foundation;
 - sports/lesson context where known;
-- whether it is promoted, searchable, quiet/reference-only or not yet public;
-- page/content readiness: empty shell, basic useful page, SEO-rich page later;
+- whether it is canonical/catalog-accessible, public basic, SEO-rich, paused/hidden or still only an import candidate;
+- page/content readiness: programmatic basic page, useful basic page, SEO-rich page later;
 - source/provenance if imported from legacy/worldwide data.
 
 Boundaries:
 
-- Resorts can exist before supply is strong.
+- Resorts can exist before supply is strong, but once accepted into the canonical catalog they should be usable as supply/demand anchors.
 - Empty states must not publicly self-own thin supply.
+- Programmatic basic pages can help coverage, but SEO indexation/prominence belongs to the later SEO layer and must avoid thin duplicate content harming trust or conversion.
 - Dedicated resort pages are part of the product record meaning, but this does not decide final SEO URL taxonomy, content strategy or geodata architecture.
 
 ## R2 — Supply profile
@@ -128,9 +129,9 @@ LocalSnow must know:
 - sport, level/client fit and format: private/group/family/couple where useful;
 - duration or rough session shape;
 - public description;
-- base price/currency or price-needed/manual marker;
+- base price/currency required for protected booking, or a price-needed/manual marker that blocks protected booking until resolved;
 - whether self-managed inquiry is allowed;
-- whether protected guaranteed booking is allowed;
+- whether protected guaranteed booking is allowed, with protected as the normal target for priced public listings rather than a rare premium-only subset;
 - relationship to availability/requestability.
 
 Boundaries:
@@ -155,8 +156,11 @@ Needed by surfaces:
 LocalSnow must know:
 
 - target: profile, offer, resort/profile combination, or shared LocalSnow/SkiRelay availability primitive;
-- signal type: requestable, coarse availability, bookable/requestable slot, date window, paused/unavailable;
+- signal type: requestable, coarse availability, bookable/requestable slot, recurring weekly slot pattern, date window, paused/unavailable;
 - source: instructor, provider, Moli/operator, future SkiRelay/import;
+- for independent instructors: season/date range, working weekdays and time ranges per weekday that can generate granular requestable slots;
+- for schools/providers: coarser date/time requestability unless LocalSnow later exposes individual instructor calendars;
+- lesson-time ask: desired date(s), preferred start time or time window, duration/amount of hours, and optional start/end time;
 - freshness/last-updated cue;
 - public wording level;
 - whether the signal is only a request hint or strong enough to prefill a protected booking request.
@@ -164,8 +168,9 @@ LocalSnow must know:
 Boundaries:
 
 - `available to request` does not mean confirmed availability.
-- Instructors should not get an immature fake-availability tool. If SkiRelay's availability model is clean enough, reuse or adapt it as a shared primitive; if not, improve the primitive before copying it into LocalSnow.
-- Schools/providers can stay coarser than instructors.
+- Instructors should not get generic-directory behavior or an immature fake-availability tool. The normal target is granular slot-like availability generated from a season/date range, weekly working days and weekday time ranges.
+- If SkiRelay's availability model is clean enough, reuse or adapt it as a shared primitive; if not, improve the primitive before copying it into LocalSnow.
+- Schools/providers can stay coarser than instructors because v1 does not expose each school instructor's personal calendar.
 - No full two-way external calendar sync or standalone availability microservice in v1.
 
 ## R5 — Trust / readiness signal
@@ -245,7 +250,8 @@ LocalSnow must know:
 - source surface: home, resort, profile, offer, owner-created;
 - selected path: self-managed inquiry or protected guaranteed booking;
 - response expectation shown to the client;
-- public tracking/action-link reference when useful.
+- public tracking/action-link reference when useful;
+- optional lightweight client account/dashboard reference for request history and status.
 
 Boundaries:
 
@@ -327,8 +333,9 @@ LocalSnow must know:
 
 - linked request;
 - payment provider reference/checkout marker later;
-- amount/currency shown and paid/authorized/collected later, depending on the final payment-timing policy;
-- whether the v1 policy is upfront payment, authorization/deposit first, or post-lesson collection;
+- amount/currency shown and paid/authorized/collected later;
+- v1 payment direction: Stripe Checkout full protected booking amount paid to LocalSnow;
+- manual instructor/provider payment and manual refund marker outside the platform;
 - payment/refund business status later;
 - refund needed/issued marker;
 - owner correction/audit note when needed.
@@ -338,7 +345,11 @@ Boundaries:
 - No Stripe Connect.
 - No automated instructor payouts.
 - No full ledger/accounting system in first scaffold.
-- The final payment-timing decision belongs in the payment/promise implementation layer; this record only preserves the fact LocalSnow may need to distinguish upfront payment, authorization/deposit, capture, post-lesson collection and refund.
+- Do not call the model escrow publicly.
+- Spanish tax/legal treatment should be checked before payment implementation and public copy, but early volume can be handled manually by Moli with simple professional markers/notes rather than a built tax subsystem.
+- Before payments launch, LocalSnow should have accurate public legal/trust documents at least by wording and manual process: terms, privacy/GDPR notice, cookies notice if needed, refund/cancellation/guarantee policy, legal/business contact details and relevant online-business/consumer disclosures.
+- Do not promise automated tax, invoice, legal or provider-accounting handling unless the real process supports it.
+- If legal/accounting review pushes back on full upfront payment, architecture can preserve authorization/deposit/capture alternatives later.
 
 ## R11 — Guaranteed fulfillment case
 
@@ -397,6 +408,8 @@ LocalSnow must know:
 Boundaries:
 
 - Email/action links are not in-app messaging.
+- Email should be sent for important request/payment/review actions even if a lightweight client dashboard also exists.
+- Links may open secure token pages or the simple account/dashboard context later.
 - Telegram can be internal/operator convenience later, not the public product promise.
 
 ## R13 — Review / review prompt
@@ -415,13 +428,15 @@ LocalSnow must know:
 
 - linked request/profile and optionally offer;
 - prompt due date and sent/completed marker;
-- review content/rating if submitted;
-- visibility/moderation marker;
+- 1–5 star rating and optional review text if submitted;
+- verified request/lesson link and one-review-per-request rule;
+- visibility/moderation marker, with visible-immediately as the v1 default and owner hide/remove for problems;
 - source path: self-managed or guaranteed.
 
 Boundaries:
 
 - No full reputation/dispute system in v1.
+- LocalSnow owns the request-tied review loop; Google Reviews may complement later but should not replace it.
 - Keep moderation owner-simple.
 
 ## R14 — Claim / ownership transfer request
