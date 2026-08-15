@@ -35,19 +35,32 @@ The SEO map must preserve these reviewed truths:
    - It supports free directory usefulness.
    - It should not become the main SEO promise when the stronger differentiated value is LocalSnow-handled guaranteed booking.
 
-5. **Public listings should generally be actionable.**
+5. **Free/open discovery is itself a differentiator.**
+   - Do not frame LocalSnow as a closed marketplace that monetizes by hiding contact or inquiry capability behind a paywall.
+   - Public SEO pages should make the client feel they can openly discover instructors, schools/providers and lesson options.
+   - Account/contact capture may still be used later for serious actions, but the acquisition promise should remain free/open discovery plus optional LocalSnow-handled help.
+
+6. **The platform is the tool, not the buyer outcome.**
+   - SEO copy should lead with the client benefit or pain solved: finding the right ski/snowboard lesson, comparing real options, avoiding uncertainty, and getting expert help when needed.
+   - “Use LocalSnow” is not the end goal; getting a suitable lesson with less friction and more confidence is the end goal.
+
+7. **Expert matching/network is stronger than generic booking convenience.**
+   - Many marketplaces already offer booking flows.
+   - LocalSnow’s more specific paid-path differentiator is: free/open discovery first, then an expert team/network that can help find the right instructor, school or suitable alternative for the client’s exact lesson need.
+
+8. **Public listings should generally be actionable.**
    - Published profiles/offers should normally be able to receive a lesson inquiry or booking.
    - Pages that cannot support action should be paused, hidden, noindexed or treated as internal/catalog-only until useful.
 
-6. **Freshness is mostly internal.**
+9. **Freshness is mostly internal.**
    - Availability freshness should not be exposed by default if it makes early supply look stale.
    - SEO pages can show availability specificity only when it improves trust.
 
-7. **Reviews are from real lessons.**
+10. **Reviews are from real lessons.**
    - Review snippets should say verified LocalSnow reviews / reviewed after a real lesson only when true.
    - Do not inflate early review volume.
 
-8. **Legal and payment trust must be honest.**
+11. **Legal and payment trust must be honest.**
    - Payment pages/snippets may say secure Stripe payment and guarantee/replacement/refund.
    - Do not say escrow, automated payouts, automated tax/compliance or legal claims not backed by real docs/process.
 
@@ -98,8 +111,9 @@ The SEO map must preserve these reviewed truths:
 Purpose:
 
 - explain what LocalSnow does;
-- route users into resort/lesson discovery;
-- make guaranteed booking feel like the differentiated promise;
+- route users into resort/lesson discovery by the benefit they want: the right lesson, instructor/provider or resort fit;
+- present free/open discovery as the default trust base;
+- make expert-assisted guaranteed booking feel like the handled paid path when clients want extra safety and matching help;
 - keep instructors/providers aware that LocalSnow can bring real lesson clients.
 
 Search intent:
@@ -115,8 +129,8 @@ Indexability:
 Content direction:
 
 ```txt
-Find ski and snowboard lessons without chasing WhatsApps.
-Browse instructors, schools and resorts, then use guaranteed booking when you want LocalSnow to make sure the lesson happens, find a suitable alternative or refund you.
+Find ski and snowboard lessons that fit your trip, level and resort.
+Compare instructors, schools and lesson options for free, then choose expert-assisted guaranteed booking when you want LocalSnow’s network to help secure the right match, a suitable alternative or a refund if we cannot make it happen.
 ```
 
 SEO boundaries:
@@ -124,6 +138,7 @@ SEO boundaries:
 - Do not turn the homepage into a full country/resort directory dump.
 - Do not over-index every country/resort from home before Spain pages are useful.
 - Do not lead with internal request mechanics.
+- Do not make “the platform” sound like the outcome; the outcome is the right lesson with less uncertainty.
 
 ## SEO2 — Country / market landing pages
 
@@ -215,6 +230,8 @@ Thin-supply direction:
 
 ```txt
 We’re still building verified lesson supply for [Resort]. You can search nearby resorts or use guaranteed booking and LocalSnow will work to secure a suitable lesson or refund you if we cannot make it happen.
+
+Are you an instructor, school or lesson provider working in [Resort]? Create your LocalSnow profile so clients can discover your lessons and contact/book you through LocalSnow.
 ```
 
 Avoid:
@@ -222,7 +239,8 @@ Avoid:
 - “No instructors available here” dead-end copy;
 - indexing every resort just because it exists in data;
 - claiming “best instructors” without real basis;
-- hiding thinness with fake local expertise.
+- hiding thinness with fake local expertise;
+- burying the supply-side invitation when a resort page has demand but thin supply.
 
 ## SEO4 — Lesson-intent pages
 
