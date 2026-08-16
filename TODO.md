@@ -17,7 +17,8 @@
 - [x] Moli reviewed PR #3 domain record map and approved proceeding.
 - [x] Moli reviewed PR #4 state model and approved proceeding.
 - [x] Moli reviewed PR #5 copy/trust system and approved proceeding.
-- [ ] Review the next layer: SEO map.
+- [x] Moli reviewed PR #6 SEO map and approved proceeding.
+- [ ] Review the next layer: engineering architecture.
 
 ## On process
 
@@ -26,7 +27,8 @@
 - [x] PR #3: Domain record map.
 - [x] PR #4: State model.
 - [x] PR #5: Copy/trust system.
-- [ ] PR #6: SEO map.
+- [x] PR #6: SEO map.
+- [ ] PR #7: Engineering architecture.
 
 ## Done
 
@@ -37,3 +39,4 @@
 - [x] Merge domain record map.
 - [x] Merge state model.
 - [x] Merge copy/trust system.
+- [x] Merge SEO map.
