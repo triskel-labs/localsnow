@@ -40,16 +40,19 @@ The architecture must preserve these decisions:
 4. **Manual operations are hidden behind polished product surfaces.**
    - Moli can call/message instructors, coordinate replacements, refund and pay providers manually.
    - Public/client experience should still feel mature, safe and platform-led.
+   - The product may create the *impression* of a polished automated platform through clear status, dashboards, emails and professional UI patterns, while the fulfillment reality remains manual behind the scenes.
 
 5. **No false automation.**
    - No instant confirmation promise.
    - No perfect live availability promise.
    - No exact instructor guarantee unless actually confirmed.
    - No escrow wording, Stripe Connect, automated payouts or fake tax/compliance machinery in v1.
+   - The rule is not “show the manual mess”; it is “look professional without lying about guarantees, exact availability or automated fulfillment.”
 
 6. **Public SEO pages stay accessible.**
    - Discovery pages cannot be hidden behind login.
-   - High-intent actions can require low-friction account/contact capture.
+   - Sending an inquiry/request should require low-friction signup/login or contact capture, ideally through an inline modal/pop-up rather than a hard page detour.
+   - The account gate exists to convert anonymous visitors into owned LocalSnow users before the highest-intent action, not to hide discovery content.
 
 7. **Search/filter pages are dangerous by default.**
    - Level, language, qualifications, date, duration, sorting and similar refinements should be search params/noindex by default.
@@ -81,6 +84,8 @@ The architecture must preserve these decisions:
 
 4. **SEO is a first-class architecture concern.**
    - Canonical URLs, index/noindex, sitemap eligibility, language alternates and link checks are not afterthoughts.
+   - Site structure should use a simple SEO silo/hub model where catalog, country, resort, lesson-intent and profile pages have clear parent/child relationships and canonical ownership.
+   - This architecture decides the silo principles and policy seams; the backlog/router layer can decide exact URL strings and route files.
 
 5. **Avoid schema theatre.**
    - This doc names persistence areas and module boundaries, not final table columns.
@@ -129,11 +134,15 @@ LocalSnow web app
    └─ integration ports
 ```
 
-Recommended implementation stack can stay conventional:
+Recommended implementation stack:
 
-- SvelteKit-style full-stack app or equivalent if the repo later scaffolds differently;
+- latest stable SvelteKit full-stack app;
+- mobile-first, PWA-compatible web architecture so a later installable PWA or Capacitor/native shell remains possible;
+- do not make offline-first/service-worker/native-app work part of v1 unless a concrete user need appears;
 - server-side actions/load functions or route handlers for mutations;
-- relational persistence, likely Postgres + Drizzle when schema work starts;
+- Postgres + Drizzle when schema work starts;
+- prefer Postgres over SQLite for production because LocalSnow needs relational data, concurrent operators, Stripe/webhook reliability and likely geospatial/resort queries where PostGIS can help later;
+- SQLite can remain useful only for local/dev experiments or throwaway prototypes, not as the planned production store;
 - Stripe Checkout only for guaranteed booking payments;
 - email provider behind a notification port;
 - no separate microservices in v1 unless a hard operational reason appears.
@@ -179,6 +188,7 @@ Purpose:
 Core concepts:
 
 - `PageFamily`: home, country, resort lesson, lesson-intent, profile, offer/service, search/results, legal/trust.
+- `SeoSilo`: catalog/country/resort/lesson-intent/profile hub structure used to organize internal links and canonical ownership.
 - `PageState`: index, noindex-browsable, hidden/paused.
 - `MarketPriority`: Spain focus vs catalog-only worldwide.
 - `CanonicalTarget`: the page that owns search intent.
@@ -190,6 +200,8 @@ Architecture rules:
 - Search/result/filter pages are noindex by default.
 - Sitemap generation must read from page state, not route existence.
 - Canonicals must point filtered pages back to the strongest owner page.
+- Internal links should follow a deliberate silo/hub structure: home → country/market hubs → resort hubs → lesson-intent pages → relevant profiles/offers, with cross-links only when useful.
+- Spain silos get real content/supply/link investment first; worldwide catalog silos can exist as browsable/noindex until they have enough usefulness.
 - Internal links should be generated only to known useful pages.
 - Broken-link/link-health checks should become CI or release checks when pages exist.
 
@@ -218,7 +230,8 @@ Architecture rules:
 - Resort pages can exist as catalog pages before they deserve indexing.
 - Spain priority resorts should be promoted first: Baqueira, La Molina, Cerler, then nearby/next Spanish resorts.
 - Thin resort pages should include useful action paths only if LocalSnow can operate them honestly.
-- Supply-side invitation belongs on demand-bearing thin pages, not as a hidden admin-only idea.
+- Supply-side invitation belongs on every resort page or relevant demand-bearing page, not as a hidden admin-only idea.
+- The supply invitation should be quick/free and framed around creating a LocalSnow profile and starting to sell/receive lesson interest.
 
 ### A3 — Supply profile architecture
 
@@ -237,7 +250,9 @@ Core concepts:
 Architecture rules:
 
 - Full legal/contact identity can be stored internally for operations.
-- Public default should support first name + surname initial unless explicit full professional/business name is chosen.
+- Independent-instructor public default should support first name + surname initial unless explicit full professional/public name is chosen.
+- School/provider profiles should usually show the full professional/business name; hiding the name harms trust and SEO more than it helps conversion.
+- To avoid driving traffic away, school/provider pages do not need prominent outbound website/phone links by default; primary CTAs should keep inquiry/booking through LocalSnow, with external contact/linking treated as an explicit trust/SEO/business decision.
 - Published profiles should receive at least self-managed lesson inquiries.
 - Guaranteed booking appears only when a priced/operable LocalSnow-handled path exists.
 - `LocalSnow-reviewed` requires manual review/check; do not infer it from profile creation.
@@ -280,7 +295,8 @@ Core concepts:
 Architecture rules:
 
 - Public discovery remains visible without login.
-- High-intent actions may require low-friction account/contact capture.
+- Sending a lesson inquiry/request should trigger low-friction signup/login/contact capture, preferably in-context via modal/pop-up, so LocalSnow captures an owned user/contact before the high-intent action leaves the page.
+- Guaranteed booking intake/payment should also attach to a client account/contact record before payment handoff.
 - Use a unified lesson-intent capture shape; do not split data collection into disconnected forms.
 - Client-facing language should say lessons/bookings, not internal request mechanics.
 - Lightweight dashboard/status is preferred alongside email/action links.
@@ -495,19 +511,21 @@ Architecture should not depend on one provider’s template syntax. It should st
 
 ### SkiRelay/shared primitives
 
-Keep the seam open for shared availability primitives, but do not integrate SkiRelay as a product dependency in v1.
+Keep the seam open for shared availability/profile primitives, but do not integrate SkiRelay as a product dependency in v1.
 
 Allowed:
 
 - simple source-aware availability patterns;
 - future-compatible shape for seasons/weekdays/time windows;
-- avoiding duplicated primitives if the shared version is clean.
+- avoiding duplicated primitives if the shared version is clean;
+- a future one-button SkiRelay → LocalSnow profile bridge for instructors already signing up or signed in there, with explicit consent and source-backed profile/account data import;
+- automatic LocalSnow account/profile creation and population from SkiRelay can be designed as a bridge flow, but publication should still require LocalSnow publish prerequisites: required fields, public display-name rules, supported resorts/services, contact/action path and trust/safety checks.
 
 Not allowed by default:
 
 - job board integration;
 - full calendar sync;
-- SkiRelay-specific flows inside LocalSnow v1.
+- SkiRelay-specific flows that make LocalSnow v1 depend on SkiRelay being complete or operational.
 
 ### Legacy LocalSnow
 
