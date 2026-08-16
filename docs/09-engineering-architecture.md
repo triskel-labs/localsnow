@@ -138,6 +138,34 @@ Recommended implementation stack can stay conventional:
 - email provider behind a notification port;
 - no separate microservices in v1 unless a hard operational reason appears.
 
+## Foundation 13-layer architecture gates
+
+This architecture has been reviewed against the AI Directed Engineering Foundation layer model imported into Mao's brain vault.
+
+Before backlog/code, each layer must become either an explicit backlog requirement or an explicit deferred/non-goal.
+
+| Foundation layer | Architecture gate for LocalSnow v1 |
+| --- | --- |
+| 1. Frontend | Backlog must require mobile-first verification on real/narrow screens, keyboard navigation, accessible HTML semantics, consistent component structure/design tokens, resilient forms, image optimization and browser-console checks. |
+| 2. APIs/backend | Every mutation/read seam must have focused server endpoints/actions, input validation, helpful error responses, no sensitive response leakage, network-tab/API-tool testability and timeout/failure UX. |
+| 3. Database/storage | Schema backlog must define relationships, uniqueness, indexes for search/filter fields, migrations, file-storage boundaries for images/docs, backup/restore expectations and delete/retention behavior. |
+| 4. Auth/permissions | Auth must use a proven provider/session approach; every protected page/action/API must enforce server-side authz; multi-user access tests and RLS/row-ownership policy must be planned before user data exists. |
+| 5. Hosting/deployment | Deployment backlog must include environment-variable/secrets handling, preview/staging before production, HTTPS/custom-domain readiness, deploy logs, rollback path and deploy/down notifications. |
+| 6. Cloud/compute | Architecture/backlog must name cost-bearing services, billing alerts, free-tier limits, serverless/function/runtime assumptions, data-transfer risks and what happens at 10x traffic. |
+| 7. CI/CD/version control | Implementation starts through feature branches/PRs only, with at least build/lint/test/doc checks appropriate to the scaffold; commits stay small and PRs state real verification. |
+| 8. Security/RLS | Security must be server-enforced, not UI-hidden; secrets stay out of code; HTTPS/CORS/security headers/input sanitization/RLS policies are acceptance criteria, not cleanup tasks. |
+| 9. Rate limiting | Expensive/public endpoints need rate limits, debouncing for search/autocomplete, graceful 429 handling, separate dev/prod API keys where applicable and billing/usage visibility. |
+| 10. Caching/CDN | SEO/public pages and assets need CDN/static cache strategy, image formats/sizes/lazy loading, cache-busting, dynamic cache invalidation rules and Lighthouse/performance checks. |
+| 11. Load balancing/scaling | V1 can start simple, but backlog must avoid sticky server-only sessions, plan database connection pooling, health checks and a first load/performance smoke test before launch. |
+| 12. Error tracking/logs | Scaffold must include structured logs, error boundaries/friendly failures, sensitive-data redaction, source-map/error tracking path and alerting for critical flows like booking/payment. |
+| 13. Availability/recovery | Launch path must include uptime monitoring, health checks, automated backups, tested restore, rollback runbook and user/operator communication plan for outages/payment incidents. |
+
+Architecture consequence:
+
+- The backlog hierarchy should not jump straight to visible pages.
+- It should first create a thin quality foundation so every feature slice can pass frontend, backend, data, auth, security, deploy, observability and recovery checks as it is built.
+- LocalSnow can stay simple, but not careless. The foundation layers are a minimum discipline bar, not enterprise bloat.
+
 ## Main modules
 
 ### A1 — Content and SEO architecture
@@ -494,45 +522,54 @@ The backlog layer should derive work in this order:
 1. Foundation/documentation gate:
    - architecture reviewed;
    - app scaffold decision;
-   - test/quality baseline decision.
-2. Public discovery shell:
+   - test/quality baseline decision;
+   - 13 Foundation layer acceptance gates mapped to backlog or explicitly deferred.
+2. Thin technical quality foundation:
+   - component/folder conventions;
+   - mobile/accessibility/form verification pattern;
+   - server action/API validation pattern;
+   - auth/permission/RLS decision;
+   - environment/secrets/deploy-preview rule;
+   - baseline logging/error-boundary/health-check rule;
+   - rate-limit/cache/performance smoke-test expectations.
+3. Public discovery shell:
    - home;
    - Spain/country/resort page shell;
    - SEO state/noindex/canonical policy seam.
-3. Catalog and page-state management:
+4. Catalog and page-state management:
    - resort/catalog facts;
    - page readiness;
    - operator controls.
-4. Supply profile setup:
+5. Supply profile setup:
    - instructor/provider profile;
    - privacy-aware public display name;
    - publish/review states.
-5. Offer + availability primitive:
+6. Offer + availability primitive:
    - basic offers;
    - season/weekday/time-window availability;
    - requestability strength.
-6. Unified lesson intent capture:
+7. Unified lesson intent capture:
    - shared intake data;
    - self-managed inquiry path;
    - guaranteed booking branch.
-7. Email/action-link and lightweight account/status:
+8. Email/action-link and lightweight account/status:
    - notifications;
    - scoped action tokens;
    - client status view.
-8. Stripe Checkout guaranteed booking path:
+9. Stripe Checkout guaranteed booking path:
    - payment state;
    - operator case creation;
    - refund/cancel/manual notes.
-9. Operator fulfillment cockpit:
+10. Operator fulfillment cockpit:
    - contact attempts;
    - alternatives;
    - confirmations;
    - refund/replacement handling.
-10. Reviews and trust/legal readiness:
+11. Reviews and trust/legal readiness:
     - verified lesson review loop;
     - legal/payment trust pages;
     - footer/payment linking.
-11. SEO quality automation:
+12. SEO quality automation:
     - sitemap eligibility;
     - broken-link checks;
     - canonical/filter checks;
@@ -565,11 +602,13 @@ It should convert this reviewed architecture into implementation slices with:
 
 ```txt
 Goal:
+Foundation layer(s):
 Loop:
 Surface:
 Record(s):
 Action/state:
 Acceptance test:
+Foundation gate check:
 Not included:
 ```
 
