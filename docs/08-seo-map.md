@@ -64,6 +64,11 @@ The SEO map must preserve these reviewed truths:
    - Payment pages/snippets may say secure Stripe payment and guarantee/replacement/refund.
    - Do not say escrow, automated payouts, automated tax/compliance or legal claims not backed by real docs/process.
 
+12. **Links must help users and protect crawl quality.**
+   - Internal links should be generated only to known useful pages, not empty/open-ended combinations.
+   - Broken internal links, dead external links and random facet links are SEO debt.
+   - Backlinks should be earned through real instructor/school/resort/tourism relationships, not bought or spammed.
+
 ## SEO principles
 
 1. **Index fewer stronger pages before many weak pages.**
@@ -229,7 +234,7 @@ Find instructors and lesson providers for [Resort], compare lesson options, or u
 Thin-supply direction:
 
 ```txt
-We’re still building verified lesson supply for [Resort]. You can search nearby resorts or use guaranteed booking and LocalSnow will work to secure a suitable lesson or refund you if we cannot make it happen.
+We’re building verified lesson supply for [Resort]. You can search nearby resorts or use guaranteed booking and LocalSnow will work to secure a suitable lesson or refund you if we cannot make it happen.
 
 Are you an instructor, school or lesson provider working in [Resort]? Create your LocalSnow profile so clients can discover your lessons and contact/book you through LocalSnow.
 ```
@@ -273,6 +278,14 @@ Indexability rule:
 | rare filters/languages/levels | noindex until demand/supply proves value |
 | empty combinations | do not create/index |
 
+Filters vs SEO URLs:
+
+- Treat level, language, qualifications, date, duration, price sorting and similar refinements as search filters first.
+- Default implementation direction: keep them as browse/search parameters and normally noindex/canonicalize filtered result pages.
+- Create a clean SEO URL only when the combination has proven search demand, enough useful content, enough supply/action paths and a clear canonical owner page.
+- Good later candidates: `private ski lessons in Baqueira`, `kids ski lessons in La Molina`, `Spanish ski instructor in Baqueira` if supply/content justifies them.
+- Bad default: one indexed URL for every level/language/qualification/date/duration combination.
+
 Copy direction:
 
 - explain the lesson outcome;
@@ -286,14 +299,22 @@ Purpose:
 
 - let a client evaluate a specific instructor;
 - give instructors a trustworthy profile they are proud to share;
-- convert to self-managed inquiry or guaranteed booking where eligible.
+- convert to at least a self-managed lesson inquiry, and to guaranteed booking when LocalSnow can actually operate that protected path.
 
 Index when:
 
 - profile is published;
 - enough public facts exist to help a client decide;
-- profile can receive at least inquiry/booking;
-- LocalSnow is comfortable with the trust signals shown.
+- profile can receive at least a lesson inquiry;
+- trust signals shown on the page are backed by known facts or a manual LocalSnow review.
+
+LocalSnow evaluation for trust signals means:
+
+- basic identity/contact route exists internally;
+- resorts/areas, sport(s), languages and lesson types are coherent enough to publish;
+- the displayed offer/action path can actually be handled;
+- no unsupported claims are shown for licenses, insurance, certifications, awards or “best instructor” style superiority;
+- `LocalSnow-reviewed` is used only after a real manual review/check, not merely because the profile exists.
 
 Noindex/pause when:
 
@@ -309,8 +330,15 @@ Content ingredients:
 - resorts/areas served;
 - lesson types/levels/languages if known;
 - pricing/offer link if public;
-- guaranteed booking availability where eligible;
+- inquiry action by default for published profiles;
+- guaranteed booking action when the profile has a priced/operable LocalSnow-handled booking path;
 - LocalSnow-reviewed / claimed / review cues only when true.
+
+Public name/display direction:
+
+- Store the full legal/contact name internally where needed for operations and trust.
+- Public default should protect privacy: first name + surname initial, unless the instructor explicitly chooses a full professional/public name or business identity.
+- Keep this as an architecture/UX decision, but do not let SEO require exposing unnecessary personal data.
 
 SEO boundary:
 
@@ -429,14 +457,22 @@ Avoid:
 - mixing languages awkwardly on one SEO page;
 - promising language coverage unsupported by supply.
 
-## SEO10 — Internal linking and trust snippets
+Supply-side profile input direction:
+
+- For Spain-first growth, supplier profiles should support EN/ES public content without making instructors write everything twice from scratch.
+- Architecture/UX should consider source-language fields plus translated public variants, with owner/instructor review before publishing.
+- A “generate translation draft” or assisted pre-fill can materially improve profile completion and conversion, but generated text should be editable and should not invent qualifications, resorts, prices or availability.
+- This is important enough to carry into architecture, but it should not block the SEO map or force mass translation of thin pages.
+
+## SEO10 — Internal linking, backlinks and trust snippets
 
 Internal linking goals:
 
 - concentrate authority and user attention on useful Spain/resort pages first;
 - let worldwide catalog remain discoverable without flooding SEO;
 - connect client intent to profiles/offers/booking actions;
-- reinforce guaranteed booking trust where it helps conversion.
+- reinforce guaranteed booking trust where it helps conversion;
+- avoid broken, empty, circular or open-ended links that waste crawl budget and damage trust.
 
 Priority links:
 
@@ -451,7 +487,7 @@ Home
 
 Resort page links:
 
-- nearby/related resorts;
+- nearby/related resorts only when the target page exists and is useful;
 - instructors/providers serving the resort;
 - ski vs snowboard lesson sections;
 - private/group/kids/beginner sections only when useful;
@@ -462,7 +498,22 @@ Profile links:
 - resorts served;
 - offer/service sections;
 - verified real-lesson reviews;
-- guaranteed booking where eligible.
+- guaranteed booking when the profile has a priced/operable LocalSnow-handled booking path.
+
+Link hygiene rules:
+
+- Generate internal links from canonical known entities/pages, not arbitrary user-entered labels or infinite filter combinations.
+- Do not link publicly to hidden/noindex/paused pages except from internal/admin surfaces.
+- Filtered/search pages should usually point back to their canonical resort/country/lesson-intent owner page.
+- Run a broken-link check before shipping docs/pages and later as an automated crawl/check in architecture/CI.
+- Avoid open redirect patterns and unvalidated outbound links.
+
+Backlink direction:
+
+- Earn backlinks from real relationships: instructor websites, ski schools/providers, resort/local tourism partners, ski clubs, useful guides and social/profile links.
+- Do not buy spam links, run low-quality directory blasts or create doorway pages for backlinks.
+- Supplier-generated/outbound profile links should be reviewed or marked appropriately (`ugc`/`nofollow` where needed later) so LocalSnow does not endorse unsafe destinations.
+- Prioritize backlinks to strong Spain/resort/lesson pages, not thin worldwide catalog pages.
 
 Trust snippets allowed in SEO pages:
 
@@ -514,6 +565,12 @@ Boundary:
 
 Suggested SEO sequencing before architecture/backlog:
 
+Decision status:
+
+- This is the proposed SEO priority order for this layer.
+- Moli can approve/change it in this PR; it does not need a separate review round unless the priority order itself feels wrong.
+- Architecture should treat the approved order as input, then decide implementation mechanics without re-opening product meaning.
+
 1. Define the page-state/indexability model:
    - index;
    - noindex but browsable;
@@ -525,11 +582,11 @@ Suggested SEO sequencing before architecture/backlog:
    - Cerler;
    - nearby/next Spanish resorts.
 3. Define resort page minimum content and action-path rules.
-4. Define instructor/provider profile publish/index thresholds.
+4. Define instructor/provider profile publish/index thresholds, including public display-name/privacy direction.
 5. Define curated lesson-intent pages for Spain/resorts.
-6. Define search/facet noindex defaults.
-7. Define EN/ES page strategy for priority pages.
-8. Define trust snippets that can be reused by architecture/design.
+6. Define search/facet noindex defaults and which filters stay as URL/search parameters by default.
+7. Define EN/ES page strategy for priority pages and supplier profile translation support.
+8. Define link hygiene/backlink principles and trust snippets that can be reused by architecture/design.
 
 Do not start with:
 
@@ -568,6 +625,9 @@ It should define how to implement the reviewed product-control layers without in
 - content/page state model for index/noindex/hidden;
 - data ownership for resort/profile/offer/content facts;
 - routing/content architecture for SEO page families;
+- canonical/filter URL rules and broken-link/link-health checks;
+- public instructor display-name/privacy handling;
+- EN/ES supplier profile translation/pre-fill support;
 - auth/contact capture architecture for high-intent actions;
 - Stripe Checkout/payment boundary for guaranteed booking;
 - email/action-link and lightweight account/dashboard architecture;
