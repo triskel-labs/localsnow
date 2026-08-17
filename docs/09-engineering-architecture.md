@@ -189,6 +189,7 @@ Core concepts:
 
 - `PageFamily`: home, country, resort lesson, lesson-intent, profile, offer/service, search/results, legal/trust.
 - `SeoSilo`: catalog/country/resort/lesson-intent/profile hub structure used to organize internal links and canonical ownership.
+- `RetrievalQueryContract`: the primary search/AI-retrieval question a page is meant to answer, with aligned URL slug, SEO title, H1 and opening sentence.
 - `PageState`: index, noindex-browsable, hidden/paused.
 - `MarketPriority`: Spain focus vs catalog-only worldwide.
 - `CanonicalTarget`: the page that owns search intent.
@@ -202,6 +203,8 @@ Architecture rules:
 - Canonicals must point filtered pages back to the strongest owner page.
 - Internal links should follow a deliberate silo/hub structure: home → country/market hubs → resort hubs → lesson-intent pages → relevant profiles/offers, with cross-links only when useful.
 - Spain silos get real content/supply/link investment first; worldwide catalog silos can exist as browsable/noindex until they have enough usefulness.
+- Indexed pages should have one clear retrieval-query contract. Avoid mixed-intent titles and vague slugs; route/content generation should keep slug, title, H1 and first sentence close to the primary intent language.
+- AI-search/GEO testing can later generate likely questions/prompts and check whether LocalSnow pages answer them directly enough to be cited, but this should complement traditional keyword/demand research rather than replace it.
 - Internal links should be generated only to known useful pages.
 - Broken-link/link-health checks should become CI or release checks when pages exist.
 

@@ -96,6 +96,13 @@ The SEO map must preserve these reviewed truths:
    - Public SEO pages must remain accessible to search engines and users.
    - High-intent actions can require low-friction login/contact capture later.
 
+7. **Indexed pages need query-aligned page contracts.**
+   - Each indexable page should target one primary search/retrieval intent, not two unrelated keywords in one title.
+   - URL slug, SEO title, H1 and the opening sentence should use closely related language for that intent.
+   - This is useful for classic SEO and for AI search/retrieval systems that cite pages whose titles/content match the hidden query they generated.
+   - Supporting sections can cover adjacent questions, but the page owner intent should stay obvious.
+   - Example direction: prefer `/spain/baqueira/ski-lessons/` with title/H1/opening sentence around “ski lessons in Baqueira” over vague or mixed-intent URLs/titles.
+
 ## Page family map
 
 | Family | Primary intent | Initial SEO priority | Indexability default |
@@ -218,18 +225,22 @@ Minimum for `seo_rich`:
 
 - useful resort lesson intro;
 - linked instructors/providers/offers;
-- sport/lesson-type sections where meaningful;
-- trust snippet for guaranteed booking;
-- internal links to nearby/related resorts;
+- one primary query/retrieval intent with aligned slug, SEO title, H1 and first sentence;
+- availability/requestability explanation;
+- trust/guaranteed booking snippet;
+- internal links to related lesson types, nearby resorts and relevant profiles;
 - real reviews if available;
+- EN/ES variant if justified;
 - not just a templated paragraph with changed resort name.
 
 Resort page template direction:
 
 ```txt
-Ski and snowboard lessons in [Resort]
-Find instructors and lesson providers for [Resort], compare lesson options, or use guaranteed booking so LocalSnow makes sure the lesson happens, finds a suitable alternative or gives your money back.
+Ski lessons in [Resort]
+Find ski instructors and lesson providers for [Resort], compare lesson options, or use guaranteed booking so LocalSnow makes sure the lesson happens, finds a suitable alternative or gives your money back.
 ```
+
+If snowboard lessons deserve their own demand page, create a separate page contract instead of mixing the primary title/H1. A broad resort hub can link to both ski and snowboard lesson pages when both are useful.
 
 Thin-supply direction:
 
