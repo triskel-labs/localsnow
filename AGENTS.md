@@ -6,7 +6,7 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Product-control docs only. Current active layer: `docs/08-seo-map.md`.
+Product-control docs only. Current active layer: `docs/09-engineering-architecture.md`.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
@@ -18,8 +18,9 @@ Product-control docs only. Current active layer: `docs/08-seo-map.md`.
 8. `docs/06-state-model.md`
 9. `docs/07-copy-trust-system.md`
 10. `docs/08-seo-map.md`
+11. `docs/09-engineering-architecture.md`
 
-Do not create schemas, architecture, backlog tickets, or scaffold code until Moli reviews/approves the preceding layer. Each layer must derive from the reviewed layer before it. The SEO map must define page families, indexability rules, search-intent priorities, bilingual/country direction and internal-linking principles only; it must not become SvelteKit routing, sitemap code, structured-data implementation, analytics, backlog tickets or app architecture.
+Do not create schemas, backlog tickets, or scaffold code until Moli reviews/approves the preceding layer. Each layer must derive from the reviewed layer before it. The engineering architecture must define implementation seams and constraints only; it must not become backlog tickets, route scaffolding, database migrations, Svelte components, deployment work or final UI/copy.
 
 ## Professional-team sequence
 
@@ -86,3 +87,7 @@ Client account/contact capture is strategically important for LocalSnow’s owne
 ## SEO boundary
 
 LocalSnow must stay worldwide-browsable, but Spain is the first market for supply, marketing, conversion and content investment. Do not mass-generate/index thin worldwide resort/filter pages. Prioritize useful Spain/resort/lesson pages, keep catalog-only pages browsable/noindex when thin, and preserve public discovery outside login while gating high-intent actions later if needed.
+
+## Engineering architecture boundary
+
+The architecture layer may choose module seams, state/action boundaries, SEO/indexability policy, payment/email/account/operator architecture and integration ports. It must not create the app scaffold, exact tables, migrations, routes, UI components, backlog tickets or deployment changes. Code starts only after Moli reviews the backlog hierarchy derived from the architecture.
