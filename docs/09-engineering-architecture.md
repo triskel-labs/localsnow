@@ -14,6 +14,7 @@ It decides the technical shape needed to build LocalSnow without inventing produ
 - public/private action flows;
 - payment, email/action-link and lightweight account architecture;
 - operator/manual-ops architecture;
+- conversion/instrumentation architecture for the buying journey;
 - verification expectations for the backlog layer.
 
 This is **not** backlog, tickets, route scaffolding, database migration code, Svelte component design, visual UI, final copy or deployment work.
@@ -69,6 +70,11 @@ The architecture must preserve these decisions:
 
 10. **Backlog/code starts only after this architecture is reviewed.**
 
+11. **Revenue path is an engineered system, not a hope.**
+   - Every step from first discovery to inquiry, guaranteed booking, Stripe Checkout and confirmation should have a named purpose, expected user decision and eventual measurement point.
+   - This must stay buyer-centered: measure how clients find, hesitate, continue, drop off and pay, not merely how Moli thinks the admin flow works.
+   - Conversion measurement must respect privacy/GDPR and should not become surveillance or analytics bloat before there is traffic.
+
 ## Architecture principles
 
 1. **Thin public surfaces, strong domain seams.**
@@ -95,6 +101,11 @@ The architecture must preserve these decisions:
    - Architecture can choose seams and constraints.
    - Implementation PRs still need backlog items and acceptance tests.
 
+7. **Conversion journey is product architecture.**
+   - Discovery pages, path choice, inquiry forms, guaranteed booking intake, account/contact capture and checkout are part of one measured buying system.
+   - The backlog should version and verify this journey the same way it verifies uptime, errors and security.
+   - Do not defer conversion questions until “marketing later”; LocalSnow’s revenue thesis depends on knowing where clients enter, hesitate, submit, abandon and pay.
+
 ## Recommended system shape
 
 Use one primary web application with modular server-side boundaries.
@@ -113,6 +124,7 @@ LocalSnow web app
 │  ├─ guaranteed booking intake
 │  ├─ Stripe Checkout handoff
 │  ├─ email/action links
+│  ├─ conversion event capture
 │  └─ lightweight client dashboard/status
 ├─ Supplier layer
 │  ├─ guided profile setup
@@ -131,6 +143,7 @@ LocalSnow web app
    ├─ SEO/indexability policy
    ├─ action permissions
    ├─ notification/action-token policy
+   ├─ conversion journey policy
    └─ integration ports
 ```
 
@@ -167,6 +180,7 @@ Before backlog/code, each layer must become either an explicit backlog requireme
 | 10. Caching/CDN | SEO/public pages and assets need CDN/static cache strategy, image formats/sizes/lazy loading, cache-busting, dynamic cache invalidation rules and Lighthouse/performance checks. |
 | 11. Load balancing/scaling | V1 can start simple, but backlog must avoid sticky server-only sessions, plan database connection pooling, health checks and a first load/performance smoke test before launch. |
 | 12. Error tracking/logs | Scaffold must include structured logs, error boundaries/friendly failures, sensitive-data redaction, source-map/error tracking path and alerting for critical flows like booking/payment. |
+| Conversion engineering | Backlog must define the buyer journey map from first discovery to payment/confirmation, name event points for each meaningful decision/drop-off, keep analytics privacy-safe and require a first conversion funnel smoke test before launch. |
 | 13. Availability/recovery | Launch path must include uptime monitoring, health checks, automated backups, tested restore, rollback runbook and user/operator communication plan for outages/payment incidents. |
 
 Architecture consequence:
@@ -448,6 +462,29 @@ Architecture rules:
 - Operator state transitions should be explicit and auditable enough to prevent chaos.
 - Do not build a full CRM; build the minimal cockpit needed to fulfill lessons safely.
 
+### A13 — Conversion journey architecture
+
+Purpose:
+
+- treat the LocalSnow buyer journey as an engineered system from discovery to revenue, not as a pile of pages with hope attached;
+- make the next backlog define how LocalSnow will learn where clients enter, hesitate, abandon and pay.
+
+Core concepts:
+
+- `ConversionJourney`: first impression → discovery page/profile/offer → path choice → contact/account capture → inquiry or guaranteed booking intake → Stripe Checkout → confirmation/status/review.
+- `ConversionPoint`: a meaningful buyer decision or drop-off surface.
+- `ConversionEvent`: privacy-safe event such as page viewed, search/filter used, profile viewed, path-choice opened, inquiry started/submitted, guaranteed booking started, checkout created, checkout completed/abandoned, confirmation viewed.
+- `DropoffReason`: explicit user-facing reason when knowable, or inferred funnel step only when not knowable.
+- `ExperimentVersion`: lightweight copy/layout/pricing/path variant identifier for future A/B tests; not a v1 requirement to run multiple variants from day one.
+
+Architecture rules:
+
+- Every high-intent action path should have named conversion points before implementation: where the client decides, what they need to trust, and what successful continuation means.
+- Initial instrumentation should be minimal and GDPR-aware: no unnecessary personal data in analytics events, no secret/contact leakage, and clear consent/cookie handling if analytics requires it.
+- Conversion events should join to internal records only where operationally needed and lawful; Stripe remains payment truth, not analytics truth.
+- Operator/revenue review should compare funnel health like engineering health: entry volume, inquiry completion, guaranteed-booking start, checkout completion/abandonment, confirmed lesson outcome.
+- The first backlog should require a conversion funnel smoke test for the core paid path before launch, even if the numbers are manual/low-volume at first.
+
 ## Cross-module rules
 
 ### State and action permission rule
@@ -491,6 +528,23 @@ The architecture should support:
 If a process is manual, model it explicitly for the operator instead of pretending it is automated.
 
 Manual is acceptable for v1 when the public promise remains honest and the operator can keep control.
+
+### Conversion measurement rule
+
+Every conversion measurement must answer a business/operator question before it is implemented.
+
+Good measurement questions:
+
+- which pages bring clients into Spain/resort lesson discovery;
+- whether clients choose self-managed inquiry or guaranteed booking;
+- where clients abandon contact capture, guaranteed booking intake or Stripe Checkout;
+- which confirmed lessons/reviews came from which discovery path.
+
+Bad measurement:
+
+- collecting noisy page events with no decision attached;
+- storing personal/contact/payment data in analytics payloads;
+- optimizing copy/layout before there is enough traffic or a visible trust blocker.
 
 ## Integration boundaries
 
@@ -553,44 +607,48 @@ The backlog layer should derive work in this order:
    - environment/secrets/deploy-preview rule;
    - baseline logging/error-boundary/health-check rule;
    - rate-limit/cache/performance smoke-test expectations.
-3. Public discovery shell:
+3. Conversion journey map:
+   - first impression → inquiry/guaranteed-booking path → payment/confirmation journey;
+   - named conversion points and privacy-safe event names;
+   - first funnel smoke-test expectation.
+4. Public discovery shell:
    - home;
    - Spain/country/resort page shell;
    - SEO state/noindex/canonical policy seam.
-4. Catalog and page-state management:
+5. Catalog and page-state management:
    - resort/catalog facts;
    - page readiness;
    - operator controls.
-5. Supply profile setup:
+6. Supply profile setup:
    - instructor/provider profile;
    - privacy-aware public display name;
    - publish/review states.
-6. Offer + availability primitive:
+7. Offer + availability primitive:
    - basic offers;
    - season/weekday/time-window availability;
    - requestability strength.
-7. Unified lesson intent capture:
+8. Unified lesson intent capture:
    - shared intake data;
    - self-managed inquiry path;
    - guaranteed booking branch.
-8. Email/action-link and lightweight account/status:
+9. Email/action-link and lightweight account/status:
    - notifications;
    - scoped action tokens;
    - client status view.
-9. Stripe Checkout guaranteed booking path:
+10. Stripe Checkout guaranteed booking path:
    - payment state;
    - operator case creation;
    - refund/cancel/manual notes.
-10. Operator fulfillment cockpit:
+11. Operator fulfillment cockpit:
    - contact attempts;
    - alternatives;
    - confirmations;
    - refund/replacement handling.
-11. Reviews and trust/legal readiness:
+12. Reviews and trust/legal readiness:
     - verified lesson review loop;
     - legal/payment trust pages;
     - footer/payment linking.
-12. SEO quality automation:
+13. SEO quality automation:
     - sitemap eligibility;
     - broken-link checks;
     - canonical/filter checks;
@@ -628,6 +686,7 @@ Loop:
 Surface:
 Record(s):
 Action/state:
+Conversion point(s):
 Acceptance test:
 Foundation gate check:
 Not included:
