@@ -242,6 +242,13 @@ Find ski instructors and lesson providers for [Resort], compare lesson options, 
 
 If snowboard lessons deserve their own demand page, create a separate page contract instead of mixing the primary title/H1. A broad resort hub can link to both ski and snowboard lesson pages when both are useful.
 
+Sport-page decision:
+
+- Ski and snowboard are core lesson intents, not just tiny filters, because users search and compare them differently.
+- Search/results can still use sport as a filter for browsing, but indexed SEO pages should have one primary sport intent when demand/content/action path exists.
+- Do not create a generic “ski + snowboard lessons in [Resort]” page as the main SEO owner if it weakens query alignment. Use a broader resort hub to route users, then let ski and snowboard pages own their specific demand.
+- Do not create a separate “both/all sports” SEO page unless there is a real mixed-intent query and enough useful content. For v1, the broad hub can cover “all lesson options” without becoming a thin indexed duplicate.
+
 Thin-supply direction:
 
 ```txt
@@ -266,6 +273,8 @@ Candidate intents:
 
 - ski lessons;
 - snowboard lessons;
+- ski lessons in a specific priority resort;
+- snowboard lessons in a specific priority resort;
 - private ski lessons;
 - group ski lessons;
 - kids ski lessons;

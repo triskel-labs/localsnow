@@ -42,6 +42,7 @@ The architecture must preserve these decisions:
    - Moli can call/message instructors, coordinate replacements, refund and pay providers manually.
    - Public/client experience should still feel mature, safe and platform-led.
    - The product may create the *impression* of a polished automated platform through clear status, dashboards, emails and professional UI patterns, while the fulfillment reality remains manual behind the scenes.
+   - Operator tooling does not need to automate every fulfillment detail from day one; it must give Moli the necessary data, contact context, status control and notes to execute the real workflow manually.
 
 5. **No false automation.**
    - No instant confirmation promise.
@@ -54,6 +55,7 @@ The architecture must preserve these decisions:
    - Discovery pages cannot be hidden behind login.
    - Sending an inquiry/request should require low-friction signup/login or contact capture, ideally through an inline modal/pop-up rather than a hard page detour.
    - The account gate exists to convert anonymous visitors into owned LocalSnow users before the highest-intent action, not to hide discovery content.
+   - Public pages must not expose contact data, phone/email or prominent direct-connect paths that let visitors bypass LocalSnow without at least signing up/contact-capturing first.
 
 7. **Search/filter pages are dangerous by default.**
    - Level, language, qualifications, date, duration, sorting and similar refinements should be search params/noindex by default.
@@ -218,6 +220,7 @@ Architecture rules:
 - Internal links should follow a deliberate silo/hub structure: home → country/market hubs → resort hubs → lesson-intent pages → relevant profiles/offers, with cross-links only when useful.
 - Spain silos get real content/supply/link investment first; worldwide catalog silos can exist as browsable/noindex until they have enough usefulness.
 - Indexed pages should have one clear retrieval-query contract. Avoid mixed-intent titles and vague slugs; route/content generation should keep slug, title, H1 and first sentence close to the primary intent language.
+- Ski and snowboard should be treated as first-class lesson-intent contracts when demand/content/action path exists, not merely hidden filters. Browsing can filter by sport, but indexable pages should avoid mixing ski/snowboard as one title unless the page is deliberately a broad resort hub.
 - AI-search/GEO testing can later generate likely questions/prompts and check whether LocalSnow pages answer them directly enough to be cited, but this should complement traditional keyword/demand research rather than replace it.
 - Internal links should be generated only to known useful pages.
 - Broken-link/link-health checks should become CI or release checks when pages exist.
@@ -270,6 +273,7 @@ Architecture rules:
 - Independent-instructor public default should support first name + surname initial unless explicit full professional/public name is chosen.
 - School/provider profiles should usually show the full professional/business name; hiding the name harms trust and SEO more than it helps conversion.
 - To avoid driving traffic away, school/provider pages do not need prominent outbound website/phone links by default; primary CTAs should keep inquiry/booking through LocalSnow, with external contact/linking treated as an explicit trust/SEO/business decision.
+- Public profiles should not reveal phone/email/direct contact details to anonymous visitors. Contact disclosure or direct external links should require signup/contact capture first, or be deliberately enabled later as a business decision.
 - Published profiles should receive at least self-managed lesson inquiries.
 - Guaranteed booking appears only when a priced/operable LocalSnow-handled path exists.
 - `LocalSnow-reviewed` requires manual review/check; do not infer it from profile creation.
@@ -335,6 +339,7 @@ Architecture rules:
 - Client manages coordination after inquiry.
 - LocalSnow can track enough for trust/follow-up but does not guarantee response/availability.
 - Do not hide inquiry capability behind a paywall.
+- Self-managed inquiry still runs through LocalSnow enough to capture the client/contact and protect the platform relationship before direct coordination starts.
 - Email/action links can let providers respond or accept interest without full account complexity.
 
 ### A7 — Guaranteed booking architecture
@@ -450,6 +455,7 @@ Core operator needs:
 - review/publish/pause profiles and offers;
 - inspect and handle self-managed inquiry problems;
 - run guaranteed booking cases manually;
+- access the necessary client, professional/provider, request, payment and contact data needed to perform manual coordination outside the platform when needed;
 - record contact attempts, alternatives, confirmations, refunds and payout notes;
 - manage legal/trust page readiness;
 - see notification/action-link status;
@@ -459,6 +465,7 @@ Architecture rules:
 
 - Operator controls should be private/admin-only.
 - Public users should not see manual backend coordination.
+- The operator cockpit should prioritize necessary data access and action/state control over automating every operational step.
 - Operator state transitions should be explicit and auditable enough to prevent chaos.
 - Do not build a full CRM; build the minimal cockpit needed to fulfill lessons safely.
 
@@ -520,6 +527,7 @@ The architecture should support:
 
 - anonymous public browsing;
 - low-friction contact capture for inquiries/bookings;
+- no anonymous access to phone/email/direct-contact details that would let users bypass LocalSnow before account/contact capture;
 - lightweight account/dashboard for status, payments/refunds and review links;
 - email/action links as a backstop.
 
