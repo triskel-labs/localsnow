@@ -4,7 +4,7 @@ Greenfield LocalSnow product. The previous codebase is preserved at [triskel-lab
 
 ## Current phase
 
-**Implementation: B0 technical foundation scaffold.**
+**Implementation: B1 public discovery shell + SEO policy seam.**
 
 We are not trying to decide the whole product upfront. We are creating the first reviewed decision layer, then deriving the next layer from it.
 
@@ -39,13 +39,14 @@ These are intentionally controlled. They define product meaning, surfaces, recor
 
 ## Current implementation slice
 
-The active implementation slice is B0 from `docs/10-backlog-hierarchy.md`: technical foundation scaffold.
+The active implementation slice is B1 from `docs/10-backlog-hierarchy.md`: public discovery shell + SEO policy seam.
 
-Current B0 goal:
+Current B1 goal:
 
-- prove the repo can install, typecheck, test, build and format-check;
-- create only the minimal SvelteKit foundation and health/home smoke surface;
-- avoid product database schema, payments, email delivery, availability engine and final public copy until later slices.
+- create public discovery pages that render without login;
+- centralize SEO/indexability policy so route existence does not imply indexing;
+- show Spain as the first priority market without mass-indexing thin worldwide pages;
+- avoid complete resort database, sitemap automation, final SEO copy, schema.org and analytics dashboards until later slices.
 
 ## Drift guard
 

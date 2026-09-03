@@ -6,7 +6,7 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Current active implementation slice: B0 technical foundation scaffold from `docs/10-backlog-hierarchy.md`.
+Current active implementation slice: B1 public discovery shell + SEO policy seam from `docs/10-backlog-hierarchy.md`.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
@@ -21,7 +21,7 @@ Current active implementation slice: B0 technical foundation scaffold from `docs
 11. `docs/09-engineering-architecture.md`
 12. `docs/10-backlog-hierarchy.md`
 
-Moli approved continuing past the backlog hierarchy. Implementation may now proceed slice-by-slice from `docs/10-backlog-hierarchy.md`. B0 may create the minimal SvelteKit scaffold, package/tooling baseline, health route, placeholder home surface and verification scripts. Do not create product database schema, payments, email delivery, availability engine, final public copy or deployment work in B0.
+Moli approved continuing past the backlog hierarchy. Implementation may now proceed slice-by-slice from `docs/10-backlog-hierarchy.md`. B1 may create public discovery page shells, Spain priority structure, supply invitation shell and central SEO/indexability policy. Do not create complete resort database, sitemap automation, final SEO copy, schema.org, analytics dashboards, product database schema, payments, email delivery, availability engine or deployment work in B1.
 
 ## Professional-team sequence
 
@@ -113,3 +113,23 @@ Not acceptable in B0:
 - Stripe/email integrations;
 - final SEO/public copy;
 - deployment or production cutover.
+
+## B1 implementation boundary
+
+B1 exists to make the public discovery shell truthful before page generation. Acceptable B1 work:
+
+- home/value landing shell;
+- Spain priority market shell;
+- priority resort placeholder shell, starting with Baqueira;
+- instructor/supply invitation shell;
+- central `PageFamily` / `PageState` / `SeoSilo` / `RetrievalQueryContract` / `MarketPriority` policy;
+- tests proving index/noindex is driven by policy, not route existence.
+
+Not acceptable in B1:
+
+- complete resort database;
+- generated worldwide SEO pages;
+- sitemap automation;
+- final SEO copy or schema.org;
+- analytics dashboards;
+- real search, pricing, booking, availability, auth or payment flow.
