@@ -4,7 +4,7 @@ Greenfield LocalSnow product. The previous codebase is preserved at [triskel-lab
 
 ## Current phase
 
-**Phase 7: Engineering architecture. No app code yet.**
+**Phase 8: Backlog hierarchy. No app code yet.**
 
 We are not trying to decide the whole product upfront. We are creating the first reviewed decision layer, then deriving the next layer from it.
 
@@ -33,6 +33,7 @@ Review in order:
 9. [`docs/07-copy-trust-system.md`](docs/07-copy-trust-system.md)
 10. [`docs/08-seo-map.md`](docs/08-seo-map.md)
 11. [`docs/09-engineering-architecture.md`](docs/09-engineering-architecture.md)
+12. [`docs/10-backlog-hierarchy.md`](docs/10-backlog-hierarchy.md)
 
 These are intentionally controlled. They define product meaning, surfaces, records, states, trust/copy, SEO/discovery and architecture before backlog or code.
 

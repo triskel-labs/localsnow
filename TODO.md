@@ -18,7 +18,8 @@
 - [x] Moli reviewed PR #4 state model and approved proceeding.
 - [x] Moli reviewed PR #5 copy/trust system and approved proceeding.
 - [x] Moli reviewed PR #6 SEO map and approved proceeding.
-- [ ] Review the next layer: engineering architecture.
+- [x] Moli reviewed PR #7 engineering architecture and approved proceeding.
+- [ ] Review the next layer: backlog hierarchy.
 
 ## On process
 
@@ -28,7 +29,8 @@
 - [x] PR #4: State model.
 - [x] PR #5: Copy/trust system.
 - [x] PR #6: SEO map.
-- [ ] PR #7: Engineering architecture.
+- [x] PR #7: Engineering architecture.
+- [ ] PR #8: Backlog hierarchy.
 
 ## Done
 
@@ -40,3 +42,4 @@
 - [x] Merge state model.
 - [x] Merge copy/trust system.
 - [x] Merge SEO map.
+- [x] Merge engineering architecture.

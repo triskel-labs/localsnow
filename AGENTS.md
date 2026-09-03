@@ -6,7 +6,7 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Product-control docs only. Current active layer: `docs/09-engineering-architecture.md`.
+Product-control docs only. Current active layer: `docs/10-backlog-hierarchy.md`.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
@@ -19,8 +19,9 @@ Product-control docs only. Current active layer: `docs/09-engineering-architectu
 9. `docs/07-copy-trust-system.md`
 10. `docs/08-seo-map.md`
 11. `docs/09-engineering-architecture.md`
+12. `docs/10-backlog-hierarchy.md`
 
-Do not create schemas, backlog tickets, or scaffold code until Moli reviews/approves the preceding layer. Each layer must derive from the reviewed layer before it. The engineering architecture must define implementation seams and constraints only; it must not become backlog tickets, route scaffolding, database migrations, Svelte components, deployment work or final UI/copy.
+Do not create schemas, route scaffolding, database migrations, Svelte components, deployment work or final UI/copy until Moli reviews/approves the backlog hierarchy. Each layer must derive from the reviewed layer before it. The backlog hierarchy may define implementation slices and acceptance checks, but it must not execute them yet.
 
 ## Professional-team sequence
 
