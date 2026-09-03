@@ -19,7 +19,8 @@
 - [x] Moli reviewed PR #5 copy/trust system and approved proceeding.
 - [x] Moli reviewed PR #6 SEO map and approved proceeding.
 - [x] Moli reviewed PR #7 engineering architecture and approved proceeding.
-- [ ] Review the next layer: backlog hierarchy.
+- [x] Moli approved continuing past backlog hierarchy.
+- [ ] Implement B0 technical foundation scaffold.
 
 ## On process
 
@@ -30,7 +31,8 @@
 - [x] PR #5: Copy/trust system.
 - [x] PR #6: SEO map.
 - [x] PR #7: Engineering architecture.
-- [ ] PR #8: Backlog hierarchy.
+- [x] PR #8: Backlog hierarchy.
+- [ ] PR #9: B0 technical foundation scaffold.
 
 ## Done
 
@@ -43,3 +45,4 @@
 - [x] Merge copy/trust system.
 - [x] Merge SEO map.
 - [x] Merge engineering architecture.
+- [x] Merge backlog hierarchy.

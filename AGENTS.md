@@ -6,7 +6,7 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Product-control docs only. Current active layer: `docs/10-backlog-hierarchy.md`.
+Current active implementation slice: B0 technical foundation scaffold from `docs/10-backlog-hierarchy.md`.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
@@ -21,7 +21,7 @@ Product-control docs only. Current active layer: `docs/10-backlog-hierarchy.md`.
 11. `docs/09-engineering-architecture.md`
 12. `docs/10-backlog-hierarchy.md`
 
-Do not create schemas, route scaffolding, database migrations, Svelte components, deployment work or final UI/copy until Moli reviews/approves the backlog hierarchy. Each layer must derive from the reviewed layer before it. The backlog hierarchy may define implementation slices and acceptance checks, but it must not execute them yet.
+Moli approved continuing past the backlog hierarchy. Implementation may now proceed slice-by-slice from `docs/10-backlog-hierarchy.md`. B0 may create the minimal SvelteKit scaffold, package/tooling baseline, health route, placeholder home surface and verification scripts. Do not create product database schema, payments, email delivery, availability engine, final public copy or deployment work in B0.
 
 ## Professional-team sequence
 
@@ -92,3 +92,24 @@ LocalSnow must stay worldwide-browsable, but Spain is the first market for suppl
 ## Engineering architecture boundary
 
 The architecture layer may choose module seams, state/action boundaries, SEO/indexability policy, payment/email/account/operator architecture and integration ports. It must not create the app scaffold, exact tables, migrations, routes, UI components, backlog tickets or deployment changes. Code starts only after Moli reviews the backlog hierarchy derived from the architecture.
+
+## B0 implementation boundary
+
+B0 exists to prove the technical foundation is alive. Acceptable B0 work:
+
+- SvelteKit app scaffold;
+- package manager and lockfile;
+- TypeScript/Svelte/Vite/Vitest/Prettier configuration;
+- `.env.example` with placeholder-only environment variables;
+- health endpoint and placeholder home route;
+- small tested foundation helper naming the active slice;
+- PR trace template.
+
+Not acceptable in B0:
+
+- product schema/tables/migrations;
+- auth provider wiring;
+- real booking/pricing/availability implementation;
+- Stripe/email integrations;
+- final SEO/public copy;
+- deployment or production cutover.

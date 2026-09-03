@@ -1,0 +1,9 @@
+node_modules
+.svelte-kit
+build
+coverage
+pnpm-lock.yaml
+
+# Product-control markdown is hand-authored/reviewed and intentionally not mass-formatted.
+*.md
+docs/

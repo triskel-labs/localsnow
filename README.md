@@ -4,7 +4,7 @@ Greenfield LocalSnow product. The previous codebase is preserved at [triskel-lab
 
 ## Current phase
 
-**Phase 8: Backlog hierarchy. No app code yet.**
+**Implementation: B0 technical foundation scaffold.**
 
 We are not trying to decide the whole product upfront. We are creating the first reviewed decision layer, then deriving the next layer from it.
 
@@ -35,7 +35,17 @@ Review in order:
 11. [`docs/09-engineering-architecture.md`](docs/09-engineering-architecture.md)
 12. [`docs/10-backlog-hierarchy.md`](docs/10-backlog-hierarchy.md)
 
-These are intentionally controlled. They define product meaning, surfaces, records, states, trust/copy, SEO/discovery and architecture before backlog or code.
+These are intentionally controlled. They define product meaning, surfaces, records, states, trust/copy, SEO/discovery, architecture and backlog order before product implementation.
+
+## Current implementation slice
+
+The active implementation slice is B0 from `docs/10-backlog-hierarchy.md`: technical foundation scaffold.
+
+Current B0 goal:
+
+- prove the repo can install, typecheck, test, build and format-check;
+- create only the minimal SvelteKit foundation and health/home smoke surface;
+- avoid product database schema, payments, email delivery, availability engine and final public copy until later slices.
 
 ## Drift guard
 
