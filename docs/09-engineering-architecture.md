@@ -283,23 +283,32 @@ Architecture rules:
 
 Purpose:
 
-- make lesson options requestable/bookable enough for v1 without overbuilding pricing or calendar systems.
+- make lesson options requestable/bookable enough for v1 without overbuilding pricing or calendar systems;
+- support a mature instructor setup experience with structured availability and pricing primitives;
+- stay compatible with future Google Calendar/SkiRelay integrations without making either the v1 source of truth.
 
 Core concepts:
 
 - `Offer`: lesson/service option.
-- `PriceSnapshot`: public/booking price facts used at request/payment time.
-- `AvailabilityPattern`: season/date range, weekdays, time windows, optional generated slots.
+- `PriceRule`: simple pricing input for an offer, such as hourly, half-day, full-day, per-person, per-group or price-on-request.
+- `PriceSnapshot`: public/booking price facts preserved at inquiry/payment time so later price edits do not rewrite what the client saw.
+- `AvailabilityPattern`: season/date range, resort/timezone context, weekdays, time windows, lesson durations and optional generated slot-like options.
+- `AvailabilityBlock`: source-labelled unavailable/busy block from manual entry, LocalSnow pending/confirmed commitment, SkiRelay commitment or future Google Calendar import.
+- `BookingCommitment`: a LocalSnow/SkiRelay/manual lesson commitment that consumes or risks consuming availability.
 - `RequestabilityStrength`: broad inquiry, slot-like availability, guaranteed booking ready.
 - `ExternalCalendarConnection`: optional future calendar/import connection that can inform busy blocks/requestability without making Google Calendar the v1 source of truth.
 
 Architecture rules:
 
-- Availability should be useful for snowsports, especially independent instructors.
-- External/full calendar sync is out of v1.
-- Basic Google Calendar integration may be considered only as a narrow backlog option if it clearly improves instructor setup or trust: for example read-only busy-block import, calendar conflict hints or one-way export. It must not become full two-way sync, instant-confirmation infrastructure or a hard dependency for using LocalSnow.
-- Basic LocalSnow availability can exist as source-aware patterns that later integrate with SkiRelay/shared primitives.
+- Availability should be useful for snowsports, especially independent instructors. The product must not feel like a generic directory with only vague “available weekends” text.
+- LocalSnow v1 should support structured instructor availability: season/date range, working weekdays, time windows per weekday, served resorts/areas, lesson duration options, unavailable blocks and freshness markers.
+- The product may generate requestable or slot-like options from those patterns, but those options are not confirmed lessons until the instructor/provider or LocalSnow operator confirms them.
+- External/full calendar sync is out of v1, but the availability model must be calendar-compatible from the beginning.
+- Basic Google Calendar integration may be considered only as a narrow backlog option if it clearly improves instructor setup or trust: read-only busy-block import, conflict hints or one-way export. It must not become full two-way sync, instant-confirmation infrastructure or a hard dependency for using LocalSnow.
+- Google Calendar should be treated as one possible source of busy blocks/events, not as the LocalSnow domain model. LocalSnow still owns lesson meaning: sport, resort, level, duration, group size, price, request path, payment/refund and fulfillment state.
+- Basic LocalSnow availability can exist as source-aware patterns and blocks that later integrate with SkiRelay/shared primitives.
 - Pricing can support basic price calculation and snapshotting, but not complex promos/packages unless reopened.
+- Legacy LocalSnow pricing concepts worth reusing are the simple calculator shape, group-size tiers, half-day/full-day duration packages and breakdown/snapshot idea. Legacy lead-fee deposits, promo systems and broad conditional-pricing machinery should not be copied into v1 by gravity.
 - If availability specificity is shown publicly, copy must not say LocalSnow is still checking availability for that exact thing; it should say confirming lesson details when needed.
 
 ### A5 — Client action architecture
@@ -310,7 +319,7 @@ Purpose:
 
 Core concepts:
 
-- `LessonIntent`: sport, resort/area, date/time preference, level, group size, duration, language/needs.
+- `LessonIntent`: sport, resort/area, date/time preference, level, group size, duration, language/needs and special client notes.
 - `ClientContact`: captured enough to continue the conversation.
 - `ActionPath`: self-managed inquiry or guaranteed booking.
 - `ClientStatusView`: lightweight status/account/dashboard.
@@ -321,6 +330,7 @@ Architecture rules:
 - Sending a lesson inquiry/request should trigger low-friction signup/login/contact capture, preferably in-context via modal/pop-up, so LocalSnow captures an owned user/contact before the high-intent action leaves the page.
 - Guaranteed booking intake/payment should also attach to a client account/contact record before payment handoff.
 - Use a unified lesson-intent capture shape; do not split data collection into disconnected forms.
+- Include a simple “anything we should know?” field so clients can explain special goals, children/family context, nervousness, accessibility constraints, language preferences or timing limits without forcing a giant form.
 - Client-facing language should say lessons/bookings, not internal request mechanics.
 - Lightweight dashboard/status is preferred alongside email/action links.
 
@@ -443,6 +453,7 @@ Architecture rules:
 - Reviews are from real lessons, not merely lesson requests.
 - LocalSnow-owned reviews can complement Google Reviews later but should not depend on them.
 - Do not show fake review counts or snippets.
+- Inquiry/lead metrics may be tracked from the beginning as internal conversion and supply-value signals. They can later become public-safe aggregate social proof only when volume is meaningful and wording does not expose private demand or inflate trust.
 - Operator should be able to hide/remove abusive/problem reviews.
 
 ### A12 — Operator/control architecture
@@ -459,6 +470,7 @@ Core operator needs:
 - run guaranteed booking cases manually;
 - access the necessary client, professional/provider, request, payment and contact data needed to perform manual coordination outside the platform when needed;
 - record contact attempts, alternatives, confirmations, refunds and payout notes;
+- handle lesson issues, client/provider problems, refund requests, disputes, proposed alternatives, resolution notes and Stripe/manual refund references;
 - manage legal/trust page readiness;
 - see notification/action-link status;
 - see broken-link/page-health issues once implemented.
@@ -613,20 +625,23 @@ Architecture rules:
 
 ### SkiRelay/shared primitives
 
-Keep the seam open for shared availability/profile primitives, but do not integrate SkiRelay as a product dependency in v1.
+Keep the seam open for shared availability/profile primitives from the beginning, but do not integrate SkiRelay as a product dependency in v1.
 
 Allowed:
 
 - simple source-aware availability patterns;
 - future-compatible shape for seasons/weekdays/time windows;
+- shared or bridgeable instructor identity/profile facts where they reduce signup friction;
+- small event/API seams such as profile created/updated, availability updated and commitment created;
 - avoiding duplicated primitives if the shared version is clean;
-- a future one-button SkiRelay → LocalSnow profile bridge for instructors already signing up or signed in there, with explicit consent and source-backed profile/account data import;
+- an early one-button SkiRelay → LocalSnow profile/account bridge for instructors already signing up or signed in there, with explicit consent and source-backed profile/account data import;
 - automatic LocalSnow account/profile creation and population from SkiRelay can be designed as a bridge flow, but publication should still require LocalSnow publish prerequisites: required fields, public display-name rules, supported resorts/services, contact/action path and trust/safety checks.
 
 Not allowed by default:
 
 - job board integration;
 - full calendar sync;
+- hidden two-way coupling where SkiRelay state silently changes LocalSnow public promises;
 - SkiRelay-specific flows that make LocalSnow v1 depend on SkiRelay being complete or operational.
 
 ### Legacy LocalSnow
@@ -635,7 +650,13 @@ Do not copy legacy implementation by default.
 
 Legacy may be used only when Moli explicitly asks for reference extraction. This greenfield architecture is the source of truth.
 
-If Moli decides the old LocalSnow availability/requestability system is worth adapting, treat it as a reference extraction exercise, not a migration-by-gravity:
+Legacy pricing extraction from `localsnow-legacy` found useful concepts but too much v1 bloat:
+
+- useful: base hourly lesson price, group-size pricing tiers, duration packages such as half-day/full-day, `BookingPriceCalculator`-style breakdowns and preserving estimated/selected price on booking records;
+- useful with caution: simple Stripe Checkout/webhook references and refund-state markers, re-expressed through the new guaranteed-booking/payment architecture;
+- reject for v1 by default: €5 lead-fee contact unlock, refundable deposit as the core model, promo-code/conditional-pricing systems, broad school pricing/admin complexity and any payment flow that contradicts the new free self-managed inquiry + guaranteed booking thesis.
+
+If old availability/requestability or pricing code is adapted, treat it as reference extraction, not migration-by-gravity:
 
 - extract only the concepts that improve conversion, instructor ease of use or operator clarity;
 - discard anything that adds bloat, fake precision or confusing setup;
