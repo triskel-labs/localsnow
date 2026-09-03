@@ -172,16 +172,16 @@ Before backlog/code, each layer must become either an explicit backlog requireme
 | --- | --- |
 | 1. Frontend | Backlog must require mobile-first verification on real/narrow screens, keyboard navigation, accessible HTML semantics, consistent component structure/design tokens, resilient forms, image optimization and browser-console checks. |
 | 2. APIs/backend | Every mutation/read seam must have focused server endpoints/actions, input validation, helpful error responses, no sensitive response leakage, network-tab/API-tool testability and timeout/failure UX. |
-| 3. Database/storage | Schema backlog must define relationships, uniqueness, indexes for search/filter fields, migrations, file-storage boundaries for images/docs, backup/restore expectations and delete/retention behavior. |
+| 3. Database/storage | Schema backlog must define relationships, uniqueness, indexes for search/filter fields, migrations, file-storage boundaries for images/docs, object-storage/CDN assumptions, backup/restore expectations and delete/retention behavior. |
 | 4. Auth/permissions | Auth must use a proven provider/session approach; every protected page/action/API must enforce server-side authz; multi-user access tests and RLS/row-ownership policy must be planned before user data exists. |
 | 5. Hosting/deployment | Deployment backlog must include environment-variable/secrets handling, preview/staging before production, HTTPS/custom-domain readiness, deploy logs, rollback path and deploy/down notifications. |
 | 6. Cloud/compute | Architecture/backlog must name cost-bearing services, billing alerts, free-tier limits, serverless/function/runtime assumptions, data-transfer risks and what happens at 10x traffic. |
 | 7. CI/CD/version control | Implementation starts through feature branches/PRs only, with at least build/lint/test/doc checks appropriate to the scaffold; commits stay small and PRs state real verification. |
 | 8. Security/RLS | Security must be server-enforced, not UI-hidden; secrets stay out of code; HTTPS/CORS/security headers/input sanitization/RLS policies are acceptance criteria, not cleanup tasks. |
-| 9. Rate limiting | Expensive/public endpoints need rate limits, debouncing for search/autocomplete, graceful 429 handling, separate dev/prod API keys where applicable and billing/usage visibility. |
-| 10. Caching/CDN | SEO/public pages and assets need CDN/static cache strategy, image formats/sizes/lazy loading, cache-busting, dynamic cache invalidation rules and Lighthouse/performance checks. |
+| 9. Rate limiting | Expensive/public endpoints, search/autocomplete, contact/inquiry/booking forms, email/action-token flows, checkout creation and any AI/helper surfaces need rate limits or abuse controls, debouncing where useful, graceful 429 handling, separate dev/prod API keys where applicable and billing/usage visibility. |
+| 10. Caching/CDN | SEO/public pages, profile media and assets need CDN/static cache strategy, image formats/sizes/lazy loading, object-storage boundaries, cache-busting, dynamic cache invalidation rules and Lighthouse/performance checks. Cloudflare R2 + CDN is a strong candidate for media/file storage, but the backlog should still make the provider decision explicitly. |
 | 11. Load balancing/scaling | V1 can start simple, but backlog must avoid sticky server-only sessions, plan database connection pooling, health checks and a first load/performance smoke test before launch. |
-| 12. Error tracking/logs | Scaffold must include structured logs, error boundaries/friendly failures, sensitive-data redaction, source-map/error tracking path and alerting for critical flows like booking/payment. |
+| 12. Error tracking/logs | Scaffold must include structured logs, error boundaries/friendly failures, sensitive-data redaction, source-map/error tracking path and alerting for critical flows like booking/payment. Prefer privacy-safe/self-hostable observability choices where practical: Umami/Plausible-style analytics, Uptime Kuma-style uptime monitoring and Sentry or equivalent error tracking can be evaluated in the backlog. |
 | Conversion engineering | Backlog must define the buyer journey map from first discovery to payment/confirmation, name event points for each meaningful decision/drop-off, keep analytics privacy-safe and require a first conversion funnel smoke test before launch. |
 | 13. Availability/recovery | Launch path must include uptime monitoring, health checks, automated backups, tested restore, rollback runbook and user/operator communication plan for outages/payment incidents. |
 
@@ -291,11 +291,13 @@ Core concepts:
 - `PriceSnapshot`: public/booking price facts used at request/payment time.
 - `AvailabilityPattern`: season/date range, weekdays, time windows, optional generated slots.
 - `RequestabilityStrength`: broad inquiry, slot-like availability, guaranteed booking ready.
+- `ExternalCalendarConnection`: optional future calendar/import connection that can inform busy blocks/requestability without making Google Calendar the v1 source of truth.
 
 Architecture rules:
 
 - Availability should be useful for snowsports, especially independent instructors.
 - External/full calendar sync is out of v1.
+- Basic Google Calendar integration may be considered only as a narrow backlog option if it clearly improves instructor setup or trust: for example read-only busy-block import, calendar conflict hints or one-way export. It must not become full two-way sync, instant-confirmation infrastructure or a hard dependency for using LocalSnow.
 - Basic LocalSnow availability can exist as source-aware patterns that later integrate with SkiRelay/shared primitives.
 - Pricing can support basic price calculation and snapshotting, but not complex promos/packages unless reopened.
 - If availability specificity is shown publicly, copy must not say LocalSnow is still checking availability for that exact thing; it should say confirming lesson details when needed.
@@ -574,6 +576,41 @@ Use an email provider behind a notification abstraction.
 
 Architecture should not depend on one provider’s template syntax. It should store enough notification state for retries/operator visibility.
 
+### Media/file storage and CDN
+
+Use a storage abstraction for instructor/provider media, profile images, documents and future trust/legal assets.
+
+Architecture rules:
+
+- do not store media directly in the database except small metadata;
+- plan object storage with signed upload/access rules where needed;
+- public profile media should be CDN-friendly and image-optimized;
+- sensitive/internal documents must not become public CDN assets by accident;
+- Cloudflare R2 + CDN is a practical candidate because it matches the object-storage/CDN need, but the backlog should confirm provider, cost and operational fit before implementation.
+
+### Analytics, monitoring and error tracking
+
+Use lightweight observability that answers operational/revenue questions without bloating v1.
+
+Architecture rules:
+
+- analytics should be privacy-safe and conversion-focused;
+- uptime monitoring should cover the public site, critical action paths and later payment/webhook health;
+- error tracking should redact sensitive client/contact/payment data;
+- self-hostable/open-source-friendly tools such as Umami, Plausible and Uptime Kuma are good candidates to evaluate;
+- Sentry or an equivalent error-tracking service can be used if the operational value beats the setup/privacy/cost tradeoff.
+
+### External calendars
+
+LocalSnow should not depend on external calendar sync for v1.
+
+Architecture rules:
+
+- the LocalSnow availability/requestability model remains the product source of truth for public actions;
+- Google Calendar can be evaluated as an optional helper for instructor setup, busy-block awareness or one-way export;
+- do not promise live calendar accuracy, instant confirmation or full two-way sync;
+- if implemented, external calendar data must be source-labelled, revocable and unable to silently override operator-confirmed booking states.
+
 ### SkiRelay/shared primitives
 
 Keep the seam open for shared availability/profile primitives, but do not integrate SkiRelay as a product dependency in v1.
@@ -598,6 +635,12 @@ Do not copy legacy implementation by default.
 
 Legacy may be used only when Moli explicitly asks for reference extraction. This greenfield architecture is the source of truth.
 
+If Moli decides the old LocalSnow availability/requestability system is worth adapting, treat it as a reference extraction exercise, not a migration-by-gravity:
+
+- extract only the concepts that improve conversion, instructor ease of use or operator clarity;
+- discard anything that adds bloat, fake precision or confusing setup;
+- re-express useful ideas through this greenfield architecture and backlog acceptance tests before coding.
+
 ## Architecture sequence before backlog
 
 The backlog layer should derive work in this order:
@@ -612,8 +655,10 @@ The backlog layer should derive work in this order:
    - mobile/accessibility/form verification pattern;
    - server action/API validation pattern;
    - auth/permission/RLS decision;
+   - object-storage/CDN decision for profile media/files;
    - environment/secrets/deploy-preview rule;
    - baseline logging/error-boundary/health-check rule;
+   - analytics/monitoring/error-tracking tool decision;
    - rate-limit/cache/performance smoke-test expectations.
 3. Conversion journey map:
    - first impression → inquiry/guaranteed-booking path → payment/confirmation journey;
@@ -635,6 +680,7 @@ The backlog layer should derive work in this order:
    - basic offers;
    - season/weekday/time-window availability;
    - requestability strength.
+   - explicit decision on whether Google Calendar is deferred or included only as a narrow helper.
 8. Unified lesson intent capture:
    - shared intake data;
    - self-managed inquiry path;
