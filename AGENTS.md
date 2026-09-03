@@ -6,7 +6,7 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Current active implementation slice: B1 public discovery shell + SEO policy seam from `docs/10-backlog-hierarchy.md`.
+Current active implementation slice: B2 catalog and resort readiness from `docs/10-backlog-hierarchy.md`.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
@@ -21,7 +21,7 @@ Current active implementation slice: B1 public discovery shell + SEO policy seam
 11. `docs/09-engineering-architecture.md`
 12. `docs/10-backlog-hierarchy.md`
 
-Moli approved continuing past the backlog hierarchy. Implementation may now proceed slice-by-slice from `docs/10-backlog-hierarchy.md`. B1 may create public discovery page shells, Spain priority structure, supply invitation shell and central SEO/indexability policy. Do not create complete resort database, sitemap automation, final SEO copy, schema.org, analytics dashboards, product database schema, payments, email delivery, availability engine or deployment work in B1.
+Moli approved continuing past the backlog hierarchy. Implementation may now proceed slice-by-slice from `docs/10-backlog-hierarchy.md`. B2 may add in-code catalog/readiness records and public resort shells for Baqueira, La Molina and Cerler. Do not create a complete resort database, mass-generated worldwide pages, final resort copy, geospatial/search optimization, product database schema, payments, email delivery, availability engine or deployment work in B2.
 
 ## Professional-team sequence
 
@@ -133,3 +133,22 @@ Not acceptable in B1:
 - final SEO copy or schema.org;
 - analytics dashboards;
 - real search, pricing, booking, availability, auth or payment flow.
+
+## B2 implementation boundary
+
+B2 exists to make resort readiness explicit before supply/profile/offers work. Acceptable B2 work:
+
+- in-code `Country`, `Region`, `Resort`, `ResortReadiness` and `ResortCoverage` records;
+- Spain priority resort set: Baqueira, La Molina, Cerler;
+- resort pages that show readiness/coverage honestly;
+- tests proving thin resorts are noindex by default and priority resorts can be promoted independently;
+- supply invitation visibility on priority resort pages.
+
+Not acceptable in B2:
+
+- database-backed catalog migration;
+- complete worldwide resort import;
+- mass-generated SEO pages;
+- fake supply/availability/instant-confirmation claims;
+- geospatial search optimization;
+- real booking/pricing/availability/auth/payment flow.

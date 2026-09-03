@@ -4,7 +4,7 @@ Greenfield LocalSnow product. The previous codebase is preserved at [triskel-lab
 
 ## Current phase
 
-**Implementation: B1 public discovery shell + SEO policy seam.**
+**Implementation: B2 catalog and resort readiness.**
 
 We are not trying to decide the whole product upfront. We are creating the first reviewed decision layer, then deriving the next layer from it.
 
@@ -39,14 +39,14 @@ These are intentionally controlled. They define product meaning, surfaces, recor
 
 ## Current implementation slice
 
-The active implementation slice is B1 from `docs/10-backlog-hierarchy.md`: public discovery shell + SEO policy seam.
+The active implementation slice is B2 from `docs/10-backlog-hierarchy.md`: catalog and resort readiness.
 
-Current B1 goal:
+Current B2 goal:
 
-- create public discovery pages that render without login;
-- centralize SEO/indexability policy so route existence does not imply indexing;
-- show Spain as the first priority market without mass-indexing thin worldwide pages;
-- avoid complete resort database, sitemap automation, final SEO copy, schema.org and analytics dashboards until later slices.
+- model Spain priority resorts as useful catalog/readiness records;
+- show Baqueira, La Molina and Cerler readiness without fake supply claims;
+- keep thin resorts noindex by default while allowing useful resorts to be promoted independently;
+- avoid full worldwide content investment, final resort copy and geospatial/search optimization until later slices.
 
 ## Drift guard
 

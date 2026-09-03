@@ -1,10 +1,15 @@
-import { getPublicPage } from "$lib/discovery/publicPages";
+import {
+  getRegionForResort,
+  getResortBySlug,
+  getResortRobots,
+  getResortStatusCopy,
+} from "$lib/catalog/resorts";
+
+const resort = getResortBySlug("baqueira");
 
 export const load = () => ({
-  page: getPublicPage("/spain/baqueira"),
-  facts: [
-    "Priority Spain resort shell",
-    "Requestable lesson options will come after catalog and supply slices",
-    "Availability copy must not promise instant confirmation or perfect live calendars",
-  ],
+  resort,
+  region: resort ? getRegionForResort(resort) : undefined,
+  robots: resort ? getResortRobots(resort) : "noindex,nofollow",
+  status: resort ? getResortStatusCopy(resort) : "Resort not found.",
 });

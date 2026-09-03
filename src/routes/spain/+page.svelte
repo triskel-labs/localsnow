@@ -25,12 +25,13 @@
   </p>
 
   <section aria-labelledby="resorts-title">
-    <h2 id="resorts-title">Priority resort structure</h2>
+    <h2 id="resorts-title">Priority resort readiness</h2>
     <div class="cards">
       {#each data.priorityResorts as resort}
         <a class="card" href={resort.href}>
+          <span>{resort.robots}</span>
           <strong>{resort.name}</strong>
-          <span>{resort.status}</span>
+          <p>{resort.status}</p>
         </a>
       {/each}
     </div>
@@ -64,7 +65,8 @@
     margin-top: 3rem;
   }
 
-  .lede {
+  .lede,
+  .card p {
     max-width: 44rem;
     color: #cbd5e1;
     font-size: 1.1rem;
@@ -80,7 +82,7 @@
   .card {
     display: grid;
     gap: 0.75rem;
-    min-height: 8rem;
+    min-height: 9rem;
     border: 1px solid rgba(148, 163, 184, 0.22);
     border-radius: 1.25rem;
     padding: 1.25rem;

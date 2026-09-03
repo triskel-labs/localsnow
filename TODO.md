@@ -21,7 +21,8 @@
 - [x] Moli reviewed PR #7 engineering architecture and approved proceeding.
 - [x] Moli approved continuing past backlog hierarchy.
 - [x] Implement B0 technical foundation scaffold.
-- [ ] Implement B1 public discovery shell + SEO policy seam.
+- [x] Implement B1 public discovery shell + SEO policy seam.
+- [ ] Implement B2 catalog and resort readiness.
 
 ## On process
 
@@ -34,7 +35,8 @@
 - [x] PR #7: Engineering architecture.
 - [x] PR #8: Backlog hierarchy.
 - [x] PR #9: B0 technical foundation scaffold.
-- [ ] PR #10: B1 public discovery shell + SEO policy seam.
+- [x] PR #10: B1 public discovery shell + SEO policy seam.
+- [ ] PR #11: B2 catalog and resort readiness.
 
 ## Done
 
@@ -49,3 +51,4 @@
 - [x] Merge engineering architecture.
 - [x] Merge backlog hierarchy.
 - [x] Merge B0 technical foundation scaffold.
+- [x] Merge B1 public discovery shell + SEO policy seam.
