@@ -16,15 +16,17 @@
 <main class="page" aria-labelledby="page-title">
   <p class="eyebrow">Instructor supply invitation</p>
   <h1 id="page-title">
-    Get lesson demand without adopting a heavy booking system.
+    Get found by lesson clients without becoming a content creator.
   </h1>
   <p class="lede">
-    LocalSnow starts with lightweight, requestable supply signals. Instructors
-    should not need a full calendar sync or school admin platform to join v1.
+    You know visibility matters, but filming yourself, exposing your life online
+    or gambling on a generic marketing agency is not the only path. LocalSnow is
+    a specialized space where snowsports professionals live and clients look for
+    lessons.
   </p>
 
   <section aria-labelledby="signals-title">
-    <h2 id="signals-title">Early signals LocalSnow will need</h2>
+    <h2 id="signals-title">Simple setup, useful reach</h2>
     <ul>
       {#each data.signals as signal}
         <li>{signal}</li>

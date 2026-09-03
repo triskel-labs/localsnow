@@ -126,7 +126,7 @@ Purpose:
 - route users into resort/lesson discovery by the benefit they want: the right lesson, instructor/provider or resort fit;
 - present free/open discovery as the default trust base;
 - make expert-assisted guaranteed booking feel like the handled paid path when clients want extra safety and matching help;
-- keep instructors/providers aware that LocalSnow can bring real lesson clients.
+- keep instructors/providers aware that LocalSnow solves reach: a specialized snowsports lesson space where clients look for lessons, without forcing providers to film themselves, expose themselves online or gamble on generic agencies.
 
 Search intent:
 
@@ -255,6 +255,12 @@ Thin-supply direction:
 We’re building verified lesson supply for [Resort]. You can search nearby resorts or use guaranteed booking and LocalSnow will work to secure a suitable lesson or refund you if we cannot make it happen.
 
 Are you an instructor, school or lesson provider working in [Resort]? Create your LocalSnow profile so clients can discover your lessons and contact/book you through LocalSnow.
+```
+
+Provider-side SEO/support copy should emphasize:
+
+```txt
+Get found by ski and snowboard lesson clients without becoming a content creator, running ads or hiring a generic marketing agency.
 ```
 
 Avoid:

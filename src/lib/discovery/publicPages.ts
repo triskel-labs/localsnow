@@ -110,7 +110,7 @@ export const publicPages = [
     path: "/instructors/join",
     title: "Teach with LocalSnow",
     description:
-      "Supply invitation shell for instructors who want requestable lesson demand without adopting a complex calendar or admin system.",
+      "Supply invitation shell for instructors who want more lesson clients without becoming content creators, running ads or hiring a generic agency.",
     retrieval: {
       intent: "supplyInvitation",
       requiredSignals: ["resorts served", "sports taught", "lesson types"],
@@ -123,7 +123,7 @@ export const publicPages = [
     label: "For instructors",
     badge: "Supply invitation",
     summary:
-      "Invites instructors without exposing SkiRelay internals or forcing full-calendar setup in v1.",
+      "Invites instructors around the real wedge: more clients and paid work, less marketing/admin complexity.",
     primaryAction: "Register interest",
   }),
   page({

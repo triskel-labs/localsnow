@@ -107,6 +107,8 @@ The architecture must preserve these decisions:
    - Discovery pages, path choice, inquiry forms, guaranteed booking intake, account/contact capture and checkout are part of one measured buying system.
    - The backlog should version and verify this journey the same way it verifies uptime, errors and security.
    - Do not defer conversion questions until “marketing later”; LocalSnow’s revenue thesis depends on knowing where clients enter, hesitate, submit, abandon and pay.
+   - The provider conversion journey is mostly a reach/business exchange: more clients and money, less marketing/admin complexity, fair commission when LocalSnow brings real work.
+   - Provider-facing systems should not start from anti-platform anxiety or reputation theatre. Start from: “you need visibility, but you do not want to film yourself, expose yourself online or gamble on a generic marketing agency.”
 
 ## Recommended system shape
 
@@ -132,6 +134,7 @@ LocalSnow web app
 │  ├─ guided profile setup
 │  ├─ offers/services
 │  ├─ availability/requestability setup
+│  ├─ provider reach/value messaging
 │  ├─ translation/pre-fill support
 │  └─ claim/profile review flow
 ├─ Operator layer

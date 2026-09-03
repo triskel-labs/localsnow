@@ -31,7 +31,7 @@ The next layers can turn this into SEO pages, architecture and backlog. This lay
 
 4. **The public outcome is the lesson, not the request.**
    - Internally, request is the domain unit.
-   - Public copy should sell the client getting the right ski/snowboard lesson and the instructor/provider getting more real lesson clients.
+   - Public copy should sell the client getting the right ski/snowboard lesson and the instructor/provider getting more real lesson clients without becoming a content creator, exposing themselves online or gambling on a generic agency.
    - “Request” is the vehicle; “lesson”, “booking”, “client” and “student” are the benefits.
 
 5. **Snowsports specificity beats generic directory copy.**
@@ -74,7 +74,7 @@ Make the visitor understand in seconds:
 1. LocalSnow helps clients find and book ski/snowboard lessons.
 2. The catalog can be browsed worldwide, while launch marketing, supply effort and conversion focus are concentrated on Spain first.
 3. Clients should feel they are getting a lesson handled, not merely submitting a form.
-4. Instructors/providers should feel LocalSnow can bring real lesson clients, not admin noise.
+4. Instructors/providers should feel LocalSnow solves reach: more lesson clients and money, less marketing/admin work, fair commission when LocalSnow brings business.
 5. The guaranteed/protected path is strong: LocalSnow ensures the lesson, a suitable alternative, or a refund.
 
 Primary message direction:
@@ -344,7 +344,57 @@ Avoid:
 - Indexing hundreds of nearly identical pages as if they are rich guides.
 - Making programmatic pages sound locally expert before content/supply exists.
 
-## CT7 — Profile and offer trust cues
+## CT7 — Provider reach and supply-side promise
+
+Applies to:
+
+- S6 supply onboarding;
+- R2 supply profile;
+- R3 offer/service;
+- future provider-facing pages and outreach.
+
+Trust job:
+
+Make instructors/providers understand the practical exchange immediately: LocalSnow helps them get found by lesson clients without forcing them to become marketers, content creators or platform operators.
+
+Provider desire:
+
+```txt
+More paid lesson clients with less marketing and admin effort.
+```
+
+Provider frustrations:
+
+- they know visibility matters, but do not want to film themselves constantly;
+- they do not want to expose their personal life or personality as the marketing product;
+- they do not want to gamble on a generic marketing agency that may not understand resort/lesson demand;
+- they do not want low-quality leads, price confusion or endless messaging;
+- they do not want another complex booking/calendar/admin platform;
+- they do not mind a fair commission when LocalSnow actually brings paid work.
+
+Provider promise direction:
+
+```txt
+Get found by ski and snowboard lesson clients without becoming a content creator, running ads or hiring a generic marketing agency.
+
+LocalSnow is a specialized discovery space where snowsports professionals can show what they teach, where they work and how clients can start a lesson request or booking path.
+```
+
+Provider setup direction:
+
+```txt
+Create your professional LocalSnow presence in minutes.
+Tell clients where you teach, what you teach, your starting price and when you are usually available. LocalSnow keeps setup simple and helps turn lesson demand into paid work.
+```
+
+Avoid:
+
+- over-framing providers as worried about being commoditized by a marketplace;
+- making provider setup feel like CRM, staff management or a full booking system;
+- promising guaranteed clients before LocalSnow has demand;
+- hiding the value exchange: commission is acceptable only if LocalSnow brings real business.
+
+## CT8 — Profile and offer trust cues
 
 Applies to:
 
@@ -392,7 +442,7 @@ Boundary:
 - “Verified” should only be used where the verification actually exists.
 - Do not claim licenses, insurance, criminal checks, federation credentials or legal verification unless actually checked.
 
-## CT8 — Email updates + lightweight client account
+## CT9 — Email updates + lightweight client account
 
 Applies to:
 
@@ -444,7 +494,7 @@ Boundary:
 - Do not hide public SEO/discovery pages behind login; gate the high-intent actions where contact capture is valuable.
 - Secure token links can coexist with accounts.
 
-## CT9 — Professional/provider notification and action copy
+## CT10 — Professional/provider notification and action copy
 
 Applies to:
 
@@ -487,7 +537,7 @@ Boundary:
 - Do not build school staff calendars or admin rosters in v1.
 - Email is the communication channel; LocalSnow is not an in-app messaging product.
 
-## CT10 — Review trust copy
+## CT11 — Review trust copy
 
 Applies to:
 
@@ -533,7 +583,7 @@ Boundary:
 - Do not present unverified imported testimonials as verified LocalSnow reviews.
 - Do not build dispute systems before volume requires them.
 
-## CT11 — Legal / GDPR / online-business trust copy
+## CT12 — Legal / GDPR / online-business trust copy
 
 Applies to:
 
@@ -572,7 +622,7 @@ Boundary:
 - Do not claim automated GDPR workflows, automated invoice generation, automated tax handling or automated provider payout accounting before they exist.
 - The exact wording should be checked before public payment launch.
 
-## CT12 — Owner/operator copy boundary
+## CT13 — Owner/operator copy boundary
 
 Applies to:
 

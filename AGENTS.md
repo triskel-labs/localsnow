@@ -6,7 +6,7 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Current active implementation slice: B2 catalog and resort readiness from `docs/10-backlog-hierarchy.md`.
+Current active checkpoint: provider reach correction before B3 supply profile setup.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
@@ -21,7 +21,7 @@ Current active implementation slice: B2 catalog and resort readiness from `docs/
 11. `docs/09-engineering-architecture.md`
 12. `docs/10-backlog-hierarchy.md`
 
-Moli approved continuing past the backlog hierarchy. Implementation may now proceed slice-by-slice from `docs/10-backlog-hierarchy.md`. B2 may add in-code catalog/readiness records and public resort shells for Baqueira, La Molina and Cerler. Do not create a complete resort database, mass-generated worldwide pages, final resort copy, geospatial/search optimization, product database schema, payments, email delivery, availability engine or deployment work in B2.
+Moli corrected the provider-side acquisition thesis before B3: providers mostly want more clients, more money, less admin/marketing complexity and a fair commission when LocalSnow brings real work. LocalSnow solves reach without requiring providers to film themselves, expose themselves online or gamble on a generic marketing agency. Patch docs/shells with this before further profile work. Do not start auth, database schema, uploads, payments, email delivery or availability engine until the B3 boundary explicitly requires them.
 
 ## Professional-team sequence
 
@@ -152,3 +152,14 @@ Not acceptable in B2:
 - fake supply/availability/instant-confirmation claims;
 - geospatial search optimization;
 - real booking/pricing/availability/auth/payment flow.
+
+## Provider reach correction before B3
+
+This correction affects every provider-facing layer. Use this as the B3 source of truth:
+
+- providers want more clients and money;
+- providers usually accept a fair commission if LocalSnow brings real paid work;
+- providers want less management, not another platform to operate;
+- the wedge is reach without marketing burden: no constant filming, no personal exposure as a content creator, no gamble on a generic marketing agency;
+- LocalSnow is a specialized discovery space where snowsports professionals live and clients look for lessons;
+- B3 profile setup should feel like creating a professional LocalSnow presence in minutes, not configuring a marketplace operating system.

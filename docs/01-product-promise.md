@@ -90,7 +90,15 @@ The later surface map should include a basic availability layer because it is pa
 
 ## Professional promise
 
-LocalSnow helps professionals create a credible public profile in a place where high-intent clients are searching. The promise is more bookings/revenue without breaking the bank on marketing or endlessly managing social media for unqualified attention.
+LocalSnow helps professionals solve the reach problem: more lesson clients and revenue without having to become content creators, expose themselves online every week, gamble on a generic marketing agency, or manage a heavy platform.
+
+The professional promise is simple:
+
+- more qualified ski/snowboard lesson clients;
+- more paid work when LocalSnow can bring demand;
+- less marketing/admin complexity;
+- fair commission only makes sense when LocalSnow creates real business;
+- a specialized lesson-discovery space where professionals live and clients already look for lessons.
 
 Professional setup should be as self-serve as possible:
 
@@ -100,7 +108,7 @@ Professional setup should be as self-serve as possible:
 - explicit about missing profile/offer/availability/trust information;
 - optimized for “done once with effort, works forever without effort.”
 
-This setup flow is one of the most important v1 flows because supply quality compounds over time.
+This setup flow is one of the most important v1 flows because supply quality compounds over time. It should feel like creating a professional LocalSnow presence, not configuring a marketplace operating system.
 
 ## Operator promise
 

@@ -168,15 +168,16 @@ Not included:
 ### B3 — Supply profile setup and publication
 
 Goal:
-- let instructors/providers create publishable LocalSnow supply while protecting privacy and trust.
+- let instructors/providers create publishable LocalSnow supply that solves reach first: more lesson clients and money, less marketing/admin complexity, without forcing them to film themselves, expose themselves online or gamble on generic agencies.
 
 Foundation layer(s):
 - frontend, backend validation, auth/permissions, database/storage, security.
 
 Loop:
-- instructor/provider creates a profile → Moli/LocalSnow reviews/publishes → clients can discover and act.
+- instructor/provider wants more clients without more marketing complexity → creates a simple professional presence → Moli/LocalSnow reviews/publishes → clients can discover and act → fair commission makes sense when LocalSnow brings paid work.
 
 Surface:
+- provider reach/value page or section;
 - guided profile setup;
 - profile preview;
 - operator review/publish controls;
@@ -195,6 +196,9 @@ Conversion point(s):
 - public profile viewed.
 
 Acceptance test:
+- provider-facing copy leads with more clients/money and less marketing/admin complexity;
+- provider setup does not imply they must become content creators, manage ads or hire agencies;
+- commission/value exchange is clear without promising guaranteed clients;
 - public phone/email/direct contact is never exposed to anonymous users;
 - school/provider names can be public full professional names;
 - independent instructors default to privacy-safe display unless they choose otherwise.
