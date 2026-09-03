@@ -46,4 +46,14 @@ describe("B1 SEO/indexability policy", () => {
       publicPages.every((page) => page.retrieval.requiredSignals.length > 0),
     ).toBe(true);
   });
+
+  it("frames provider acquisition around reach without marketing burden", () => {
+    const supplyPage = getPublicPage("/instructors/join");
+
+    expect(supplyPage?.description).toContain("more lesson clients");
+    expect(supplyPage?.description).toContain(
+      "without becoming content creators",
+    );
+    expect(supplyPage?.summary).toContain("less marketing/admin complexity");
+  });
 });

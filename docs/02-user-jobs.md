@@ -26,6 +26,9 @@ A client needs to:
 
 An independent instructor needs to:
 
+- get more lesson clients and paid work;
+- solve visibility/reach without constantly filming themselves, posting on social media or exposing their personal life online;
+- avoid gambling time/money on a generic marketing agency that may not understand snowsports lessons;
 - look credible online;
 - show where and what they teach;
 - communicate language, credentials, experience, style and client-instructor fit information;
@@ -33,6 +36,7 @@ An independent instructor needs to:
 - configure basic availability/requestability when useful;
 - receive qualified requests;
 - avoid heavy admin/calendar/software work in v1;
+- understand the LocalSnow commission/value exchange clearly: fair commission is acceptable when LocalSnow brings real business;
 - control what is public;
 - be guided to finish the profile/offer setup with clear warnings when something important is missing.
 
@@ -40,6 +44,7 @@ An independent instructor needs to:
 
 A school or small provider may need to:
 
+- get more clients and paid lessons without adding a new internal operations system;
 - appear credible in resort discovery;
 - publish simple offers;
 - receive requests;
