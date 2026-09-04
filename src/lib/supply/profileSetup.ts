@@ -3,7 +3,7 @@ import {
   getProfileReadiness,
   getPublicDisplayName,
   toPublicSupplyProfile,
-  type OfferOwnership,
+  type OfferOwnerKind,
   type ProfileKind,
   type ProfileReadiness,
   type PublicSupplyProfile,
@@ -33,12 +33,27 @@ export type ProviderSetupGuide = {
   };
 };
 
+export type PublicCommercialOwner = {
+  ownerKind: OfferOwnerKind;
+  pricingSource: "instructorOwned" | "schoolOwned";
+  summary: string;
+};
+
+export type SetupPreviewPublicProfile = Omit<
+  PublicSupplyProfile,
+  "affiliation"
+> & {
+  affiliation:
+    | { type: "independent" }
+    | { type: "schoolAffiliated"; inheritsSchoolOffers: true };
+};
+
 export type SetupPreview = {
   displayName: string;
   commercialRule: string;
-  offerOwner: OfferOwnership;
+  commercialOwner: PublicCommercialOwner;
   readiness: ProfileReadiness;
-  publicProfile: PublicSupplyProfile;
+  publicProfile: SetupPreviewPublicProfile;
 };
 
 const sharedFacts = [
@@ -100,8 +115,11 @@ export const getProviderSetupGuide = (): ProviderSetupGuide => ({
       "account creation",
       "database persistence",
       "profile mutation actions",
+      "uploads/media storage",
       "payments",
+      "email delivery",
       "availability engine",
+      "operator review UI",
     ],
   },
 });
@@ -143,18 +161,34 @@ export const getSetupPathProfileDefaults = (
 };
 
 export const getSetupPreview = (profile: SupplyProfile): SetupPreview => {
-  const offerOwner = getOfferOwnershipForProfile(profile);
+  const offerOwnership = getOfferOwnershipForProfile(profile);
   const isSchoolAffiliated = profile.affiliation.type === "schoolAffiliated";
+  const isSchool = profile.kind === "schoolProvider";
+  const publicProfile = toPublicSupplyProfile(profile);
 
   return {
     displayName: getPublicDisplayName(profile),
     commercialRule: isSchoolAffiliated
       ? "This instructor appears publicly, but services and prices are inherited from the school."
-      : profile.kind === "schoolProvider"
+      : isSchool
         ? "This school owns the services and prices shown on its profile."
         : "This instructor owns their own services and prices.",
-    offerOwner,
+    commercialOwner: {
+      ownerKind: offerOwnership.ownerKind,
+      pricingSource:
+        isSchoolAffiliated || isSchool ? "schoolOwned" : "instructorOwned",
+      summary: isSchoolAffiliated
+        ? "School-owned pricing; instructor profile adds trust."
+        : isSchool
+          ? "School-owned pricing and services."
+          : "Instructor-owned pricing and services.",
+    },
     readiness: getProfileReadiness(profile),
-    publicProfile: toPublicSupplyProfile(profile),
+    publicProfile: {
+      ...publicProfile,
+      affiliation: isSchoolAffiliated
+        ? { type: "schoolAffiliated", inheritsSchoolOffers: true }
+        : { type: "independent" },
+    },
   };
 };

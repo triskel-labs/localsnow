@@ -23,8 +23,11 @@ describe("B3.2 provider setup guide", () => {
         "account creation",
         "database persistence",
         "profile mutation actions",
+        "uploads/media storage",
         "payments",
+        "email delivery",
         "availability engine",
+        "operator review UI",
       ]),
     );
   });
@@ -66,6 +69,11 @@ describe("B3.2 provider setup guide", () => {
     expect(preview.commercialRule).toBe(
       "This instructor owns their own services and prices.",
     );
+    expect(preview.commercialOwner).toEqual({
+      ownerKind: "independentInstructor",
+      pricingSource: "instructorOwned",
+      summary: "Instructor-owned pricing and services.",
+    });
     expect(preview.readiness.state).toBe("needsReview");
   });
 
@@ -93,11 +101,13 @@ describe("B3.2 provider setup guide", () => {
     expect(preview.commercialRule).toBe(
       "This instructor appears publicly, but services and prices are inherited from the school.",
     );
-    expect(preview.offerOwner).toEqual({
+    expect(preview.commercialOwner).toEqual({
       ownerKind: "schoolProvider",
-      ownerProfileId: "profile_baqueira_school",
-      inheritedByProfileIds: ["profile_ana"],
+      pricingSource: "schoolOwned",
+      summary: "School-owned pricing; instructor profile adds trust.",
     });
+    expect(JSON.stringify(preview)).not.toContain("profile_baqueira_school");
+    expect(JSON.stringify(preview)).not.toContain("profile_ana");
     expect(preview.publicProfile.startingPrice).toBeUndefined();
   });
 });
