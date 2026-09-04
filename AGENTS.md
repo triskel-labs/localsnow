@@ -6,7 +6,7 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Current active implementation slice: B3.2 provider setup and preview surface.
+Current active implementation slice: B3.3 profile intake contract.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
@@ -22,7 +22,7 @@ Current active implementation slice: B3.2 provider setup and preview surface.
 12. `docs/10-backlog-hierarchy.md`
 13. `docs/11-b1-b2-founder-control.md`
 
-Moli corrected the provider-side acquisition thesis before B3, then approved the B1/B2 founder-control correction. B3 may proceed only in narrow sub-slices. B3.1 landed tested domain/profile helpers, school-affiliated instructor inheritance rules, operator-created school/instructor seed profile rules and public projection rules. B3.2 may add a no-persistence provider setup/preview surface that explains profile setup paths through tested helpers. Do not start auth, database schema, uploads, payments, email delivery or availability engine in this sub-slice.
+Moli corrected the provider-side acquisition thesis before B3, then approved the B1/B2 founder-control correction. B3 may proceed only in narrow sub-slices. B3.1 landed tested domain/profile helpers, school-affiliated instructor inheritance rules, operator-created school/instructor seed profile rules and public projection rules. B3.2 landed a no-persistence provider setup/preview surface. B3.3 may define the no-persistence profile intake contract: what LocalSnow will ask later, separated into public, commercial and LocalSnow-only facts. Do not start auth, database schema, uploads, payments, email delivery or availability engine in this sub-slice.
 
 ## Professional-team sequence
 
@@ -206,6 +206,25 @@ Allowed now:
 - only two profile kinds underneath: `independentInstructor` and `schoolProvider`;
 - school-affiliated instructor inheritance copy/rules;
 - tests proving the helper does not expand taxonomy or imply persistence.
+
+Not allowed yet:
+
+- auth/session implementation;
+- database schema/migrations;
+- form mutation routes/actions;
+- uploads/media storage;
+- operator review UI;
+- payment, email or availability implementation.
+
+## B3.3 profile intake contract boundary
+
+Allowed now:
+
+- profile intake contract helper;
+- join page wiring that explains what LocalSnow asks next;
+- field groups for public profile facts, commercial facts and LocalSnow-only facts;
+- path-specific minimum facts for independent instructor, school provider and school-affiliated instructor;
+- tests proving school-affiliated instructors do not require separate pricing and private fields are not public preview fields.
 
 Not allowed yet:
 
