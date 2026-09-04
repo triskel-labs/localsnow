@@ -25,7 +25,8 @@
 - [x] Implement B2 catalog and resort readiness.
 - [x] Patch provider reach correction before B3.
 - [x] Review B1/B2 founder-control correction before continuing B3.
-- [ ] Implement B3 supply profile domain rules.
+- [x] Implement B3 supply profile domain rules.
+- [ ] Implement B3.2 provider setup and preview surface.
 
 ## On process
 
@@ -42,7 +43,8 @@
 - [x] PR #11: B2 catalog and resort readiness.
 - [x] PR #12: Provider reach correction before B3.
 - [x] PR #13: B1/B2 founder-control correction.
-- [ ] PR #14: B3 supply profile domain rules.
+- [x] PR #14: B3 supply profile domain rules.
+- [ ] PR #15: B3.2 provider setup and preview surface.
 
 ## Done
 
@@ -61,3 +63,4 @@
 - [x] Merge B2 catalog and resort readiness.
 - [x] Merge provider reach correction before B3.
 - [x] Merge B1/B2 founder-control correction.
+- [x] Merge B3 supply profile domain rules.
