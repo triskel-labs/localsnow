@@ -6,7 +6,7 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Current active checkpoint: B1/B2 founder-control correction before continuing B3.
+Current active implementation slice: B3 supply profile domain rules.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
@@ -22,7 +22,7 @@ Current active checkpoint: B1/B2 founder-control correction before continuing B3
 12. `docs/10-backlog-hierarchy.md`
 13. `docs/11-b1-b2-founder-control.md`
 
-Moli corrected the provider-side acquisition thesis before B3, then paused because B1/B2 had moved too quietly from scaffold into product-looking surfaces. Before continuing B3, preserve this correction: B1/B2 are scaffold/policy seams, current public copy is not launch copy, Spanish is primary with English from the beginning, the final resort SEO tree should be resource-first, and hardcoded resort records are temporary seed data only.
+Moli corrected the provider-side acquisition thesis before B3, then approved the B1/B2 founder-control correction. B3 may proceed only in narrow sub-slices. The current B3 sub-slice may add tested domain/profile helpers, operator-created seed profile/listing rules and public projection rules only. Do not start auth, database schema, uploads, payments, email delivery or availability engine in this sub-slice.
 
 ## Professional-team sequence
 
@@ -121,7 +121,7 @@ Current B1/B2 public page copy is scaffold copy, not final launch copy. Real pub
 
 Current hardcoded resort records are versioned seed data only. Do not hardcode the full world catalog in TypeScript; later routes/SEO should consume a catalog repository/policy seam that can move from seed data to DB/admin/imports.
 
-B3 remains paused until `docs/11-b1-b2-founder-control.md` is reviewed.
+B3 can proceed only in narrow sub-slices after `docs/11-b1-b2-founder-control.md` review. The first B3 sub-slice is domain rules only.
 
 ## B1 implementation boundary
 
@@ -172,3 +172,24 @@ This correction affects every provider-facing layer. Use this as the B3 source o
 - the wedge is reach without marketing burden: no constant filming, no personal exposure as a content creator, no gamble on a generic marketing agency;
 - LocalSnow is a specialized discovery space where snowsports professionals live and clients look for lessons;
 - B3 profile setup should feel like creating a professional LocalSnow presence in minutes, not configuring a marketplace operating system.
+
+## B3 domain sub-slice boundary
+
+Allowed now:
+
+- provider reach promise helper;
+- supply profile type/domain helper;
+- operator-created seed profiles/listings for legitimate provider types;
+- internal source notes for unclaimed/operator-created records;
+- privacy-safe public display-name and public projection logic;
+- readiness rules that return draft vs needs-review with missing fields;
+- tests for all of the above.
+
+Not allowed yet:
+
+- auth/session implementation;
+- database schema/migrations;
+- uploads/media storage;
+- mutation routes/actions;
+- operator review UI;
+- payment, email or availability implementation.

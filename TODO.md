@@ -24,7 +24,8 @@
 - [x] Implement B1 public discovery shell + SEO policy seam.
 - [x] Implement B2 catalog and resort readiness.
 - [x] Patch provider reach correction before B3.
-- [ ] Review B1/B2 founder-control correction before continuing B3.
+- [x] Review B1/B2 founder-control correction before continuing B3.
+- [ ] Implement B3 supply profile domain rules.
 
 ## On process
 
@@ -40,7 +41,8 @@
 - [x] PR #10: B1 public discovery shell + SEO policy seam.
 - [x] PR #11: B2 catalog and resort readiness.
 - [x] PR #12: Provider reach correction before B3.
-- [ ] PR #13: B1/B2 founder-control correction.
+- [x] PR #13: B1/B2 founder-control correction.
+- [ ] PR #14: B3 supply profile domain rules.
 
 ## Done
 
@@ -58,3 +60,4 @@
 - [x] Merge B1 public discovery shell + SEO policy seam.
 - [x] Merge B2 catalog and resort readiness.
 - [x] Merge provider reach correction before B3.
+- [x] Merge B1/B2 founder-control correction.
