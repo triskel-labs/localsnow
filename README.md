@@ -4,7 +4,7 @@ Greenfield LocalSnow product. The previous codebase is preserved at [triskel-lab
 
 ## Current phase
 
-**Implementation: B3 supply profile domain rules.**
+**Implementation: B3.2 provider setup and preview surface.**
 
 We are not trying to decide the whole product upfront. We are creating the first reviewed decision layer, then deriving the next layer from it.
 
@@ -40,17 +40,14 @@ These are intentionally controlled. They define product meaning, surfaces, recor
 
 ## Current implementation slice
 
-The active implementation slice is B3 supply profile domain rules.
+The active implementation slice is B3.2 provider setup and preview surface.
 
 Current goal:
 
-- encode provider reach/value promise in a small domain helper;
-- define privacy-safe supply profile display/readiness rules;
-- keep v1 profile kinds narrow: independent instructors and school providers only;
-- define school-affiliated instructor profiles that inherit school-owned offers/prices by default;
-- allow operator-created school/instructor seed profiles/listings, with internal source notes;
-- prove public profile projection never exposes internal contact details or source notes;
-- avoid auth, database schema, uploads, payment, email and full profile UI until later B3 sub-slices.
+- explain the three setup paths without expanding the two v1 profile kinds;
+- show that school-affiliated instructor profiles inherit school-owned services/prices;
+- wire the provider join page through a tested setup guide helper;
+- keep the surface no-persistence: no auth, database schema, mutation actions, uploads, payment, email or availability engine.
 
 ## Drift guard
 
