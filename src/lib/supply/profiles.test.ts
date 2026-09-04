@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   canBeOperatorCreated,
+  getOfferOwnershipForProfile,
   getProfileReadiness,
   getProviderReachPromise,
   getPublicDisplayName,
@@ -10,9 +11,11 @@ import {
 } from "./profiles";
 
 const baseInstructor: SupplyProfile = {
+  id: "profile_marta",
   kind: "independentInstructor",
   source: "providerSubmitted",
   claimStatus: "claimed",
+  affiliation: { type: "independent" },
   firstName: "Marta",
   lastName: "Ribas",
   resortsServed: ["baqueira"],
@@ -25,6 +28,25 @@ const baseInstructor: SupplyProfile = {
     email: "marta@example.test",
     phone: "+340****0000",
   },
+};
+
+const baseSchool: SupplyProfile = {
+  id: "profile_baqueira_school",
+  kind: "schoolProvider",
+  source: "operatorCreated",
+  claimStatus: "unclaimed",
+  affiliation: { type: "independent" },
+  businessName: "Baqueira Mountain School",
+  resortsServed: ["baqueira"],
+  sportsTaught: ["ski", "snowboard"],
+  lessonTypes: ["private", "group", "kids"],
+  languages: ["es", "en"],
+  startingPrice: { amount: 85, currency: "EUR", unit: "hour" },
+  internalContact: {
+    website: "https://example-school.test",
+  },
+  internalSourceNote:
+    "Created from public school website for Baqueira seed directory.",
 };
 
 describe("B3 provider reach promise", () => {
@@ -58,36 +80,64 @@ describe("B3 public display names", () => {
     ).toBe("Marta Ribas Ski Coaching");
   });
 
-  it("uses business names publicly for schools and other provider types", () => {
-    expect(
-      getPublicDisplayName({
-        ...baseInstructor,
-        kind: "schoolProvider",
-        businessName: "Baqueira Mountain School",
-      }),
-    ).toBe("Baqueira Mountain School");
+  it("uses school business names publicly", () => {
+    expect(getPublicDisplayName(baseSchool)).toBe("Baqueira Mountain School");
   });
 });
 
-describe("B3 operator-created supply", () => {
-  it("allows manual creation for legitimate provider/listing types", () => {
-    const kinds: ProfileKind[] = [
-      "independentInstructor",
-      "schoolProvider",
-      "guideProvider",
-      "academyProvider",
-      "otherLessonProvider",
-    ];
+describe("B3 profile kinds and school affiliation", () => {
+  it("keeps v1 profile kinds to independent instructors and schools", () => {
+    const kinds: ProfileKind[] = ["independentInstructor", "schoolProvider"];
 
     expect(kinds.every(canBeOperatorCreated)).toBe(true);
   });
 
+  it("lets school-affiliated instructors have profiles while inheriting school offers", () => {
+    const affiliatedInstructor: SupplyProfile = {
+      ...baseInstructor,
+      id: "profile_ana",
+      firstName: "Ana",
+      lastName: "Soldevila",
+      affiliation: {
+        type: "schoolAffiliated",
+        schoolProfileId: baseSchool.id!,
+        inheritsSchoolOffers: true,
+      },
+      startingPrice: undefined,
+      priceOnRequest: undefined,
+    };
+
+    expect(getProfileReadiness(affiliatedInstructor)).toEqual({
+      state: "needsReview",
+      missing: [],
+    });
+    expect(getOfferOwnershipForProfile(affiliatedInstructor)).toEqual({
+      ownerKind: "schoolProvider",
+      ownerProfileId: "profile_baqueira_school",
+      inheritedByProfileIds: ["profile_ana"],
+    });
+  });
+
+  it("keeps independent instructors as owners of their own offers", () => {
+    expect(getOfferOwnershipForProfile(baseInstructor)).toEqual({
+      ownerKind: "independentInstructor",
+      ownerProfileId: "profile_marta",
+    });
+  });
+
+  it("keeps schools as owners of school-level offers", () => {
+    expect(getOfferOwnershipForProfile(baseSchool)).toEqual({
+      ownerKind: "schoolProvider",
+      ownerProfileId: "profile_baqueira_school",
+    });
+  });
+});
+
+describe("B3 operator-created supply", () => {
   it("requires operator-created profiles to carry an internal source note", () => {
     expect(
       getProfileReadiness({
-        ...baseInstructor,
-        source: "operatorCreated",
-        claimStatus: "unclaimed",
+        ...baseSchool,
         internalSourceNote: undefined,
       }),
     ).toEqual({
@@ -117,29 +167,59 @@ describe("B3 profile readiness", () => {
       missing: ["resorts served", "starting price or price-on-request"],
     });
   });
+
+  it("does not require separate prices for school-affiliated instructor profiles", () => {
+    expect(
+      getProfileReadiness({
+        ...baseInstructor,
+        affiliation: {
+          type: "schoolAffiliated",
+          schoolProfileId: "profile_baqueira_school",
+          inheritsSchoolOffers: true,
+        },
+        startingPrice: undefined,
+      }),
+    ).toEqual({
+      state: "needsReview",
+      missing: [],
+    });
+  });
 });
 
 describe("B3 public supply profile", () => {
   it("never exposes direct contact details or internal source notes to public visitors", () => {
     const publicProfile = toPublicSupplyProfile({
-      ...baseInstructor,
-      source: "operatorCreated",
-      claimStatus: "unclaimed",
-      internalSourceNote:
-        "Created from public school website for Baqueira seed directory.",
+      ...baseSchool,
       internalContact: {
-        email: "marta@example.test",
+        email: "school@example.test",
         phone: "+340****0000",
-        website: "https://example.test",
+        website: "https://example-school.test",
       },
     });
 
-    expect(publicProfile.displayName).toBe("Marta R.");
+    expect(publicProfile.displayName).toBe("Baqueira Mountain School");
     expect(publicProfile.claimStatus).toBe("unclaimed");
     expect(publicProfile).not.toHaveProperty("internalContact");
     expect(publicProfile).not.toHaveProperty("internalSourceNote");
-    expect(JSON.stringify(publicProfile)).not.toContain("marta@example.test");
+    expect(JSON.stringify(publicProfile)).not.toContain("school@example.test");
     expect(JSON.stringify(publicProfile)).not.toContain("+340****0000");
-    expect(JSON.stringify(publicProfile)).not.toContain("example.test");
+    expect(JSON.stringify(publicProfile)).not.toContain("example-school.test");
+  });
+
+  it("does not expose inherited school pricing as instructor-owned pricing", () => {
+    const publicProfile = toPublicSupplyProfile({
+      ...baseInstructor,
+      affiliation: {
+        type: "schoolAffiliated",
+        schoolProfileId: "profile_baqueira_school",
+        inheritsSchoolOffers: true,
+      },
+      startingPrice: { amount: 999, currency: "EUR", unit: "hour" },
+      priceOnRequest: true,
+    });
+
+    expect(publicProfile.affiliation.type).toBe("schoolAffiliated");
+    expect(publicProfile.startingPrice).toBeUndefined();
+    expect(publicProfile.priceOnRequest).toBeUndefined();
   });
 });

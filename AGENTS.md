@@ -22,7 +22,7 @@ Current active implementation slice: B3 supply profile domain rules.
 12. `docs/10-backlog-hierarchy.md`
 13. `docs/11-b1-b2-founder-control.md`
 
-Moli corrected the provider-side acquisition thesis before B3, then approved the B1/B2 founder-control correction. B3 may proceed only in narrow sub-slices. The current B3 sub-slice may add tested domain/profile helpers, operator-created seed profile/listing rules and public projection rules only. Do not start auth, database schema, uploads, payments, email delivery or availability engine in this sub-slice.
+Moli corrected the provider-side acquisition thesis before B3, then approved the B1/B2 founder-control correction. B3 may proceed only in narrow sub-slices. The current B3 sub-slice may add tested domain/profile helpers, school-affiliated instructor inheritance rules, operator-created school/instructor seed profile rules and public projection rules only. Do not start auth, database schema, uploads, payments, email delivery or availability engine in this sub-slice.
 
 ## Professional-team sequence
 
@@ -179,7 +179,9 @@ Allowed now:
 
 - provider reach promise helper;
 - supply profile type/domain helper;
-- operator-created seed profiles/listings for legitimate provider types;
+- v1 profile kinds narrowed to independent instructors and school providers;
+- school-affiliated instructor profiles that inherit school-owned offers/prices by default;
+- operator-created school/instructor seed profiles/listings;
 - internal source notes for unclaimed/operator-created records;
 - privacy-safe public display-name and public projection logic;
 - readiness rules that return draft vs needs-review with missing fields;

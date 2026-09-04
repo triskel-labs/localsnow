@@ -46,7 +46,9 @@ Current goal:
 
 - encode provider reach/value promise in a small domain helper;
 - define privacy-safe supply profile display/readiness rules;
-- allow operator-created seed profiles/listings for legitimate provider types, with internal source notes;
+- keep v1 profile kinds narrow: independent instructors and school providers only;
+- define school-affiliated instructor profiles that inherit school-owned offers/prices by default;
+- allow operator-created school/instructor seed profiles/listings, with internal source notes;
 - prove public profile projection never exposes internal contact details or source notes;
 - avoid auth, database schema, uploads, payment, email and full profile UI until later B3 sub-slices.
 

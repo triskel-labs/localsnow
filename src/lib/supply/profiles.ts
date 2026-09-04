@@ -1,15 +1,26 @@
-export type ProfileKind =
-  | "independentInstructor"
-  | "schoolProvider"
-  | "guideProvider"
-  | "academyProvider"
-  | "otherLessonProvider";
+export type ProfileKind = "independentInstructor" | "schoolProvider";
 
 export type ProfileSource =
   "providerSubmitted" | "operatorCreated" | "legacyImported";
 
 export type ClaimStatus =
   "unclaimed" | "claimRequested" | "claimed" | "localSnowReviewed";
+
+export type ProfileAffiliation =
+  | { type: "independent" }
+  | {
+      type: "schoolAffiliated";
+      schoolProfileId: string;
+      inheritsSchoolOffers: true;
+    };
+
+export type OfferOwnerKind = "independentInstructor" | "schoolProvider";
+
+export type OfferOwnership = {
+  ownerKind: OfferOwnerKind;
+  ownerProfileId: string;
+  inheritedByProfileIds?: string[];
+};
 
 export type LessonType = "private" | "group" | "kids" | "beginner";
 
@@ -28,9 +39,11 @@ export type InternalContact = {
 };
 
 export type SupplyProfile = {
+  id?: string;
   kind: ProfileKind;
   source: ProfileSource;
   claimStatus: ClaimStatus;
+  affiliation: ProfileAffiliation;
   firstName?: string;
   lastName?: string;
   businessName?: string;
@@ -55,6 +68,7 @@ export type PublicSupplyProfile = {
   kind: ProfileKind;
   claimStatus: ClaimStatus;
   displayName: string;
+  affiliation: ProfileAffiliation;
   resortsServed: string[];
   sportsTaught: SupplyProfile["sportsTaught"];
   lessonTypes: LessonType[];
@@ -81,22 +95,13 @@ export const getProviderReachPromise = () => ({
 });
 
 export const canBeOperatorCreated = (kind: ProfileKind) =>
-  [
-    "independentInstructor",
-    "schoolProvider",
-    "guideProvider",
-    "academyProvider",
-    "otherLessonProvider",
-  ].includes(kind);
+  ["independentInstructor", "schoolProvider"].includes(kind);
 
 export const getPublicDisplayName = (profile: SupplyProfile) => {
   if (profile.publicDisplayName?.trim())
     return profile.publicDisplayName.trim();
 
-  if (
-    profile.kind !== "independentInstructor" &&
-    profile.businessName?.trim()
-  ) {
+  if (profile.kind === "schoolProvider" && profile.businessName?.trim()) {
     return profile.businessName.trim();
   }
 
@@ -104,6 +109,30 @@ export const getPublicDisplayName = (profile: SupplyProfile) => {
   const initial = profile.lastName?.trim().charAt(0).toUpperCase();
 
   return initial ? `${firstName} ${initial}.` : firstName;
+};
+
+export const getOfferOwnershipForProfile = (
+  profile: SupplyProfile,
+): OfferOwnership => {
+  if (profile.kind === "schoolProvider") {
+    return {
+      ownerKind: "schoolProvider",
+      ownerProfileId: profile.id ?? getPublicDisplayName(profile),
+    };
+  }
+
+  if (profile.affiliation.type === "schoolAffiliated") {
+    return {
+      ownerKind: "schoolProvider",
+      ownerProfileId: profile.affiliation.schoolProfileId,
+      inheritedByProfileIds: [profile.id ?? getPublicDisplayName(profile)],
+    };
+  }
+
+  return {
+    ownerKind: "independentInstructor",
+    ownerProfileId: profile.id ?? getPublicDisplayName(profile),
+  };
 };
 
 export const getProfileReadiness = (
@@ -118,7 +147,17 @@ export const getProfileReadiness = (
   if (profile.sportsTaught.length === 0) missing.push("sports taught");
   if (profile.lessonTypes.length === 0) missing.push("lesson types");
   if (profile.languages.length === 0) missing.push("languages");
-  if (!profile.startingPrice && !profile.priceOnRequest) {
+  if (
+    profile.affiliation.type === "schoolAffiliated" &&
+    !profile.affiliation.schoolProfileId.trim()
+  ) {
+    missing.push("school affiliation");
+  }
+  if (
+    profile.affiliation.type === "independent" &&
+    !profile.startingPrice &&
+    !profile.priceOnRequest
+  ) {
     missing.push("starting price or price-on-request");
   }
   if (
@@ -147,11 +186,18 @@ export const toPublicSupplyProfile = (
   kind: profile.kind,
   claimStatus: profile.claimStatus,
   displayName: getPublicDisplayName(profile),
+  affiliation: profile.affiliation,
   resortsServed: profile.resortsServed,
   sportsTaught: profile.sportsTaught,
   lessonTypes: profile.lessonTypes,
   languages: profile.languages,
-  startingPrice: profile.startingPrice,
-  priceOnRequest: profile.priceOnRequest,
+  startingPrice:
+    profile.affiliation.type === "schoolAffiliated"
+      ? undefined
+      : profile.startingPrice,
+  priceOnRequest:
+    profile.affiliation.type === "schoolAffiliated"
+      ? undefined
+      : profile.priceOnRequest,
   availabilityPattern: profile.availabilityPattern,
 });
