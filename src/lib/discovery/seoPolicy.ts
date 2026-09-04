@@ -16,6 +16,26 @@ export type SeoSilo =
 export type MarketPriority =
   "priority" | "supported" | "catalogOnly" | "future";
 
+export type CopyStatus = "scaffold" | "founderReviewNeeded" | "launchReady";
+
+export type RouteTreeDecision = {
+  strategy: "resourceFirstResortSilo";
+  canonicalPattern: "/:locale/resorts/:country/:region?/:resort";
+  spanishExample: "/es/estaciones/espana/valle-de-aran/baqueira";
+  englishExample: "/en/resorts/spain/val-daran/baqueira";
+  rejectedPrimaryPattern: "/:locale/:country/resorts/:resort";
+  currentB1B2RoutesAreScaffold: true;
+};
+
+export const routeTreeDecision: RouteTreeDecision = {
+  strategy: "resourceFirstResortSilo",
+  canonicalPattern: "/:locale/resorts/:country/:region?/:resort",
+  spanishExample: "/es/estaciones/espana/valle-de-aran/baqueira",
+  englishExample: "/en/resorts/spain/val-daran/baqueira",
+  rejectedPrimaryPattern: "/:locale/:country/resorts/:resort",
+  currentB1B2RoutesAreScaffold: true,
+};
+
 export type RetrievalQueryContract = {
   intent:
     "lessonDiscovery" | "resortDiscovery" | "supplyInvitation" | "trustSupport";
@@ -32,6 +52,7 @@ export type SeoPolicyInput = {
   title: string;
   description: string;
   retrieval: RetrievalQueryContract;
+  copyStatus: CopyStatus;
 };
 
 export type SeoPolicy = SeoPolicyInput & {

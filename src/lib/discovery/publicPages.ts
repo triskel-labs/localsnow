@@ -12,6 +12,7 @@ export type PublicPage = SeoPolicy & {
   summary: string;
   primaryAction: string;
   secondaryAction?: string;
+  showInNavigation: boolean;
 };
 
 type PublicPageInput = SeoPolicyInput & {
@@ -20,6 +21,7 @@ type PublicPageInput = SeoPolicyInput & {
   summary: string;
   primaryAction: string;
   secondaryAction?: string;
+  showInNavigation?: boolean;
 };
 
 const page = (input: PublicPageInput): PublicPage => {
@@ -32,6 +34,7 @@ const page = (input: PublicPageInput): PublicPage => {
     summary: input.summary,
     primaryAction: input.primaryAction,
     secondaryAction: input.secondaryAction,
+    showInNavigation: input.showInNavigation ?? true,
   };
 };
 
@@ -50,6 +53,7 @@ export const publicPages = [
       requiredSignals: ["sport", "resort or area", "lesson outcome"],
       optionalSignals: ["date window", "level", "language", "group size"],
     },
+    copyStatus: "scaffold",
     label: "Home",
     badge: "Public discovery",
     summary:
@@ -71,6 +75,7 @@ export const publicPages = [
       requiredSignals: ["country", "priority resorts", "sport"],
       optionalSignals: ["season", "lesson type", "client level"],
     },
+    copyStatus: "scaffold",
     label: "Spain",
     badge: "Priority market",
     summary:
@@ -95,6 +100,7 @@ export const publicPages = [
         "provider fit",
       ],
     },
+    copyStatus: "scaffold",
     label: "Baqueira",
     badge: "Priority resort",
     summary:
@@ -120,6 +126,7 @@ export const publicPages = [
         "languages",
       ],
     },
+    copyStatus: "scaffold",
     label: "For instructors",
     badge: "Supply invitation",
     summary:
@@ -140,16 +147,22 @@ export const publicPages = [
       requiredSignals: ["resort", "country"],
       optionalSignals: ["supply status", "lesson intent"],
     },
+    copyStatus: "scaffold",
     label: "Catalog-only example",
     badge: "Noindex-browsable",
     summary:
       "Demonstrates that page existence alone does not mean SEO indexability.",
     primaryAction: "View policy",
+    showInNavigation: false,
   }),
 ] satisfies PublicPage[];
 
 export const getPublicPage = (path: string) =>
   publicPages.find((page) => page.href === path);
+
+export const navigationPages = publicPages.filter(
+  (page) => page.showInNavigation,
+);
 
 export const priorityMarkets = publicPages.filter(
   (page) => page.marketPriority === ("priority" satisfies MarketPriority),

@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
+  catalogSourceDecision,
   getResortBySlug,
   getResortRobots,
   getResortStatusCopy,
   priorityResorts,
+  resortSourcingPolicy,
 } from "./resorts";
 
 describe("B2 resort readiness catalog", () => {
@@ -39,5 +41,23 @@ describe("B2 resort readiness catalog", () => {
         /available now|instant|confirmed/i,
       );
     }
+  });
+
+  it("marks the current catalog as seed data, not the final storage model", () => {
+    expect(catalogSourceDecision.currentSource).toBe("versionedSeed");
+    expect(catalogSourceDecision.finalStorageUndecided).toBe(true);
+    expect(catalogSourceDecision.expectedEvolution).toContain(
+      "databaseBackedCatalogAdmin",
+    );
+  });
+
+  it("keeps professional profile creation open while client sourcing stays secondary", () => {
+    expect(resortSourcingPolicy.providerProfileCreation).toBe("alwaysOpen");
+    expect(resortSourcingPolicy.clientFacingSourcingPlacement).toBe(
+      "secondary",
+    );
+    expect(resortSourcingPolicy.manualSchoolDirectoryListings).toBe(
+      "allowedWhenClearlyUnclaimed",
+    );
   });
 });
