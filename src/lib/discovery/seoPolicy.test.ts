@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { getPublicPage, publicPages } from "./publicPages";
-import { isPubliclyBrowsable, resolveSeoPolicy } from "./seoPolicy";
+import { getPublicPage, navigationPages, publicPages } from "./publicPages";
+import {
+  isPubliclyBrowsable,
+  resolveSeoPolicy,
+  routeTreeDecision,
+} from "./seoPolicy";
 
 describe("B1 SEO/indexability policy", () => {
   it("keeps indexability in policy rather than route existence", () => {
@@ -34,6 +38,7 @@ describe("B1 SEO/indexability policy", () => {
         requiredSignals: ["operator"],
         optionalSignals: [],
       },
+      copyStatus: "scaffold",
     });
 
     expect(internal.canonicalPath).toBe("/operator/queue");
@@ -45,6 +50,43 @@ describe("B1 SEO/indexability policy", () => {
     expect(
       publicPages.every((page) => page.retrieval.requiredSignals.length > 0),
     ).toBe(true);
+  });
+
+  it("labels B1/B2 page copy as scaffold copy, not launch copy", () => {
+    expect(publicPages.every((page) => page.copyStatus === "scaffold")).toBe(
+      true,
+    );
+  });
+
+  it("keeps technical catalog examples out of public navigation", () => {
+    expect(navigationPages.map((page) => page.href)).not.toContain(
+      "/world/catalog-example",
+    );
+    expect(getPublicPage("/world/catalog-example")?.robots).toBe(
+      "noindex,follow",
+    );
+  });
+
+  it("locks the final resort SEO tree as resource-first with localized paths", () => {
+    expect(routeTreeDecision.strategy).toBe("resourceFirstResortSilo");
+    expect(routeTreeDecision.canonicalPattern).toBe(
+      "/:locale/resorts/:country/:region?/:resort",
+    );
+    expect(routeTreeDecision.spanishExample).toBe(
+      "/es/estaciones/espana/valle-de-aran/baqueira",
+    );
+    expect(routeTreeDecision.rejectedPrimaryPattern).toBe(
+      "/:locale/:country/resorts/:resort",
+    );
+    expect(routeTreeDecision.geographyLevels).toEqual([
+      "country",
+      "region",
+      "resort",
+    ]);
+    expect(routeTreeDecision.legacyGeographyPattern).toBe(
+      "countries_regions_resorts",
+    );
+    expect(routeTreeDecision.currentB1B2RoutesAreScaffold).toBe(true);
   });
 
   it("frames provider acquisition around reach without marketing burden", () => {

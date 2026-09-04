@@ -6,7 +6,7 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Current active checkpoint: provider reach correction before B3 supply profile setup.
+Current active checkpoint: B1/B2 founder-control correction before continuing B3.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
@@ -20,8 +20,9 @@ Current active checkpoint: provider reach correction before B3 supply profile se
 10. `docs/08-seo-map.md`
 11. `docs/09-engineering-architecture.md`
 12. `docs/10-backlog-hierarchy.md`
+13. `docs/11-b1-b2-founder-control.md`
 
-Moli corrected the provider-side acquisition thesis before B3: providers mostly want more clients, more money, less admin/marketing complexity and a fair commission when LocalSnow brings real work. LocalSnow solves reach without requiring providers to film themselves, expose themselves online or gamble on a generic marketing agency. Patch docs/shells with this before further profile work. Do not start auth, database schema, uploads, payments, email delivery or availability engine until the B3 boundary explicitly requires them.
+Moli corrected the provider-side acquisition thesis before B3, then paused because B1/B2 had moved too quietly from scaffold into product-looking surfaces. Before continuing B3, preserve this correction: B1/B2 are scaffold/policy seams, current public copy is not launch copy, Spanish is primary with English from the beginning, the final resort SEO tree should be resource-first, and hardcoded resort records are temporary seed data only.
 
 ## Professional-team sequence
 
@@ -113,6 +114,14 @@ Not acceptable in B0:
 - Stripe/email integrations;
 - final SEO/public copy;
 - deployment or production cutover.
+
+## B1/B2 founder-control correction
+
+Current B1/B2 public page copy is scaffold copy, not final launch copy. Real public copy should be Spanish-first with English maintained from the beginning through an i18n layer such as Paraglide/Inlang. Current `/spain` and `/spain/[resort]` routes are scaffold paths; the preferred final resort SEO tree is resource-first: `/es/estaciones/espana/valle-de-aran/baqueira` and `/en/resorts/spain/val-daran/baqueira`, not country-first as the main canonical route. Provider profile creation/supply sourcing should stay open, but client-facing sourcing CTAs must remain secondary. Manual school/provider directory listings are allowed early if clearly not fake partnerships.
+
+Current hardcoded resort records are versioned seed data only. Do not hardcode the full world catalog in TypeScript; later routes/SEO should consume a catalog repository/policy seam that can move from seed data to DB/admin/imports.
+
+B3 remains paused until `docs/11-b1-b2-founder-control.md` is reviewed.
 
 ## B1 implementation boundary
 

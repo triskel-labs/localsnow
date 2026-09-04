@@ -18,6 +18,24 @@ export type ResortReadiness =
 export type ResortCoverage =
   "noSupplyYet" | "sourcingSupply" | "requestable" | "guaranteedReady";
 
+export type CatalogSourceDecision = {
+  currentSource: "versionedSeed";
+  finalStorageUndecided: true;
+  expectedEvolution: readonly [
+    "tinySpainFirstSeed",
+    "fileOrSeedImportBoundary",
+    "databaseBackedCatalogAdmin",
+    "enrichmentImportPipeline",
+  ];
+};
+
+export type ResortSourcingPolicy = {
+  providerProfileCreation: "alwaysOpen";
+  clientFacingSourcingPlacement: "secondary";
+  manualSchoolDirectoryListings: "allowedWhenClearlyUnclaimed";
+  operatorCreatedProfilesAndListings: "allowedForAnyLegitimateProviderType";
+};
+
 export type Resort = {
   id: string;
   countryCode: Country["code"];
@@ -31,6 +49,24 @@ export type Resort = {
   lessonIntents: ("private" | "group" | "kids" | "beginner")[];
   supplyInvitationVisible: boolean;
   summary: string;
+};
+
+export const catalogSourceDecision: CatalogSourceDecision = {
+  currentSource: "versionedSeed",
+  finalStorageUndecided: true,
+  expectedEvolution: [
+    "tinySpainFirstSeed",
+    "fileOrSeedImportBoundary",
+    "databaseBackedCatalogAdmin",
+    "enrichmentImportPipeline",
+  ],
+};
+
+export const resortSourcingPolicy: ResortSourcingPolicy = {
+  providerProfileCreation: "alwaysOpen",
+  clientFacingSourcingPlacement: "secondary",
+  manualSchoolDirectoryListings: "allowedWhenClearlyUnclaimed",
+  operatorCreatedProfilesAndListings: "allowedForAnyLegitimateProviderType",
 };
 
 export const spain: Country = {
@@ -69,7 +105,7 @@ export const priorityResorts: Resort[] = [
     lessonIntents: ["private", "kids", "beginner"],
     supplyInvitationVisible: true,
     summary:
-      "First priority resort shell for useful Spain discovery and instructor sourcing.",
+      "First priority resort scaffold for useful Spain discovery and instructor sourcing.",
   },
   {
     id: "la-molina",
@@ -84,7 +120,7 @@ export const priorityResorts: Resort[] = [
     lessonIntents: ["private", "kids", "beginner"],
     supplyInvitationVisible: true,
     summary:
-      "Priority resort queued for useful content and supply, not promoted to index yet.",
+      "Priority resort seed queued for useful content and supply, not promoted to index yet.",
   },
   {
     id: "cerler",
@@ -99,7 +135,7 @@ export const priorityResorts: Resort[] = [
     lessonIntents: ["private", "group", "kids"],
     supplyInvitationVisible: true,
     summary:
-      "Priority resort queued for supplier discovery without fake supply claims.",
+      "Priority resort seed queued for supplier discovery without fake supply claims.",
   },
 ];
 
@@ -123,6 +159,6 @@ export const getResortStatusCopy = (resort: Resort) => {
   if (resort.coverage === "requestable")
     return "Requestable lesson options can be shown.";
   if (resort.coverage === "sourcingSupply")
-    return "LocalSnow is sourcing trusted supply here.";
+    return "Early LocalSnow coverage: listings and profiles can be added without claiming live availability.";
   return "Catalog shell only: no active supply claim.";
 };
