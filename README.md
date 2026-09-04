@@ -4,7 +4,7 @@ Greenfield LocalSnow product. The previous codebase is preserved at [triskel-lab
 
 ## Current phase
 
-**Founder checkpoint: B1/B2 scaffold + SEO/catalog decisions under review.**
+**Implementation: B3 supply profile domain rules.**
 
 We are not trying to decide the whole product upfront. We are creating the first reviewed decision layer, then deriving the next layer from it.
 
@@ -40,16 +40,17 @@ These are intentionally controlled. They define product meaning, surfaces, recor
 
 ## Current implementation slice
 
-The active checkpoint is a B1/B2 founder-control correction before continuing B3.
+The active implementation slice is B3 supply profile domain rules.
 
 Current goal:
 
-- mark B1/B2 public copy as scaffold copy, not launch copy;
-- record Spanish-first + English-from-the-beginning i18n direction;
-- lock the preferred final resort SEO tree as resource-first (`/es/estaciones/...`, `/en/resorts/...`);
-- clarify that current hardcoded resort records are versioned seed data, not the final catalog storage model;
-- keep provider profile creation/supply sourcing open while making client-facing sourcing CTAs secondary;
-- pause B3 until this correction is reviewed.
+- encode provider reach/value promise in a small domain helper;
+- define privacy-safe supply profile display/readiness rules;
+- keep v1 profile kinds narrow: independent instructors and school providers only;
+- define school-affiliated instructor profiles that inherit school-owned offers/prices by default;
+- allow operator-created school/instructor seed profiles/listings, with internal source notes;
+- prove public profile projection never exposes internal contact details or source notes;
+- avoid auth, database schema, uploads, payment, email and full profile UI until later B3 sub-slices.
 
 ## Drift guard
 
