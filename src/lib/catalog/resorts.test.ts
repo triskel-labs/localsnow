@@ -59,5 +59,8 @@ describe("B2 resort readiness catalog", () => {
     expect(resortSourcingPolicy.manualSchoolDirectoryListings).toBe(
       "allowedWhenClearlyUnclaimed",
     );
+    expect(resortSourcingPolicy.operatorCreatedProfilesAndListings).toBe(
+      "allowedForAnyLegitimateProviderType",
+    );
   });
 });

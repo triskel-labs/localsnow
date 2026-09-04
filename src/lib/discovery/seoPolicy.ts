@@ -24,6 +24,8 @@ export type RouteTreeDecision = {
   spanishExample: "/es/estaciones/espana/valle-de-aran/baqueira";
   englishExample: "/en/resorts/spain/val-daran/baqueira";
   rejectedPrimaryPattern: "/:locale/:country/resorts/:resort";
+  geographyLevels: readonly ["country", "region", "resort"];
+  legacyGeographyPattern: "countries_regions_resorts";
   currentB1B2RoutesAreScaffold: true;
 };
 
@@ -33,6 +35,8 @@ export const routeTreeDecision: RouteTreeDecision = {
   spanishExample: "/es/estaciones/espana/valle-de-aran/baqueira",
   englishExample: "/en/resorts/spain/val-daran/baqueira",
   rejectedPrimaryPattern: "/:locale/:country/resorts/:resort",
+  geographyLevels: ["country", "region", "resort"],
+  legacyGeographyPattern: "countries_regions_resorts",
   currentB1B2RoutesAreScaffold: true,
 };
 

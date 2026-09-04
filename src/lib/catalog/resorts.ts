@@ -33,6 +33,7 @@ export type ResortSourcingPolicy = {
   providerProfileCreation: "alwaysOpen";
   clientFacingSourcingPlacement: "secondary";
   manualSchoolDirectoryListings: "allowedWhenClearlyUnclaimed";
+  operatorCreatedProfilesAndListings: "allowedForAnyLegitimateProviderType";
 };
 
 export type Resort = {
@@ -65,6 +66,7 @@ export const resortSourcingPolicy: ResortSourcingPolicy = {
   providerProfileCreation: "alwaysOpen",
   clientFacingSourcingPlacement: "secondary",
   manualSchoolDirectoryListings: "allowedWhenClearlyUnclaimed",
+  operatorCreatedProfilesAndListings: "allowedForAnyLegitimateProviderType",
 };
 
 export const spain: Country = {

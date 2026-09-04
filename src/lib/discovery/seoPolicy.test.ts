@@ -78,6 +78,14 @@ describe("B1 SEO/indexability policy", () => {
     expect(routeTreeDecision.rejectedPrimaryPattern).toBe(
       "/:locale/:country/resorts/:resort",
     );
+    expect(routeTreeDecision.geographyLevels).toEqual([
+      "country",
+      "region",
+      "resort",
+    ]);
+    expect(routeTreeDecision.legacyGeographyPattern).toBe(
+      "countries_regions_resorts",
+    );
     expect(routeTreeDecision.currentB1B2RoutesAreScaffold).toBe(true);
   });
 

@@ -86,6 +86,26 @@ But the canonical resort path should live under the resort-directory resource.
 
 Current B1/B2 routes like `/spain` and `/spain/baqueira` are temporary scaffold routes. They prove policy and rendering only; they are not the final localized SEO URL structure.
 
+### Region/country levels after the resource silo
+
+After `/resorts` / `/estaciones`, keep the geography hierarchy:
+
+```txt
+country -> region/area -> resort
+```
+
+Use legacy as inspiration, not as a direct copy. Legacy modeled geography as:
+
+```txt
+countries { country, countryCode, countrySlug }
+regions { countryId, region, regionSlug }
+resorts { name, slug, countryId, regionId, lat, lon, website, image }
+```
+
+New LocalSnow should preserve that mental model because regions disambiguate resorts, support useful browsing pages and give SEO/content teams a clear editorial layer. But the final schema is not decided here.
+
+If a country has weak/ambiguous region data at first, the route can temporarily treat the region segment as optional while the canonical catalog record still keeps a `regionId`/area concept ready.
+
 ## Resort indexing approach before supply
 
 Do not mass-index empty resort pages.
@@ -98,6 +118,8 @@ Indexability should depend on usefulness, not route existence:
 - guaranteed-ready page: indexable/promoted only when LocalSnow can operate the guarantee/refund path.
 
 Manual school/provider listings are allowed as an early directory strategy if they are clearly not fake partnerships.
+
+La Molina and Cerler should stay as visible/noindex seed priority candidates for now. That is safer than indexing thin pages and more useful than hiding them completely: Moli gets a visible content/supply work queue, providers can still find a profile path, and Google is not asked to rank weak pages.
 
 Good early page:
 
@@ -121,6 +143,8 @@ But placement differs:
 - client-facing resort pages: secondary CTA, not the main promise.
 
 Do not make clients feel like the product is mainly asking them to help LocalSnow find instructors.
+
+Moli also needs operator control: before organic supply exists, LocalSnow should be able to manually create or import any legitimate listing/profile type needed to make the directory useful — schools, independent instructors, guides, academy-like providers or other local lesson suppliers. Those manual records must be clearly source-labeled internally and must not imply a claimed profile, verified partner or guaranteed booking unless LocalSnow has actually earned that status.
 
 ## Catalog storage decision
 
@@ -152,8 +176,8 @@ Routes and SEO should consume a catalog policy/repository seam. They should not 
 
 ## Founder review questions
 
-1. Confirm route tree: resource-first `/:locale/resorts/:country/:region?/:resort` with localized `/es/estaciones/...` paths?
-2. Should Baqueira remain the first indexable target, or be downgraded to noindex until manually useful listings/content exist?
-3. Should La Molina and Cerler stay in the seed as visible/noindex priority candidates?
-4. Do we approve manual school/provider directory listings as the first usefulness layer before direct supply?
-5. Do we approve provider profile creation being open broadly, with client-facing sourcing CTAs kept secondary?
+1. Route tree: approved as resource-first `/:locale/resorts/:country/:region?/:resort`, with localized `/es/estaciones/...` and `/en/resorts/...` paths. Region/resort levels should reuse the useful legacy geography pattern as inspiration.
+2. Baqueira: keep indexable because it will be the first manually filled example for learning what the page needs.
+3. La Molina and Cerler: recommended default is visible/noindex seed candidates until they have enough useful listings/content to justify indexing.
+4. Manual listings: approved. LocalSnow should support fully manual operator-created profiles/listings of the needed provider types before organic supply arrives.
+5. Broad provider profile creation: approved, with client-facing sourcing kept secondary.
