@@ -4,7 +4,7 @@ Greenfield LocalSnow product. The previous codebase is preserved at [triskel-lab
 
 ## Current phase
 
-**Implementation: B3.2 provider setup and preview surface.**
+**Implementation: B3.3 profile intake contract.**
 
 We are not trying to decide the whole product upfront. We are creating the first reviewed decision layer, then deriving the next layer from it.
 
@@ -40,13 +40,16 @@ These are intentionally controlled. They define product meaning, surfaces, recor
 
 ## Current implementation slice
 
-The active implementation slice is B3.2 provider setup and preview surface.
+The active implementation slice is B3.3 profile intake contract.
 
 Current goal:
 
-- explain the three setup paths without expanding the two v1 profile kinds;
-- show that school-affiliated instructor profiles inherit school-owned services/prices;
-- wire the provider join page through a tested setup guide helper;
+- define the minimum facts LocalSnow should ask from each provider setup path;
+- separate public profile facts, commercial facts and LocalSnow-only operations details;
+- keep legal personal names private while deriving the default public display name as first name plus first surname initial;
+- treat the first lesson/price as a starter offer signal, not the full offer/pricing system;
+- keep school-affiliated instructor intake inherited from the school by default;
+- wire the provider join page through a tested intake contract helper;
 - keep the surface no-persistence: no auth, database schema, mutation actions, uploads, payment, email or availability engine.
 
 ## Drift guard

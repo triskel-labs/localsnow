@@ -63,7 +63,7 @@
   </section>
 
   <section class="panel boundary" aria-labelledby="boundary-title">
-    <p class="section-kicker">B3.2 boundary</p>
+    <p class="section-kicker">B3.3 boundary</p>
     <h2 id="boundary-title">This is still a no-persistence setup surface</h2>
     <div class="boundary-grid">
       <div>
@@ -82,6 +82,47 @@
           {/each}
         </ul>
       </div>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="intake-title">
+    <p class="section-kicker">What LocalSnow asks next</p>
+    <h2 id="intake-title">Small intake contracts before real onboarding</h2>
+    <p class="section-copy">
+      This is still not a signup form or exact database schema. It defines the
+      minimum facts each path should collect later, separates public profile
+      facts from private legal/operations details, and keeps the first lesson
+      offer as a starter signal before a full offer builder exists.
+    </p>
+
+    <div class="intake-list">
+      {#each data.intakeContracts as contract}
+        <article class="intake-card">
+          <div>
+            <p class="card-label">{contract.title}</p>
+            <h3>{contract.commercialRule}</h3>
+          </div>
+
+          {#each contract.sections as section}
+            <div class="intake-section">
+              <p class="mini-title">{section.title}</p>
+              <p>{section.purpose}</p>
+              <ul>
+                {#each section.fields as field}
+                  <li>
+                    <span>{field.label}</span>
+                    {#if field.required}
+                      <em>required</em>
+                    {:else}
+                      <em>optional</em>
+                    {/if}
+                  </li>
+                {/each}
+              </ul>
+            </div>
+          {/each}
+        </article>
+      {/each}
     </div>
   </section>
 </main>
@@ -172,11 +213,13 @@
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
   }
 
-  .boundary-grid {
+  .boundary-grid,
+  .intake-list {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   }
 
-  .card {
+  .card,
+  .intake-card {
     display: flex;
     min-height: 100%;
     flex-direction: column;
@@ -185,5 +228,28 @@
     border: 1px solid rgb(255 255 255 / 0.12);
     border-radius: 1.25rem;
     background: rgb(255 255 255 / 0.06);
+  }
+
+  .intake-card {
+    gap: 1.25rem;
+  }
+
+  .intake-section {
+    padding-top: 1rem;
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+  }
+
+  .intake-section li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .intake-section em {
+    color: #a5b4fc;
+    font-size: 0.8rem;
+    font-style: normal;
+    text-transform: uppercase;
   }
 </style>

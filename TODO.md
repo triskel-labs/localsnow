@@ -26,7 +26,8 @@
 - [x] Patch provider reach correction before B3.
 - [x] Review B1/B2 founder-control correction before continuing B3.
 - [x] Implement B3 supply profile domain rules.
-- [ ] Implement B3.2 provider setup and preview surface.
+- [x] Implement B3.2 provider setup and preview surface.
+- [ ] Implement B3.3 profile intake contract.
 
 ## On process
 
@@ -44,7 +45,8 @@
 - [x] PR #12: Provider reach correction before B3.
 - [x] PR #13: B1/B2 founder-control correction.
 - [x] PR #14: B3 supply profile domain rules.
-- [ ] PR #15: B3.2 provider setup and preview surface.
+- [x] PR #15: B3.2 provider setup and preview surface.
+- [ ] PR #16: B3.3 profile intake contract.
 
 ## Done
 
@@ -64,3 +66,4 @@
 - [x] Merge provider reach correction before B3.
 - [x] Merge B1/B2 founder-control correction.
 - [x] Merge B3 supply profile domain rules.
+- [x] Merge B3.2 provider setup and preview surface.
