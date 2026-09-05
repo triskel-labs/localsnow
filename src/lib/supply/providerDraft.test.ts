@@ -72,6 +72,22 @@ describe("B3.5 provider draft persistence/auth boundary", () => {
     });
   });
 
+  it("blocks operator draft edits after publication approval", () => {
+    const draft = createProviderDraft({
+      draftId: "draft-1",
+      ownerActorId: providerActor.id,
+      pathId: "independentInstructor",
+      nowIso: "2026-09-05T13:30:00.000Z",
+      status: "approvedToPublish",
+    });
+
+    expect(canPerformDraftAction(operatorActor, draft, "saveDraft")).toEqual({
+      allowed: false,
+      reason:
+        "operator can only edit provider drafts before publication approval",
+    });
+  });
+
   it("requires the B3.3 intake contract before a provider can submit for review", () => {
     const draft = createProviderDraft({
       draftId: "draft-1",

@@ -96,6 +96,14 @@ const canProviderEditDraft = (
   }
 
   if (actor.role === "operator") {
+    if (!canOwnerEditStatus(draft.status) && draft.status !== "needsReview") {
+      return {
+        allowed: false,
+        reason:
+          "operator can only edit provider drafts before publication approval",
+      };
+    }
+
     return {
       allowed: true,
       reason: "operator can maintain provider drafts before publication",
