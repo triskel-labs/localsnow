@@ -160,6 +160,54 @@
       {/each}
     </div>
   </section>
+
+  <section class="panel" aria-labelledby="draft-boundary-title">
+    <p class="section-kicker">B3.5 draft boundary</p>
+    <h2 id="draft-boundary-title">{data.draftBoundary.title}</h2>
+    <p class="section-copy">{data.draftBoundary.description}</p>
+
+    <div class="draft-grid">
+      <article class="flow-card">
+        <p class="card-label">Draft state</p>
+        <h3>{data.draftBoundary.draftStatus}</h3>
+        <p>Required facts still missing before LocalSnow review:</p>
+        <ul>
+          {#each data.draftBoundary.missingRequiredFieldKeys as fieldKey}
+            <li>{fieldKey}</li>
+          {/each}
+        </ul>
+      </article>
+
+      <article class="flow-card">
+        <p class="card-label">Auth and review rules</p>
+        <h3>Actions are server-side decisions first</h3>
+        <ul>
+          {#each data.draftBoundary.actionRules as rule}
+            <li>
+              <span>{rule.label}</span>
+              <p>
+                {rule.decision.allowed ? "Allowed" : "Blocked"}: {rule.decision
+                  .reason}
+              </p>
+            </li>
+          {/each}
+        </ul>
+      </article>
+    </div>
+
+    <div class="review-groups">
+      {#each data.draftBoundary.reviewGroups as group}
+        <article class="flow-card">
+          <p class="card-label">{group.label}</p>
+          <ul>
+            {#each group.fieldKeys as fieldKey}
+              <li>{fieldKey}</li>
+            {/each}
+          </ul>
+        </article>
+      {/each}
+    </div>
+  </section>
 </main>
 
 <style>
@@ -239,7 +287,9 @@
 
   .cards,
   .boundary-grid,
-  .flow-list {
+  .flow-list,
+  .draft-grid,
+  .review-groups {
     display: grid;
     gap: 1rem;
     margin-top: 1.5rem;
@@ -251,7 +301,9 @@
 
   .boundary-grid,
   .intake-list,
-  .flow-list {
+  .flow-list,
+  .draft-grid,
+  .review-groups {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   }
 
