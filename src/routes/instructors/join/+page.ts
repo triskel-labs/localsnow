@@ -7,20 +7,14 @@ import {
   getDraftReviewSummary,
   type ProviderDraftActor,
 } from "$lib/supply/providerDraft";
-import { getProviderOnboardingFlows } from "$lib/supply/providerOnboarding";
 import { getProviderSetupGuide } from "$lib/supply/profileSetup";
 
 const promise = getProviderReachPromise();
 const setupGuide = getProviderSetupGuide();
 const intakeContracts = getProfileIntakeContracts();
-const onboardingFlows = getProviderOnboardingFlows();
 
 const providerActor: ProviderDraftActor = {
   id: "provider-demo",
-  role: "provider",
-};
-const otherProviderActor: ProviderDraftActor = {
-  id: "provider-other-demo",
   role: "provider",
 };
 const operatorActor: ProviderDraftActor = {
@@ -62,74 +56,82 @@ const reviewReadyDraft = createProviderDraft({
   },
 });
 
+const fieldLabelByKey = new Map(
+  intakeContracts.flatMap((contract) =>
+    contract.sections.flatMap((section) =>
+      section.fields.map((field) => [field.key, field.label] as const),
+    ),
+  ),
+);
+
 const draftSummary = getDraftReviewSummary(draftExample);
 
 export const load = () => ({
   page: getPublicPage("/instructors/join"),
   promise,
-  setupGuide,
-  intakeContracts,
-  onboardingFlows,
+  pathCards: setupGuide.paths.map((path) => ({
+    label: path.label,
+    headline: path.headline,
+    whoItFits: path.whoItFits,
+    commercialRule: path.commercialRule,
+  })),
+  intakeSummary: [
+    {
+      title: "Public profile",
+      copy: "The name clients see, resorts served, sport, lesson style and languages.",
+    },
+    {
+      title: "Starter commercial signal",
+      copy: "One lesson/price signal, or inherited school pricing, before a full offer builder exists.",
+    },
+    {
+      title: "Private LocalSnow details",
+      copy: "Legal name and contact details stay private for review and coordination.",
+    },
+  ],
   draftBoundary: {
-    title: "Provider draft boundary before real persistence",
+    title: "Save, submit, review — in that order",
     description:
-      "B3.5 starts the real platform boundary: a provider draft is owned by one signed-in provider or maintained by LocalSnow, missing required intake facts block review, and only LocalSnow can approve publication. This still does not create real accounts, database rows or form actions.",
-    draftStatus: draftExample.status,
-    missingRequiredFieldKeys: draftSummary.missingRequiredFieldKeys,
-    reviewGroups: [
+      "Drafts belong to one provider account, incomplete drafts stay editable, and LocalSnow reviews before anything becomes public. This still does not create real accounts, database rows, uploads or form actions.",
+    missingRequiredFields: draftSummary.missingRequiredFieldKeys.map(
+      (fieldKey) => fieldLabelByKey.get(fieldKey) ?? fieldKey,
+    ),
+    rules: [
       {
-        label: "Public preview fields",
-        fieldKeys: draftSummary.publicFieldKeys,
-      },
-      {
-        label: "Commercial review fields",
-        fieldKeys: draftSummary.commercialFieldKeys,
-      },
-      {
-        label: "LocalSnow-only fields",
-        fieldKeys: draftSummary.privateFieldKeys,
-      },
-    ],
-    actionRules: [
-      {
-        label: "Anonymous visitor saves draft",
+        title: "Anonymous visitors cannot save drafts",
         decision: canPerformDraftAction(
           { role: "anonymous" },
           draftExample,
           "saveDraft",
         ),
+        copy: "A future draft needs sign-in so edits are tied to the right provider.",
       },
       {
-        label: "Owner saves draft",
+        title: "The draft owner can keep editing",
         decision: canPerformDraftAction(
           providerActor,
           draftExample,
           "saveDraft",
         ),
+        copy: "Providers can save incomplete work before asking LocalSnow to review it.",
       },
       {
-        label: "Different provider edits draft",
-        decision: canPerformDraftAction(
-          otherProviderActor,
-          draftExample,
-          "saveDraft",
-        ),
-      },
-      {
-        label: "Owner submits incomplete draft",
+        title: "Missing required facts block review",
         decision: canPerformDraftAction(
           providerActor,
           draftExample,
           "submitForReview",
         ),
+        copy: "The profile is not submitted until the required intake facts are present.",
       },
       {
-        label: "LocalSnow approves reviewed draft",
+        title: "Only LocalSnow approves publication",
         decision: canPerformDraftAction(
           operatorActor,
           reviewReadyDraft,
           "approveForPublication",
         ),
+        copy: "Publication is a LocalSnow trust gate, not an automatic provider self-publish.",
       },
     ],
   },
@@ -137,10 +139,8 @@ export const load = () => ({
     promise.benefits[0],
     promise.benefits[2],
     promise.benefits[3],
-    "resorts served",
-    "sports taught",
     "private legal name kept separate from public display name",
     "starter lesson offer or inherited school pricing",
-    "simple availability pattern",
+    "LocalSnow review before publication",
   ],
 });
