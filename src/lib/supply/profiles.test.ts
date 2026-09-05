@@ -62,6 +62,11 @@ describe("B3 provider reach promise", () => {
         "fair commission when LocalSnow brings work",
       ]),
     );
+    expect(promise.benefitCopy).toMatchObject({
+      qualifiedClients: "more qualified clients",
+      lowerMarketingAdmin: "less marketing/admin complexity",
+      fairCommission: "fair commission when LocalSnow brings work",
+    });
     expect(promise.avoidClaims.join(" ")).toMatch(/guaranteed clients/i);
   });
 });
@@ -221,5 +226,31 @@ describe("B3 public supply profile", () => {
     expect(publicProfile.affiliation.type).toBe("schoolAffiliated");
     expect(publicProfile.startingPrice).toBeUndefined();
     expect(publicProfile.priceOnRequest).toBeUndefined();
+  });
+
+  it("copies public projection arrays and objects away from the internal profile", () => {
+    const internalProfile: SupplyProfile = {
+      ...baseInstructor,
+      affiliation: { type: "independent" },
+      resortsServed: ["baqueira"],
+      sportsTaught: ["ski"],
+      lessonTypes: ["private"],
+      languages: ["es", "en"],
+      startingPrice: { amount: 70, currency: "EUR", unit: "hour" },
+    };
+    const publicProfile = toPublicSupplyProfile(internalProfile);
+
+    expect(publicProfile.affiliation).not.toBe(internalProfile.affiliation);
+    expect(publicProfile.resortsServed).not.toBe(internalProfile.resortsServed);
+    expect(publicProfile.sportsTaught).not.toBe(internalProfile.sportsTaught);
+    expect(publicProfile.lessonTypes).not.toBe(internalProfile.lessonTypes);
+    expect(publicProfile.languages).not.toBe(internalProfile.languages);
+    expect(publicProfile.startingPrice).not.toBe(internalProfile.startingPrice);
+
+    internalProfile.resortsServed.push("cerler");
+    internalProfile.startingPrice!.amount = 999;
+
+    expect(publicProfile.resortsServed).toEqual(["baqueira"]);
+    expect(publicProfile.startingPrice?.amount).toBe(70);
   });
 });
