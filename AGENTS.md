@@ -6,7 +6,7 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Current active implementation slice: B3.3 profile intake contract.
+Current active implementation slice: B3.4 provider onboarding draft flow.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
@@ -22,7 +22,7 @@ Current active implementation slice: B3.3 profile intake contract.
 12. `docs/10-backlog-hierarchy.md`
 13. `docs/11-b1-b2-founder-control.md`
 
-Moli corrected the provider-side acquisition thesis before B3, then approved the B1/B2 founder-control correction. B3 may proceed only in narrow sub-slices. B3.1 landed tested domain/profile helpers, school-affiliated instructor inheritance rules, operator-created school/instructor seed profile rules and public projection rules. B3.2 landed a no-persistence provider setup/preview surface. B3.3 may define the no-persistence profile intake contract: what LocalSnow will ask later, separated into public, commercial and LocalSnow-only facts. Do not start auth, database schema, uploads, payments, email delivery or availability engine in this sub-slice.
+Moli corrected the provider-side acquisition thesis before B3, then approved the B1/B2 founder-control correction. B3 may proceed only in narrow sub-slices. B3.1 landed tested domain/profile helpers, school-affiliated instructor inheritance rules, operator-created school/instructor seed profile rules and public projection rules. B3.2 landed a no-persistence provider setup/preview surface. B3.3 landed the no-persistence profile intake contract: what LocalSnow will ask later, separated into public, commercial and LocalSnow-only facts, with private legal identity separate from public display name. B3.4 turns that contract into a visible platform onboarding draft flow on `/instructors/join`, not a cold-outreach pack. Do not start auth, database schema, uploads, payments, email delivery or availability engine in this sub-slice.
 
 ## Professional-team sequence
 
@@ -237,3 +237,22 @@ Not allowed yet:
 - uploads/media storage;
 - operator review UI;
 - payment, email or availability implementation.
+
+## B3.4 provider onboarding draft-flow boundary
+
+Allowed now:
+
+- provider onboarding flow helper;
+- join page wiring that shows the platform flow after the intake contract;
+- steps for provider path selection, private identity/contact, public profile preview, starter commercial offer and LocalSnow review;
+- tests proving legal identity stays private, school-affiliated instructors inherit school pricing and the full offer builder is not built yet.
+
+Not allowed yet:
+
+- auth/session implementation;
+- database schema/migrations;
+- exact persisted database-field design;
+- form mutation routes/actions;
+- uploads/media storage;
+- operator/admin UI;
+- payment, email delivery or availability implementation.

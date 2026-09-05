@@ -23,6 +23,7 @@ describe("B3.3 profile intake contract", () => {
         "exact database fields or migrations",
         "form submission actions",
         "file uploads",
+        "email delivery",
         "payment collection",
         "availability engine",
       ]),
