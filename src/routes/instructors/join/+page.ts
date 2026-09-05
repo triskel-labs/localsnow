@@ -1,10 +1,14 @@
 import { getPublicPage } from "$lib/discovery/publicPages";
+import { getProviderReachPromise } from "$lib/supply/profiles";
+
+const promise = getProviderReachPromise();
 
 export const load = () => ({
   page: getPublicPage("/instructors/join"),
   signals: [
-    "more qualified clients",
-    "fair commission when LocalSnow brings work",
+    promise.benefits[0],
+    promise.benefits[2],
+    promise.benefits[3],
     "resorts served",
     "sports taught",
     "starting price",

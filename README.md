@@ -4,7 +4,7 @@ Greenfield LocalSnow product. The previous codebase is preserved at [triskel-lab
 
 ## Current phase
 
-**Implementation: provider reach correction before B3.**
+**Implementation: B3 supply profile domain rules.**
 
 We are not trying to decide the whole product upfront. We are creating the first reviewed decision layer, then deriving the next layer from it.
 
@@ -39,14 +39,14 @@ These are intentionally controlled. They define product meaning, surfaces, recor
 
 ## Current implementation slice
 
-The active implementation checkpoint is the provider reach correction before B3 supply profile setup.
+The active implementation slice is B3 supply profile domain rules.
 
 Current goal:
 
-- patch previous product-control docs and provider-facing shell copy with the corrected provider acquisition wedge;
-- lead provider-side copy with more clients/money, less marketing/admin complexity and fair commission when LocalSnow brings work;
-- avoid over-framing providers as anti-platform or asking them to become content creators;
-- then continue into B3 with this correction as source of truth.
+- encode provider reach/value promise in a small domain helper;
+- define privacy-safe supply profile display/readiness rules;
+- prove public profile projection never exposes internal contact details;
+- avoid auth, database schema, uploads, payment, email and full profile UI until later B3 sub-slices.
 
 ## Drift guard
 

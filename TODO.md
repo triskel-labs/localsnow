@@ -23,7 +23,8 @@
 - [x] Implement B0 technical foundation scaffold.
 - [x] Implement B1 public discovery shell + SEO policy seam.
 - [x] Implement B2 catalog and resort readiness.
-- [ ] Patch provider reach correction before B3.
+- [x] Patch provider reach correction before B3.
+- [ ] Implement B3 supply profile domain rules.
 
 ## On process
 
@@ -38,7 +39,8 @@
 - [x] PR #9: B0 technical foundation scaffold.
 - [x] PR #10: B1 public discovery shell + SEO policy seam.
 - [x] PR #11: B2 catalog and resort readiness.
-- [ ] PR #12: Provider reach correction before B3.
+- [x] PR #12: Provider reach correction before B3.
+- [ ] PR #13: B3 supply profile domain rules.
 
 ## Done
 
@@ -55,3 +57,4 @@
 - [x] Merge B0 technical foundation scaffold.
 - [x] Merge B1 public discovery shell + SEO policy seam.
 - [x] Merge B2 catalog and resort readiness.
+- [x] Merge provider reach correction before B3.

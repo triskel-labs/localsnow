@@ -6,7 +6,7 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Current active checkpoint: provider reach correction before B3 supply profile setup.
+Current active implementation slice: B3 supply profile domain rules.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
@@ -21,7 +21,7 @@ Current active checkpoint: provider reach correction before B3 supply profile se
 11. `docs/09-engineering-architecture.md`
 12. `docs/10-backlog-hierarchy.md`
 
-Moli corrected the provider-side acquisition thesis before B3: providers mostly want more clients, more money, less admin/marketing complexity and a fair commission when LocalSnow brings real work. LocalSnow solves reach without requiring providers to film themselves, expose themselves online or gamble on a generic marketing agency. Patch docs/shells with this before further profile work. Do not start auth, database schema, uploads, payments, email delivery or availability engine until the B3 boundary explicitly requires them.
+Moli corrected the provider-side acquisition thesis before B3: providers mostly want more clients, more money, less admin/marketing complexity and a fair commission when LocalSnow brings real work. LocalSnow solves reach without requiring providers to film themselves, expose themselves online or gamble on a generic marketing agency. B3 is now allowed to proceed in narrow sub-slices. The current B3 sub-slice may add tested domain/profile helpers and public projection rules only. Do not start auth, database schema, uploads, payments, email delivery or availability engine in this sub-slice.
 
 ## Professional-team sequence
 
@@ -163,3 +163,22 @@ This correction affects every provider-facing layer. Use this as the B3 source o
 - the wedge is reach without marketing burden: no constant filming, no personal exposure as a content creator, no gamble on a generic marketing agency;
 - LocalSnow is a specialized discovery space where snowsports professionals live and clients look for lessons;
 - B3 profile setup should feel like creating a professional LocalSnow presence in minutes, not configuring a marketplace operating system.
+
+## B3 domain sub-slice boundary
+
+Allowed now:
+
+- provider reach promise helper;
+- supply profile type/domain helper;
+- privacy-safe public display-name and public projection logic;
+- readiness rules that return draft vs needs-review with missing fields;
+- tests for all of the above.
+
+Not allowed yet:
+
+- auth/session implementation;
+- database schema/migrations;
+- uploads/media storage;
+- mutation routes/actions;
+- operator review UI;
+- payment, email or availability implementation.
