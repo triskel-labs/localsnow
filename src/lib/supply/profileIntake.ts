@@ -53,6 +53,7 @@ const notIncluded = [
   "exact database fields or migrations",
   "form submission actions",
   "file uploads",
+  "email delivery",
   "payment collection",
   "availability engine",
 ];

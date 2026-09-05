@@ -125,6 +125,41 @@
       {/each}
     </div>
   </section>
+
+  <section class="panel" aria-labelledby="flow-title">
+    <p class="section-kicker">B3.4 platform flow</p>
+    <h2 id="flow-title">First provider onboarding flow, not cold outreach</h2>
+    <p class="section-copy">
+      The outreach copy is not the platform. The platform path starts here: pick
+      the provider relationship, separate private identity from public profile,
+      sketch one starter commercial offer, then hold publication for LocalSnow
+      review before anything becomes public.
+    </p>
+
+    <div class="flow-list">
+      {#each data.onboardingFlows as flow}
+        <article class="flow-card">
+          <div>
+            <p class="card-label">{flow.pathLabel}</p>
+            <h3>{flow.title}</h3>
+            <p>{flow.promise}</p>
+          </div>
+
+          <ol>
+            {#each flow.steps as step}
+              <li>
+                <div>
+                  <span>{step.title}</span>
+                  <p>{step.summary}</p>
+                </div>
+                <small>{step.boundary}</small>
+              </li>
+            {/each}
+          </ol>
+        </article>
+      {/each}
+    </div>
+  </section>
 </main>
 
 <style>
@@ -203,7 +238,8 @@
   }
 
   .cards,
-  .boundary-grid {
+  .boundary-grid,
+  .flow-list {
     display: grid;
     gap: 1rem;
     margin-top: 1.5rem;
@@ -214,12 +250,14 @@
   }
 
   .boundary-grid,
-  .intake-list {
+  .intake-list,
+  .flow-list {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   }
 
   .card,
-  .intake-card {
+  .intake-card,
+  .flow-card {
     display: flex;
     min-height: 100%;
     flex-direction: column;
@@ -232,6 +270,37 @@
 
   .intake-card {
     gap: 1.25rem;
+  }
+
+  .flow-card ol {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .flow-card li {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.9rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 1rem;
+    background: rgb(15 23 42 / 0.5);
+  }
+
+  .flow-card span {
+    color: white;
+    font-weight: 800;
+  }
+
+  .flow-card p {
+    margin: 0.25rem 0 0;
+  }
+
+  .flow-card small {
+    color: #a5b4fc;
+    line-height: 1.5;
   }
 
   .intake-section {

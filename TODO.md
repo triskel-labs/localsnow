@@ -27,7 +27,8 @@
 - [x] Review B1/B2 founder-control correction before continuing B3.
 - [x] Implement B3 supply profile domain rules.
 - [x] Implement B3.2 provider setup and preview surface.
-- [ ] Implement B3.3 profile intake contract.
+- [x] Implement B3.3 profile intake contract.
+- [ ] Implement B3.4 provider onboarding draft flow.
 
 ## On process
 
@@ -46,7 +47,8 @@
 - [x] PR #13: B1/B2 founder-control correction.
 - [x] PR #14: B3 supply profile domain rules.
 - [x] PR #15: B3.2 provider setup and preview surface.
-- [ ] PR #16: B3.3 profile intake contract.
+- [x] PR #16: B3.3 profile intake contract.
+- [ ] PR #17: B3.4 provider onboarding draft flow.
 
 ## Done
 
@@ -67,3 +69,4 @@
 - [x] Merge B1/B2 founder-control correction.
 - [x] Merge B3 supply profile domain rules.
 - [x] Merge B3.2 provider setup and preview surface.
+- [x] Merge B3.3 profile intake contract.
