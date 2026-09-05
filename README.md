@@ -46,6 +46,8 @@ Current goal:
 
 - define the minimum facts LocalSnow should ask from each provider setup path;
 - separate public profile facts, commercial facts and LocalSnow-only operations details;
+- keep legal personal names private while deriving the default public display name as first name plus first surname initial;
+- treat the first lesson/price as a starter offer signal, not the full offer/pricing system;
 - keep school-affiliated instructor intake inherited from the school by default;
 - wire the provider join page through a tested intake contract helper;
 - keep the surface no-persistence: no auth, database schema, mutation actions, uploads, payment, email or availability engine.

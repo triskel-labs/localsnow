@@ -56,14 +56,20 @@ export type SetupPreview = {
   publicProfile: SetupPreviewPublicProfile;
 };
 
-const sharedFacts = [
-  "name or public professional name",
+const sharedCapabilityFacts = [
   "resorts served",
   "sports taught",
   "lesson types",
   "languages",
   "LocalSnow contact method",
 ];
+
+const personalFacts = [
+  "legal name privately + public display name",
+  ...sharedCapabilityFacts,
+];
+
+const schoolFacts = ["business name", ...sharedCapabilityFacts];
 
 const paths: SetupPath[] = [
   {
@@ -75,7 +81,11 @@ const paths: SetupPath[] = [
       "Solo instructors who want their own LocalSnow presence and commercial offer.",
     commercialRule:
       "Independent instructors own their own services and prices.",
-    requiredFacts: [...sharedFacts, "starting price or price-on-request"],
+    requiredFacts: [
+      ...personalFacts,
+      "starter lesson offer",
+      "starting price or price-on-request",
+    ],
   },
   {
     id: "schoolProvider",
@@ -85,7 +95,11 @@ const paths: SetupPath[] = [
     whoItFits:
       "Schools and real commercial groups of instructors using one shared offer.",
     commercialRule: "Schools own school-level services and prices.",
-    requiredFacts: [...sharedFacts, "business name", "school-level offer"],
+    requiredFacts: [
+      ...schoolFacts,
+      "school-level offer",
+      "starting price or price-on-request",
+    ],
   },
   {
     id: "schoolAffiliatedInstructor",
@@ -96,7 +110,7 @@ const paths: SetupPath[] = [
       "School instructors who improve trust and conversion without separate prices.",
     commercialRule:
       "The instructor profile is public, but services and prices are inherited from the school.",
-    requiredFacts: [...sharedFacts, "school affiliation"],
+    requiredFacts: [...personalFacts, "school affiliation"],
   },
 ];
 

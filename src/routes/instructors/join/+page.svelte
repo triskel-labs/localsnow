@@ -63,7 +63,7 @@
   </section>
 
   <section class="panel boundary" aria-labelledby="boundary-title">
-    <p class="section-kicker">B3.2 boundary</p>
+    <p class="section-kicker">B3.3 boundary</p>
     <h2 id="boundary-title">This is still a no-persistence setup surface</h2>
     <div class="boundary-grid">
       <div>
@@ -89,9 +89,10 @@
     <p class="section-kicker">What LocalSnow asks next</p>
     <h2 id="intake-title">Small intake contracts before real onboarding</h2>
     <p class="section-copy">
-      This is still not a signup form. It defines the minimum facts each path
-      should collect later, and separates public profile facts from commercial
-      facts and LocalSnow-only operations details.
+      This is still not a signup form or exact database schema. It defines the
+      minimum facts each path should collect later, separates public profile
+      facts from private legal/operations details, and keeps the first lesson
+      offer as a starter signal before a full offer builder exists.
     </p>
 
     <div class="intake-list">

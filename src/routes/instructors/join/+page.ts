@@ -18,7 +18,8 @@ export const load = () => ({
     promise.benefits[3],
     "resorts served",
     "sports taught",
-    "starting price or inherited school pricing",
+    "private legal name kept separate from public display name",
+    "starter lesson offer or inherited school pricing",
     "simple availability pattern",
   ],
 });

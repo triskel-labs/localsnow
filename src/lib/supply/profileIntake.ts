@@ -1,14 +1,18 @@
 import type { SetupPathId } from "./profileSetup";
 
 export type IntakeFieldKey =
-  | "publicName"
+  | "publicDisplayName"
+  | "professionalPublicName"
   | "businessName"
+  | "legalFirstName"
+  | "legalSurnames"
   | "resortsServed"
   | "sportsTaught"
   | "lessonTypes"
   | "languages"
   | "schoolAffiliation"
   | "schoolLevelOffer"
+  | "starterLessonOffer"
   | "startingPriceOrPriceOnRequest"
   | "availabilityPattern"
   | "localSnowContact"
@@ -38,21 +42,35 @@ export type ProfileIntakeContract = {
   notIncluded: string[];
 };
 
+export type LegalPersonName = {
+  legalFirstName: string;
+  legalSurnames: string;
+};
+
 const notIncluded = [
   "account creation",
   "database writes",
+  "exact database fields or migrations",
   "form submission actions",
   "file uploads",
   "payment collection",
   "availability engine",
 ];
 
-const publicNameField: IntakeField = {
-  key: "publicName",
-  label: "Public name",
+const publicDisplayNameField: IntakeField = {
+  key: "publicDisplayName",
+  label: "Public display name",
   visibility: "publicProfile",
   required: true,
-  help: "First name plus initial by default, or an explicit professional public name.",
+  help: "Generated as first name plus first surname initial by default, for example David M.",
+};
+
+const professionalPublicNameField: IntakeField = {
+  key: "professionalPublicName",
+  label: "Professional public name override",
+  visibility: "publicProfile",
+  required: false,
+  help: "Optional reviewed name visitors can see instead of the default private-safe pattern.",
 };
 
 const businessNameField: IntakeField = {
@@ -61,6 +79,22 @@ const businessNameField: IntakeField = {
   visibility: "publicProfile",
   required: true,
   help: "The school, academy or commercial group name visitors should recognize.",
+};
+
+const legalFirstNameField: IntakeField = {
+  key: "legalFirstName",
+  label: "Legal first name",
+  visibility: "localSnowOnly",
+  required: true,
+  help: "Official personal identity for LocalSnow operations and future payment/billing checks; never public by default.",
+};
+
+const legalSurnamesField: IntakeField = {
+  key: "legalSurnames",
+  label: "Legal surname(s)",
+  visibility: "localSnowOnly",
+  required: true,
+  help: "Supports Spanish two-surname names; LocalSnow only exposes the first surname initial by default.",
 };
 
 const sharedPublicFields: IntakeField[] = [
@@ -94,12 +128,20 @@ const sharedPublicFields: IntakeField[] = [
   },
 ];
 
+const starterLessonOfferField: IntakeField = {
+  key: "starterLessonOffer",
+  label: "First lesson offer sketch",
+  visibility: "commercial",
+  required: true,
+  help: "One simple default lesson LocalSnow can explain later; not a full flexible offer builder yet.",
+};
+
 const startingPriceField: IntakeField = {
   key: "startingPriceOrPriceOnRequest",
   label: "Starting price or price on request",
   visibility: "commercial",
   required: true,
-  help: "A basic price signal only; not a booking/payment system.",
+  help: "A basic price signal for the first offer; not a final booking/payment system.",
 };
 
 const availabilityPatternField: IntakeField = {
@@ -126,12 +168,15 @@ const operatorSourceNoteField: IntakeField = {
   help: "Internal note for manually created profiles; never a public partnership claim.",
 };
 
+const personalLegalFields = [legalFirstNameField, legalSurnamesField];
+
 const makeContract = (
   pathId: SetupPathId,
   title: string,
   commercialRule: string,
-  firstField: IntakeField,
+  publicIdentityFields: IntakeField[],
   commercialFields: IntakeField[],
+  localSnowOnlyFields: IntakeField[] = personalLegalFields,
 ): ProfileIntakeContract => ({
   pathId,
   title,
@@ -141,19 +186,23 @@ const makeContract = (
       title: "Public profile facts",
       purpose:
         "Facts that can appear on a public profile once LocalSnow reviews it.",
-      fields: [firstField, ...sharedPublicFields],
+      fields: [...publicIdentityFields, ...sharedPublicFields],
     },
     {
       title: "Commercial facts",
       purpose:
-        "Enough commercial signal to avoid fake availability or fake pricing.",
+        "Enough commercial signal to avoid fake availability or fake pricing without creating the full offer system yet.",
       fields: commercialFields,
     },
     {
       title: "LocalSnow-only facts",
       purpose:
-        "Operational details used privately by LocalSnow before publishing or contacting clients.",
-      fields: [localSnowContactField, operatorSourceNoteField],
+        "Operational details used privately by LocalSnow before publishing, billing or contacting clients.",
+      fields: [
+        ...localSnowOnlyFields,
+        localSnowContactField,
+        operatorSourceNoteField,
+      ],
     },
   ],
   notIncluded,
@@ -164,14 +213,14 @@ const contracts: Record<SetupPathId, ProfileIntakeContract> = {
     "independentInstructor",
     "Independent instructor intake",
     "This instructor owns their own services and prices.",
-    publicNameField,
-    [startingPriceField, availabilityPatternField],
+    [publicDisplayNameField, professionalPublicNameField],
+    [starterLessonOfferField, startingPriceField, availabilityPatternField],
   ),
   schoolProvider: makeContract(
     "schoolProvider",
     "School provider intake",
     "The school owns school-level services and prices.",
-    businessNameField,
+    [businessNameField],
     [
       {
         key: "schoolLevelOffer",
@@ -183,12 +232,13 @@ const contracts: Record<SetupPathId, ProfileIntakeContract> = {
       startingPriceField,
       availabilityPatternField,
     ],
+    [],
   ),
   schoolAffiliatedInstructor: makeContract(
     "schoolAffiliatedInstructor",
     "School-affiliated instructor intake",
     "Services and prices are inherited from the school by default.",
-    publicNameField,
+    [publicDisplayNameField, professionalPublicNameField],
     [
       {
         key: "schoolAffiliation",
@@ -200,6 +250,20 @@ const contracts: Record<SetupPathId, ProfileIntakeContract> = {
       availabilityPatternField,
     ],
   ),
+};
+
+export const buildDefaultPublicDisplayName = ({
+  legalFirstName,
+  legalSurnames,
+}: LegalPersonName) => {
+  const firstName = legalFirstName.trim();
+  const firstSurname = legalSurnames.trim().split(/\s+/)[0] ?? "";
+  const firstSurnameInitial = firstSurname.charAt(0).toLocaleUpperCase("es");
+
+  if (!firstName) return "";
+  if (!firstSurnameInitial) return firstName;
+
+  return `${firstName} ${firstSurnameInitial}.`;
 };
 
 export const getProfileIntakeContract = (pathId: SetupPathId) =>

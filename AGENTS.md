@@ -223,13 +223,16 @@ Allowed now:
 - profile intake contract helper;
 - join page wiring that explains what LocalSnow asks next;
 - field groups for public profile facts, commercial facts and LocalSnow-only facts;
+- private legal personal name fields with public display-name derivation (`Name S.` by default), not public exposure of full legal identity;
+- a starter lesson/price signal for future offer creation, not a full offer builder or exact database schema;
 - path-specific minimum facts for independent instructor, school provider and school-affiliated instructor;
-- tests proving school-affiliated instructors do not require separate pricing and private fields are not public preview fields.
+- tests proving school-affiliated instructors do not require separate pricing and private/legal fields are not public preview fields.
 
 Not allowed yet:
 
 - auth/session implementation;
 - database schema/migrations;
+- exact persisted database-field design;
 - form mutation routes/actions;
 - uploads/media storage;
 - operator review UI;

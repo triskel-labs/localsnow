@@ -18,6 +18,18 @@ describe("B3.2 provider setup guide", () => {
       "schoolProvider",
       "schoolAffiliatedInstructor",
     ]);
+    expect(
+      guide.paths.find((path) => path.id === "independentInstructor")
+        ?.requiredFacts,
+    ).toEqual(
+      expect.arrayContaining([
+        "legal name privately + public display name",
+        "starter lesson offer",
+      ]),
+    );
+    expect(
+      guide.paths.find((path) => path.id === "schoolProvider")?.requiredFacts,
+    ).not.toContain("legal name privately + public display name");
     expect(guide.boundaries.notIncluded).toEqual(
       expect.arrayContaining([
         "account creation",
