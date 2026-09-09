@@ -1,60 +1,15 @@
 import { getPublicPage } from "$lib/discovery/publicPages";
 import { getProviderReachPromise } from "$lib/supply/profiles";
-import { getProfileIntakeContracts } from "$lib/supply/profileIntake";
 import {
-  canPerformDraftAction,
-  createProviderDraft,
-  getDraftReviewSummary,
-  type ProviderDraftActor,
-} from "$lib/supply/providerDraft";
+  getProfileIntakeContracts,
+  type IntakeFieldKey,
+} from "$lib/supply/profileIntake";
 import { getProviderSetupGuide } from "$lib/supply/profileSetup";
 
+const page = getPublicPage("/instructors/join");
 const promise = getProviderReachPromise();
 const setupGuide = getProviderSetupGuide();
 const intakeContracts = getProfileIntakeContracts();
-
-const providerActor: ProviderDraftActor = {
-  id: "provider-demo",
-  role: "provider",
-};
-const operatorActor: ProviderDraftActor = {
-  id: "operator-demo",
-  role: "operator",
-};
-
-const draftExample = createProviderDraft({
-  draftId: "draft-demo",
-  ownerActorId: providerActor.id,
-  pathId: "independentInstructor",
-  nowIso: "2026-09-05T13:30:00.000Z",
-  fields: {
-    legalFirstName: "Ana",
-    legalSurnames: "García López",
-    publicDisplayName: "Ana G.",
-    resortsServed: "Baqueira Beret",
-    sportsTaught: "ski",
-  },
-});
-
-const reviewReadyDraft = createProviderDraft({
-  draftId: "draft-review-ready-demo",
-  ownerActorId: providerActor.id,
-  pathId: "independentInstructor",
-  nowIso: "2026-09-05T13:30:00.000Z",
-  status: "needsReview",
-  fields: {
-    legalFirstName: "Ana",
-    legalSurnames: "García López",
-    publicDisplayName: "Ana G.",
-    resortsServed: "Baqueira Beret",
-    sportsTaught: "ski",
-    lessonTypes: "beginner private lessons",
-    languages: "Spanish, English",
-    starterLessonOffer: "2h beginner private lesson",
-    startingPriceOrPriceOnRequest: "from €90",
-    localSnowContact: "ana@example.com",
-  },
-});
 
 const fieldLabelByKey = new Map(
   intakeContracts.flatMap((contract) =>
@@ -64,83 +19,93 @@ const fieldLabelByKey = new Map(
   ),
 );
 
-const draftSummary = getDraftReviewSummary(draftExample);
+const labelsFor = (fieldKeys: IntakeFieldKey[]) =>
+  fieldKeys.map((fieldKey) => fieldLabelByKey.get(fieldKey) ?? fieldKey);
 
 export const load = () => ({
-  page: getPublicPage("/instructors/join"),
-  promise,
-  pathCards: setupGuide.paths.map((path) => ({
-    label: path.label,
-    headline: path.headline,
-    whoItFits: path.whoItFits,
-    commercialRule: path.commercialRule,
-  })),
-  intakeSummary: [
-    {
-      title: "Public profile",
-      copy: "The name clients see, resorts served, sport, lesson style and languages.",
-    },
-    {
-      title: "Starter commercial signal",
-      copy: "One lesson/price signal, or inherited school pricing, before a full offer builder exists.",
-    },
-    {
-      title: "Private LocalSnow details",
-      copy: "Legal name and contact details stay private for review and coordination.",
-    },
-  ],
-  draftBoundary: {
-    title: "Save, submit, review — in that order",
-    description:
-      "Drafts belong to one provider account, incomplete drafts stay editable, and LocalSnow reviews before anything becomes public. This still does not create real accounts, database rows, uploads or form actions.",
-    missingRequiredFields: draftSummary.missingRequiredFieldKeys.map(
-      (fieldKey) => fieldLabelByKey.get(fieldKey) ?? fieldKey,
-    ),
-    rules: [
-      {
-        title: "Anonymous visitors cannot save drafts",
-        decision: canPerformDraftAction(
-          { role: "anonymous" },
-          draftExample,
-          "saveDraft",
-        ),
-        copy: "A future draft needs sign-in so edits are tied to the right provider.",
-      },
-      {
-        title: "The draft owner can keep editing",
-        decision: canPerformDraftAction(
-          providerActor,
-          draftExample,
-          "saveDraft",
-        ),
-        copy: "Providers can save incomplete work before asking LocalSnow to review it.",
-      },
-      {
-        title: "Missing required facts block review",
-        decision: canPerformDraftAction(
-          providerActor,
-          draftExample,
-          "submitForReview",
-        ),
-        copy: "The profile is not submitted until the required intake facts are present.",
-      },
-      {
-        title: "Only LocalSnow approves publication",
-        decision: canPerformDraftAction(
-          operatorActor,
-          reviewReadyDraft,
-          "approveForPublication",
-        ),
-        copy: "Publication is a LocalSnow trust gate, not an automatic provider self-publish.",
-      },
-    ],
+  page: page
+    ? {
+        title: page.title,
+        description: page.description,
+        robots: page.robots,
+        canonicalPath: page.canonicalPath,
+      }
+    : undefined,
+  hero: {
+    eyebrow: "Teach with LocalSnow",
+    headline:
+      "Get found by ski and snowboard clients without becoming a marketing machine",
+    lede: "LocalSnow is building a focused place where ski and snowboard clients can discover trusted instructors and schools. Start with a simple reviewed profile, not another platform to manage.",
   },
-  signals: [
+  primaryCta: {
+    label: "Prepare my LocalSnow profile",
+    href: "#profile-paths",
+  },
+  trustSignals: [
     promise.benefitCopy.qualifiedClients,
     promise.benefitCopy.lowerMarketingAdmin,
-    promise.benefitCopy.fairCommission,
-    "private legal name kept separate from public display name",
-    "starter lesson offer or inherited school pricing",
-    "LocalSnow review before publication",
+    "simple profile setup",
+    "reviewed before going public",
+  ],
+  sections: [
+    {
+      id: "why",
+      kicker: "Why join early",
+      title: "More clients, less marketing work",
+      copy: "LocalSnow is for snow professionals who want reach without filming every week, running ads or explaining their services across scattered channels.",
+      bullets: [
+        "Show up where lesson clients are already looking.",
+        "Keep the first profile simple and professional.",
+        "Let LocalSnow review the public profile before clients see it.",
+      ],
+    },
+    {
+      id: "profile",
+      kicker: "Profile path",
+      title: "Start with how you really teach",
+      copy: "Choose whether you teach independently, as a school, or as an instructor connected to a school. The profile can stay simple while still making the relationship clear.",
+      cards: setupGuide.paths.map((path) => ({
+        label: path.label,
+        headline: path.headline,
+        whoItFits: path.whoItFits,
+        commercialRule: path.commercialRule,
+      })),
+    },
+    {
+      id: "review",
+      kicker: "What LocalSnow needs first",
+      title: "Enough to review a useful first profile",
+      copy: "The first version only needs the facts that help LocalSnow understand what you teach, where you teach and how clients should see you.",
+      cards: [
+        {
+          label: "Public profile",
+          headline: "What clients may see",
+          body: labelsFor([
+            "publicDisplayName",
+            "resortsServed",
+            "sportsTaught",
+            "lessonTypes",
+            "languages",
+          ]).join(", "),
+        },
+        {
+          label: "First lesson signal",
+          headline: "A simple starting offer",
+          body: labelsFor([
+            "starterLessonOffer",
+            "startingPriceOrPriceOnRequest",
+          ]).join(", "),
+        },
+        {
+          label: "Private coordination",
+          headline: "Kept for LocalSnow review",
+          body: labelsFor([
+            "legalFirstName",
+            "legalSurnames",
+            "localSnowContact",
+          ]).join(", "),
+        },
+      ],
+    },
   ],
 });
