@@ -78,14 +78,17 @@ export type PublicSupplyProfile = {
   availabilityPattern?: SupplyProfile["availabilityPattern"];
 };
 
+const providerReachBenefitCopy = {
+  qualifiedClients: "more qualified clients",
+  paidWork: "more paid work",
+  lowerMarketingAdmin: "less marketing/admin complexity",
+  fairCommission: "fair commission when LocalSnow brings work",
+} as const;
+
 export const getProviderReachPromise = () => ({
   headline: "Get found by lesson clients without becoming a content creator.",
-  benefits: [
-    "more qualified clients",
-    "more paid work",
-    "less marketing/admin complexity",
-    "fair commission when LocalSnow brings work",
-  ],
+  benefitCopy: providerReachBenefitCopy,
+  benefits: Object.values(providerReachBenefitCopy),
   avoidClaims: [
     "guaranteed clients before demand exists",
     "instant bookings",
@@ -180,21 +183,31 @@ export const getProfileReadiness = (
   };
 };
 
+const cloneAffiliation = (
+  affiliation: ProfileAffiliation,
+): ProfileAffiliation =>
+  affiliation.type === "independent"
+    ? { type: "independent" }
+    : { ...affiliation };
+
+const cloneStartingPrice = (startingPrice: StartingPrice | undefined) =>
+  startingPrice ? { ...startingPrice } : undefined;
+
 export const toPublicSupplyProfile = (
   profile: SupplyProfile,
 ): PublicSupplyProfile => ({
   kind: profile.kind,
   claimStatus: profile.claimStatus,
   displayName: getPublicDisplayName(profile),
-  affiliation: profile.affiliation,
-  resortsServed: profile.resortsServed,
-  sportsTaught: profile.sportsTaught,
-  lessonTypes: profile.lessonTypes,
-  languages: profile.languages,
+  affiliation: cloneAffiliation(profile.affiliation),
+  resortsServed: [...profile.resortsServed],
+  sportsTaught: [...profile.sportsTaught],
+  lessonTypes: [...profile.lessonTypes],
+  languages: [...profile.languages],
   startingPrice:
     profile.affiliation.type === "schoolAffiliated"
       ? undefined
-      : profile.startingPrice,
+      : cloneStartingPrice(profile.startingPrice),
   priceOnRequest:
     profile.affiliation.type === "schoolAffiliated"
       ? undefined

@@ -4,7 +4,7 @@ Greenfield LocalSnow product. The previous codebase is preserved at [triskel-lab
 
 ## Current phase
 
-**Implementation: B3.4 provider onboarding draft flow.**
+**Implementation: B3.5 provider draft auth/persistence boundary.**
 
 We are not trying to decide the whole product upfront. We are creating the first reviewed decision layer, then deriving the next layer from it.
 
@@ -40,15 +40,15 @@ These are intentionally controlled. They define product meaning, surfaces, recor
 
 ## Current implementation slice
 
-The active implementation slice is B3.4 provider onboarding draft flow.
+The active implementation slice is B3.5 provider draft auth/persistence boundary.
 
 Current goal:
 
-- turn the reviewed B3.3 intake contract into a platform onboarding flow, not a cold-outreach pack;
-- show the flow on `/instructors/join`: choose provider path, private identity/contact, public profile preview, starter commercial offer and LocalSnow review;
-- keep legal personal names private while deriving public display names safely;
-- keep school-affiliated instructor pricing inherited from the school by default;
-- keep this slice no-persistence: no auth, database schema, mutation actions, uploads, payment, email delivery or availability engine.
+- define the provider draft record boundary derived from the B3.3 intake contract and B3.4 onboarding flow;
+- make auth/action rules explicit before wiring a real auth provider or mutation route;
+- prove owner-scoped save/submit behavior, LocalSnow-only publication approval and private/public field separation in tests;
+- show `/instructors/join` how drafts, missing required facts and review gates will behave;
+- keep this slice no-real-persistence: no auth provider, database schema/migrations, form actions, uploads, payment, email delivery or availability engine.
 
 ## Drift guard
 
