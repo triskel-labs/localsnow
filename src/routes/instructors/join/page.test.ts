@@ -33,7 +33,7 @@ describe("/instructors/join provider page", () => {
       /referral|refer|invitation code|invite code/,
     );
     expect(visibleText).not.toMatch(
-      /b3|draft boundary|auth|database|mutation|persistence|scaffold/,
+      /b3|draft boundary|auth|database|mutation|persistence|scaffold|shell|commission|payment/,
     );
   });
 });

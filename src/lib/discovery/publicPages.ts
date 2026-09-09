@@ -116,7 +116,7 @@ export const publicPages = [
     path: "/instructors/join",
     title: "Teach with LocalSnow",
     description:
-      "Supply invitation shell for instructors who want more lesson clients without becoming content creators, running ads or hiring a generic agency.",
+      "For instructors who want more lesson clients without becoming content creators, running ads or hiring a generic agency.",
     retrieval: {
       intent: "supplyInvitation",
       requiredSignals: ["resorts served", "sports taught", "lesson types"],

@@ -44,7 +44,7 @@ export const load = () => ({
   trustSignals: [
     promise.benefitCopy.qualifiedClients,
     promise.benefitCopy.lowerMarketingAdmin,
-    promise.benefitCopy.fairCommission,
+    "simple profile setup",
     "reviewed before going public",
   ],
   sections: [
