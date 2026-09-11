@@ -38,8 +38,17 @@
     <p>{data.status}</p>
   </section>
 
+  <section class="assist" aria-labelledby="assist-title">
+    <p class="eyebrow">LocalSnow te ayuda</p>
+    <h2 id="assist-title">{data.assistedHelp.headline}</h2>
+    <p>{data.assistedHelp.body}</p>
+    <a class="button" href={data.assistedHelp.href}
+      >{data.assistedHelp.primaryCta}</a
+    >
+  </section>
+
   {#if data.resort.supplyInvitationVisible}
-    <a class="button" href="/instructors/join"
+    <a class="button secondary" href="/instructors/join"
       >Help LocalSnow source instructors here</a
     >
   {/if}
@@ -80,13 +89,19 @@
     line-height: 1.75;
   }
 
-  .readiness {
+  .readiness,
+  .assist {
     max-width: 44rem;
     margin: 2rem 0;
     border: 1px solid rgba(148, 163, 184, 0.22);
     border-radius: 1.25rem;
     padding: 1.25rem;
     background: rgba(15, 23, 42, 0.78);
+  }
+
+  .assist {
+    display: grid;
+    gap: 1rem;
   }
 
   dl {
@@ -116,5 +131,11 @@
     color: #07111f;
     font-weight: 800;
     text-decoration: none;
+  }
+
+  .button.secondary {
+    border: 1px solid rgba(248, 250, 252, 0.24);
+    background: transparent;
+    color: #f8fafc;
   }
 </style>

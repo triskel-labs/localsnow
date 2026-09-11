@@ -29,7 +29,8 @@
 - [x] Implement B3.2 provider setup and preview surface.
 - [x] Implement B3.3 profile intake contract.
 - [x] Implement B3.4 provider onboarding draft flow.
-- [ ] Implement B3.5 provider draft auth/persistence boundary.
+- [x] Implement B3.5 provider draft auth/persistence boundary.
+- [ ] Implement B6a help/contact intent router.
 
 ## On process
 
@@ -50,7 +51,8 @@
 - [x] PR #15: B3.2 provider setup and preview surface.
 - [x] PR #16: B3.3 profile intake contract.
 - [x] PR #17: B3.4 provider onboarding draft flow.
-- [ ] PR #18: B3.5 provider draft auth/persistence boundary.
+- [x] PR #18: B3.5 provider draft auth/persistence boundary.
+- [ ] PR #21: B6a help/contact intent router.
 
 ## Done
 
@@ -73,3 +75,4 @@
 - [x] Merge B3.2 provider setup and preview surface.
 - [x] Merge B3.3 profile intake contract.
 - [x] Merge B3.4 provider onboarding draft flow.
+- [x] Merge B3.5 provider draft auth/persistence boundary.

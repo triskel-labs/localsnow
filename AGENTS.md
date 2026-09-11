@@ -6,7 +6,7 @@ This is the greenfield LocalSnow repo. Do not inspect or copy `localsnow-legacy`
 
 ## Current phase
 
-Current active implementation slice: B3.5 provider draft auth/persistence boundary.
+Current active implementation slice: B6a help/contact intent router with WhatsApp-assisted lesson help.
 
 1. `docs/00-ceo-brief.md`
 2. `docs/01-product-promise.md`
@@ -21,8 +21,9 @@ Current active implementation slice: B3.5 provider draft auth/persistence bounda
 11. `docs/09-engineering-architecture.md`
 12. `docs/10-backlog-hierarchy.md`
 13. `docs/11-b1-b2-founder-control.md`
+14. `docs/12-help-contact-intent-router.md`
 
-Moli corrected the provider-side acquisition thesis before B3, then approved the B1/B2 founder-control correction. B3 may proceed only in narrow sub-slices. B3.1 landed tested domain/profile helpers, school-affiliated instructor inheritance rules, operator-created school/instructor seed profile rules and public projection rules. B3.2 landed a no-persistence provider setup/preview surface. B3.3 landed the no-persistence profile intake contract: what LocalSnow will ask later, separated into public, commercial and LocalSnow-only facts, with private legal identity separate from public display name. B3.4 turned that contract into a visible platform onboarding draft flow on `/instructors/join`, not a cold-outreach pack. B3.5 may define the provider draft auth/persistence boundary and show it on the join page, but must not wire real auth, database migrations, form actions, uploads, payments, email delivery or availability engine yet.
+Moli corrected the provider-side acquisition thesis before B3, then approved the B1/B2 founder-control correction. B3 proceeded in narrow sub-slices through B3.5, and `/instructors/join` is now a focused provider invitation. B6a may add a client-facing help/contact intent router and WhatsApp-assisted lesson help CTA, but must not turn contact into guaranteed booking, payment, inquiry persistence, email delivery, WhatsApp bot automation or operator queue UI.
 
 ## Professional-team sequence
 
@@ -276,3 +277,23 @@ Not allowed yet:
 - uploads/media storage;
 - operator/admin UI;
 - payment, email delivery or availability implementation.
+
+## B6a help/contact intent router
+
+Allowed now:
+
+- `/help` and `/es/ayuda` public help/contact routes;
+- intent selector separating assisted lesson help, payment/guarantee question, lesson issue, provider question and general contact;
+- WhatsApp-assisted lesson help CTA using the approved WhatsApp Business channel;
+- server-side validation and typed contact request draft helper;
+- contextual CTAs on home, Spain market and resort pages;
+- `docs/12-help-contact-intent-router.md` as the slice contract.
+
+Not allowed yet:
+
+- database persistence for `ContactRequest`;
+- email/Telegram/webhook delivery;
+- Stripe checkout/payment creation;
+- self-managed inquiry or guaranteed booking creation from contact alone;
+- operator queue/admin UI;
+- WhatsApp bot or automation claims.

@@ -5,6 +5,7 @@ import {
   getResortRobots,
   getResortStatusCopy,
 } from "$lib/catalog/resorts";
+import { getHelpPlacement } from "$lib/contact/helpIntents";
 import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({ params }) => {
@@ -19,5 +20,6 @@ export const load: PageLoad = ({ params }) => {
     region: getRegionForResort(resort),
     robots: getResortRobots(resort),
     status: getResortStatusCopy(resort),
+    assistedHelp: getHelpPlacement("resortThinSupply", "es"),
   };
 };

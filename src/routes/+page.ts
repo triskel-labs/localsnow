@@ -1,3 +1,4 @@
+import { getHelpPlacement } from "$lib/contact/helpIntents";
 import { getPublicPage, navigationPages } from "$lib/discovery/publicPages";
 
 export const load = () => {
@@ -7,5 +8,6 @@ export const load = () => {
     page,
     navigation: navigationPages.filter((page) => page.state === "indexable"),
     catalogExample: getPublicPage("/world/catalog-example"),
+    assistedHelp: getHelpPlacement("homeHero", "en"),
   };
 };

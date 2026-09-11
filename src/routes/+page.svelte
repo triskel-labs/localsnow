@@ -25,8 +25,25 @@
     </p>
     <div class="actions" aria-label="Primary actions">
       <a class="button primary" href="/spain">Start lesson search</a>
+      <a class="button secondary" href={data.assistedHelp.href}
+        >{data.assistedHelp.primaryCta}</a
+      >
       <a class="button secondary" href="/instructors/join"
         >Teach with LocalSnow</a
+      >
+    </div>
+  </section>
+
+  <section class="assist" aria-labelledby="assist-title">
+    <p class="eyebrow">Person-assisted path</p>
+    <h2 id="assist-title">{data.assistedHelp.headline}</h2>
+    <p>{data.assistedHelp.body}</p>
+    <div class="actions">
+      <a class="button primary" href={data.assistedHelp.href}
+        >{data.assistedHelp.primaryCta}</a
+      >
+      <a class="button secondary" href="/spain"
+        >{data.assistedHelp.secondaryCta}</a
       >
     </div>
   </section>
@@ -82,6 +99,7 @@
   }
 
   .hero,
+  .assist,
   .panel,
   .policy {
     border: 1px solid rgba(148, 163, 184, 0.22);
@@ -97,8 +115,14 @@
   }
 
   .panel,
+  .assist,
   .policy {
     padding: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .assist {
+    display: grid;
+    gap: 1rem;
   }
 
   .eyebrow {

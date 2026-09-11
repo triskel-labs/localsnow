@@ -344,6 +344,48 @@ Foundation gate check:
 Not included:
 - full client dashboard, in-app messaging, complex account onboarding.
 
+### B6a — Help/contact intent router + assisted lesson WhatsApp path
+
+Goal:
+- give unsure clients a clear human-assisted path without mixing generic contact with guaranteed booking.
+
+Foundation layer(s):
+- frontend forms, backend validation, contact capture, security, rate limiting.
+
+Loop:
+- client does not want to spend time searching → tells LocalSnow lesson context → WhatsApp/person-assisted handoff → later chooses self-managed inquiry, guaranteed booking or operator recommendation deliberately.
+
+Surface:
+- `/help` and `/es/ayuda` help/contact router;
+- home, Spain and resort-page assisted lesson CTA;
+- intent selector for assisted lesson help, payment/guarantee question, lesson issue, provider question and general contact.
+
+Record(s):
+- `ContactRequest` draft shape, future optional links to `LessonIntent`, `SelfManagedInquiry` or `GuaranteedBooking`.
+
+Action/state:
+- intent selected → context validated → WhatsApp handoff prepared → future triage/persistence when notification/storage exists.
+
+Conversion point(s):
+- assisted help CTA viewed;
+- WhatsApp handoff opened;
+- next path chosen after human clarification.
+
+Acceptance test:
+- WhatsApp URL uses the approved business number;
+- assisted lesson help is the first intent;
+- form validation does not auto-create a booking;
+- public copy says “Don’t spend time searching” / “No pierdas tiempo buscando” and avoids internal maturity language.
+
+Foundation gate check:
+- server-side validation;
+- no personal phone exposure;
+- no external side effect beyond explicit WhatsApp link opening by the user;
+- future `ContactRequest` persistence/API boundary documented.
+
+Not included:
+- database writes, email delivery, Telegram/webhook delivery, Stripe/payment, operator queue UI, WhatsApp bot automation.
+
 ### B7 — Free self-managed inquiry path
 
 Goal:

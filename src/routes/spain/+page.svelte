@@ -24,6 +24,20 @@
     useful.
   </p>
 
+  <section class="assist" aria-labelledby="assist-title">
+    <p class="eyebrow">LocalSnow te ayuda</p>
+    <h2 id="assist-title">{data.assistedHelp.headline}</h2>
+    <p>{data.assistedHelp.body}</p>
+    <div class="actions">
+      <a class="button" href={data.assistedHelp.href}
+        >{data.assistedHelp.primaryCta}</a
+      >
+      <a class="button secondary" href="#resorts-title"
+        >{data.assistedHelp.secondaryCta}</a
+      >
+    </div>
+  </section>
+
   <section aria-labelledby="resorts-title">
     <h2 id="resorts-title">Priority resort readiness</h2>
     <div class="cards">
@@ -73,10 +87,44 @@
     line-height: 1.75;
   }
 
-  .cards {
+  .cards,
+  .actions {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
     gap: 1rem;
+  }
+
+  .assist {
+    max-width: 50rem;
+    margin-top: 2rem;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    background: rgba(15, 23, 42, 0.78);
+  }
+
+  .card,
+  .button {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    border-radius: 999px;
+    padding: 0.85rem 1.1rem;
+    background: #f8fafc;
+    color: #07111f;
+    font-weight: 800;
+  }
+
+  .button.secondary {
+    border: 1px solid rgba(248, 250, 252, 0.24);
+    background: transparent;
+    color: #f8fafc;
   }
 
   .card {
@@ -87,8 +135,6 @@
     border-radius: 1.25rem;
     padding: 1.25rem;
     background: rgba(15, 23, 42, 0.78);
-    color: inherit;
-    text-decoration: none;
   }
 
   .card strong {

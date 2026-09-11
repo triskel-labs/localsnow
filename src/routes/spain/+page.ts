@@ -3,6 +3,7 @@ import {
   getResortStatusCopy,
   priorityResorts,
 } from "$lib/catalog/resorts";
+import { getHelpPlacement } from "$lib/contact/helpIntents";
 import { getPublicPage } from "$lib/discovery/publicPages";
 
 export const load = () => ({
@@ -13,4 +14,5 @@ export const load = () => ({
     robots: getResortRobots(resort),
     status: getResortStatusCopy(resort),
   })),
+  assistedHelp: getHelpPlacement("resortThinSupply", "es"),
 });

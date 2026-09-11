@@ -134,6 +134,52 @@ export const publicPages = [
     primaryAction: "Register interest",
   }),
   page({
+    family: "support",
+    state: "indexable",
+    silo: "trust",
+    marketPriority: "priority",
+    path: "/help",
+    title: "Help me find a ski lesson — LocalSnow",
+    description:
+      "Tell LocalSnow what lesson you need and choose the right contact path: assisted lesson help, payment question, lesson issue or provider question.",
+    retrieval: {
+      intent: "trustSupport",
+      requiredSignals: ["lesson need", "contact path", "human help"],
+      optionalSignals: ["resort", "dates", "payment", "lesson issue"],
+    },
+    copyStatus: "scaffold",
+    label: "Help",
+    badge: "Human help",
+    summary:
+      "Routes clients by intent, with WhatsApp-assisted lesson help for people who do not want to spend time searching.",
+    primaryAction: "Talk on WhatsApp",
+  }),
+  page({
+    family: "support",
+    state: "indexable",
+    silo: "trust",
+    marketPriority: "priority",
+    path: "/es/ayuda",
+    title: "Ayúdame a encontrar clase — LocalSnow",
+    description:
+      "Cuéntale a LocalSnow qué clase necesitas y elige la vía correcta: ayuda humana, pregunta de pago, incidencia o consulta profesional.",
+    retrieval: {
+      intent: "trustSupport",
+      requiredSignals: [
+        "necesidad de clase",
+        "vía de contacto",
+        "ayuda humana",
+      ],
+      optionalSignals: ["estación", "fechas", "pago", "incidencia"],
+    },
+    copyStatus: "scaffold",
+    label: "Ayuda",
+    badge: "Ayuda humana",
+    summary:
+      "Ordena el contacto por intención, con ayuda por WhatsApp para quienes no quieren perder tiempo buscando.",
+    primaryAction: "Hablar por WhatsApp",
+  }),
+  page({
     family: "resort",
     state: "noindexBrowsable",
     silo: "catalogOnly",

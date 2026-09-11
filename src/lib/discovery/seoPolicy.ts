@@ -5,6 +5,7 @@ export type PageFamily =
   | "profile"
   | "lessonIntent"
   | "supply"
+  | "support"
   | "legal";
 
 export type PageState =
